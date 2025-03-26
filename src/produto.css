@@ -6,7 +6,7 @@
     --text-secondary: #888888;
     --border-color: #333333;
     --hover-color: #2A2A2A;
-    --purple-button: #8B5CF6;
+    --purple-button: #bb06f1;
     --search-bg: #111111;
     --table-header: #111111;
 }
@@ -51,15 +51,6 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
-}
-
-.logo h2::before {
-    content: "";
-    display: inline-block;
-    width: 24px;
-    height: 24px;
-    background-color: #FF4B4B;
-    border-radius: 6px;
 }
 
 .menu {
@@ -167,10 +158,10 @@ header h1 {
     background-color: var(--purple-button);
     color: white;
     border: none;
-    border-radius: 6px;
+    border-radius: 2px;
     cursor: pointer;
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 700;
     transition: all 0.2s ease;
     text-transform: uppercase;
     letter-spacing: 0.5px;
