@@ -7,14 +7,12 @@ export default function Login() {
   console.log("Estado inicial do modal:", isModalOpen); 
   return (
     <div className="container">
-      {/* Imagens dos hexágonos */}
       <img src="/img/HexLE.png" alt="Hexágonos" className="hex-top" />
       <img src="/img/HexLD.png" alt="Hexágonos" className="hex-bottom" />
 
-      {/* Lado esquerdo */}
       <div className="left">
         <div className="logo">
-          <img src="/img/Component 4.png" alt="Logo" className="logo-img" />
+          <img src="/img/logobiz.png" alt="Logo" className="logo-img" />
           <span>biz.erp</span>
         </div>
         <h1>Bem-vindo</h1>
@@ -26,12 +24,10 @@ export default function Login() {
         <button onClick={() => setIsModalOpen(true)}>Login</button>
       </div>
 
-      {/* Lado direito */}
       <div className="right">
         <img src="/img/logo.webp" alt="Logo" className="logo-main" />
       </div>
 
-      {/* Modal */}
       {isModalOpen && (
         <div className="modal">
           <div className="modal-content">

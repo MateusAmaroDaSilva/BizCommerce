@@ -4,10 +4,15 @@ import "./produto.css";
 const initialProducts = [
   { id: 1, name: "Tênis da Nike", price: 60.9, cost: 55.45 },
   { id: 2, name: "Tênis da Adidas", price: 660.9, cost: 55.45 },
-  { id: 3, name: "Boné", price: 760.9, cost: 55.45 },
+  { id: 3, name: "Toca da Nike", price: 760.9, cost: 55.45 },
+  { id: 4, name: "Camisa Loud", price: 150.0, cost: 85.0 },
+  { id: 5, name: "Camisa Corinthians", price: 350.0, cost: 180.0 },
+  { id: 6, name: "Calça Nike", price: 284.0, cost: 155.45 },
+  { id: 7, name: "Calça Adidas", price: 264.9, cost: 145.45 },
+  { id: 8, name: "Blusa de Frio", price: 240.0, cost: 185.45 },
 ];
 
-const Dashboard = () => {
+const Produto = () => {
   const [products, setProducts] = useState(initialProducts);
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -81,11 +86,12 @@ const Dashboard = () => {
                 <td>{formatPrice(product.price)}</td>
                 <td>{formatPrice(product.cost)}</td>
                 <td>
-                  <div className="action-buttons">
-                    <button className="action-button" onClick={() => viewProduct(product.id)}><img src="./img/olho.png" alt="" /></button>
-                    <button className="action-button" onClick={() => editProduct(product.id)}><img src="./img/lapis.png" alt="" /></button>
-                    <button className="action-button" onClick={() => deleteProduct(product.id)}><img src="./img/lixo.png" alt="" /></button>
-                  </div>
+                <div className="action-buttons">
+                  <button className="action-button view-button" onClick={() => viewProduct(product.id)}><img src="./img/olho.png" alt="" /></button>
+                  <button className="action-button edit-button" onClick={() => editProduct(product.id)}><img src="./img/lapis.png" alt="" /></button>
+                  <button className="action-button delete-button" onClick={() => deleteProduct(product.id)}><img src="./img/lixo.png" alt="" /></button>
+                </div>
+
                 </td>
               </tr>
             ))}
@@ -96,4 +102,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default Produto;

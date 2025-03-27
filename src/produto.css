@@ -1,14 +1,17 @@
 :root {
     --primary-color: #6c5ce7;
-    --bg-dark: #111111;
+    --bg-dark: #1D1D1E;
     --bg-light: #1E1E1E;
     --text-color: #ffffff;
-    --text-secondary: #888888;
+    --text-secondary: #ffffff;
     --border-color: #333333;
-    --hover-color: #2A2A2A;
-    --purple-button: #bb06f1;
+    --hover-color: #141314;
+    --purple-button: #511DB9;
     --search-bg: #111111;
-    --table-header: #111111;
+    --table-header: #252525;
+    --view-button: #511DB9; 
+    --edit-button: #444141; 
+    --delete-button: #e74c3c; 
 }
 
 * {
@@ -129,7 +132,7 @@ header h1 {
     grid-template-columns: 1fr auto;
     gap: 16px;
     margin-bottom: 24px;
-    max-width: 58%;
+    max-width: 59%;
 }
 
 #searchInput {
@@ -145,7 +148,7 @@ header h1 {
 
 #searchInput:focus {
     outline: none;
-    border-color: var(--purple-button);
+    border-color: var(--purple-fbutton);
 }
 
 #searchInput::placeholder {
@@ -157,7 +160,7 @@ header h1 {
     padding: 12px 24px;
     background-color: var(--purple-button);
     color: white;
-    border: none;
+    border: none;   
     border-radius: 2px;
     cursor: pointer;
     font-size: 14px;
@@ -213,12 +216,13 @@ header h1 {
     gap: 8px;
 }
 
+
 .action-button {
     padding: 6px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    background-color: var(--bg-dark);
+    background-color: var(--bg-dar);
     color: var(--text-color);
     transition: background-color 0.2s ease;
     display: flex;
@@ -228,8 +232,28 @@ header h1 {
     height: 32px;
 }
 
-.action-button:hover {
-    background-color: var(--hover-color);
+.view-button {
+    background-color: var(--view-button);
+}
+
+.edit-button {
+    background-color: var(--edit-button);
+}
+
+.delete-button {
+    background-color: var(--delete-button);
+}
+
+.view-button:hover {
+    background-color: darken(var(--view-button), 10%);
+}
+
+.edit-button:hover {
+    background-color: darken(var(--edit-button), 10%);
+}
+
+.delete-button:hover {
+    background-color: darken(var(--delete-button), 10%);
 }
 
 .logout {
