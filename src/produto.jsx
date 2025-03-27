@@ -9,7 +9,6 @@ const initialProducts = [
   { id: 5, name: "Camisa Corinthians", price: 350.0, cost: 180.0 },
   { id: 6, name: "Calça Nike", price: 284.0, cost: 155.45 },
   { id: 7, name: "Calça Adidas", price: 264.9, cost: 145.45 },
-  { id: 8, name: "Blusa de Frio", price: 240.0, cost: 185.45 },
 ];
 
 const Produto = () => {
@@ -58,6 +57,8 @@ const Produto = () => {
           </div>
         </header>
 
+        {/* Adicionando o container com margem escura */}
+        <div className="table-container">
         <div className="search-bar">
           <input
             type="text"
@@ -67,36 +68,36 @@ const Produto = () => {
           />
           <button className="add-button">Adicionar</button>
         </div>
-
-        <table className="products-table">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Produto</th>
-              <th>Preço</th>
-              <th>Custo</th>
-              <th>Ações</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredProducts.map((product) => (
-              <tr key={product.id}>
-                <td>{product.id}</td>
-                <td>{product.name}</td>
-                <td>{formatPrice(product.price)}</td>
-                <td>{formatPrice(product.cost)}</td>
-                <td>
-                <div className="action-buttons">
-                  <button className="action-button view-button" onClick={() => viewProduct(product.id)}><img src="./img/olho.png" alt="" /></button>
-                  <button className="action-button edit-button" onClick={() => editProduct(product.id)}><img src="./img/lapis.png" alt="" /></button>
-                  <button className="action-button delete-button" onClick={() => deleteProduct(product.id)}><img src="./img/lixo.png" alt="" /></button>
-                </div>
-
-                </td>
+        
+          <table className="products-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Produto</th>
+                <th>Preço</th>
+                <th>Custo</th>
+                <th>Ações</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {filteredProducts.map((product) => (
+                <tr key={product.id}>
+                  <td>{product.id}</td>
+                  <td>{product.name}</td>
+                  <td>{formatPrice(product.price)}</td>
+                  <td>{formatPrice(product.cost)}</td>
+                  <td>
+                    <div className="action-buttons">
+                      <button className="action-button view-button" onClick={() => viewProduct(product.id)}><img src="./img/olho.png" alt="" /></button>
+                      <button className="action-button edit-button" onClick={() => editProduct(product.id)}><img src="./img/lapis.png" alt="" /></button>
+                      <button className="action-button delete-button" onClick={() => deleteProduct(product.id)}><img src="./img/lixo.png" alt="" /></button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </main>
     </div>
   );

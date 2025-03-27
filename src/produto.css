@@ -12,6 +12,7 @@
     --view-button: #511DB9; 
     --edit-button: #444141; 
     --delete-button: #e74c3c; 
+    --table-border: #111111;
 }
 
 * {
@@ -128,11 +129,12 @@ header h1 {
 }
 
 .search-bar {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 16px;
-    margin-bottom: 24px;
-    max-width: 59%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--table-header); /* Mesma cor do cabeçalho */
+    padding: 12px;
+    border-radius: 5px 5px 0 0; /* Arredondamento apenas no topo */
 }
 
 #searchInput {
@@ -148,7 +150,7 @@ header h1 {
 
 #searchInput:focus {
     outline: none;
-    border-color: var(--purple-fbutton);
+    border-color: var(--purple-button);
 }
 
 #searchInput::placeholder {
@@ -176,11 +178,22 @@ header h1 {
     transform: translateY(-1px);
 }
 
+/* Container que cria a margem/borda escura ao redor da tabela */
+.table-container {
+    background-color: var(--table-border);
+    border-radius: 8px;
+    padding: 80px; /* Reduzido para encaixar melhor */
+    margin: 10px;
+}
+
 .products-table {
     width: 100%;
     border-collapse: separate;
     border-spacing: 0;
     font-size: 14px;
+    background-color: var(--bg-light);
+    border-radius: 0px;
+    overflow: hidden;
 }
 
 .products-table th,
@@ -216,13 +229,12 @@ header h1 {
     gap: 8px;
 }
 
-
 .action-button {
     padding: 6px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    background-color: var(--bg-dar);
+    background-color: var(--bg-dark);
     color: var(--text-color);
     transition: background-color 0.2s ease;
     display: flex;
@@ -245,15 +257,15 @@ header h1 {
 }
 
 .view-button:hover {
-    background-color: darken(var(--view-button), 10%);
+    opacity: 0.9;
 }
 
 .edit-button:hover {
-    background-color: darken(var(--edit-button), 10%);
+    opacity: 0.9;
 }
 
 .delete-button:hover {
-    background-color: darken(var(--delete-button), 10%);
+    opacity: 0.9;
 }
 
 .logout {
