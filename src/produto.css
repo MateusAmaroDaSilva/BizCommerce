@@ -110,22 +110,42 @@ header h1 {
     font-weight: 600;
 }
 
+/* Estiliza o header */
+.header-container {
+    display: flex;
+    justify-content: flex-end; /* Empurra o user-info para o canto direito */
+    align-items: center;
+    padding: 10px 20px; /* Espaçamento interno */
+    background-color: var(--bg-dark); /* Cor de fundo do header */
+}
+
+/* Mantém o alinhamento correto do nome e imagem */
 .user-info {
     display: flex;
     align-items: center;
     gap: 12px;
 }
 
+/* Estiliza o nome do usuário */
 .user-info span {
     color: var(--text-color);
     font-size: 14px;
 }
 
+/* Ajusta o tamanho do avatar */
 .avatar {
     width: 40px;
     height: 40px;
     border-radius: 50%;
     object-fit: cover;
+}
+
+
+.table-title {
+    color: #fff;
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 20px; /* Dá um espaçamento entre o título e a barra */
 }
 
 .search-bar {
@@ -178,12 +198,14 @@ header h1 {
     transform: translateY(-1px);
 }
 
-/* Container que cria a margem/borda escura ao redor da tabela */
+
 .table-container {
     background-color: var(--table-border);
-    border-radius: 8px;
-    padding: 80px; /* Reduzido para encaixar melhor */
-    margin: 10px;
+    border-radius: 4px;
+    padding: 80px; 
+    width: 102%;
+    max-width: 17000px; 
+    margin: 30px auto 50px; 
 }
 
 .products-table {

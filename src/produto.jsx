@@ -8,7 +8,6 @@ const initialProducts = [
   { id: 4, name: "Camisa Loud", price: 150.0, cost: 85.0 },
   { id: 5, name: "Camisa Corinthians", price: 350.0, cost: 180.0 },
   { id: 6, name: "Calça Nike", price: 284.0, cost: 155.45 },
-  { id: 7, name: "Calça Adidas", price: 264.9, cost: 145.45 },
 ];
 
 const Produto = () => {
@@ -49,16 +48,17 @@ const Produto = () => {
       </nav>
 
       <main className="content">
-        <header>
-          <h1>Produtos</h1>
+      <header className="header-container">
           <div className="user-info">
             <span>mãe do Vitin123</span>
-            <img src="#" alt="Avatar" />
+            <img className="avatar" src="#" alt="Avatar" />
           </div>
         </header>
 
         {/* Adicionando o container com margem escura */}
         <div className="table-container">
+        <h1 className="table-title">Produtos</h1>
+
         <div className="search-bar">
           <input
             type="text"
