@@ -90,13 +90,13 @@ body {
 }
 
 .menu li.active {
-    background-color: #111; /* Cor preta quando ativo */
-    transform: translateX(5px); /* Move o item para a direita */
+    background-color: #111;
+    transform: translateX(5px);
 }
 
 .menu li.active img,
 .menu li.active a {
-    transform: translateX(5px); /* Move o ícone e o texto juntos */
+    transform: translateX(5px); 
 }
 
 .menu .icon {
@@ -124,29 +124,25 @@ header h1 {
     font-weight: 600;
 }
 
-/* Estiliza o header */
 .header-container {
     display: flex;
-    justify-content: flex-end; /* Empurra o user-info para o canto direito */
+    justify-content: flex-end; 
     align-items: center;
-    padding: 10px 20px; /* Espaçamento interno */
-    background-color: var(--bg-dark); /* Cor de fundo do header */
+    padding: 10px 20px; 
+    background-color: var(--bg-dark); 
 }
 
-/* Mantém o alinhamento correto do nome e imagem */
 .user-info {
     display: flex;
     align-items: center;
     gap: 12px;
 }
 
-/* Estiliza o nome do usuário */
 .user-info span {
     color: var(--text-color);
     font-size: 14px;
 }
 
-/* Ajusta o tamanho do avatar */
 .avatar {
     width: 40px;
     height: 40px;
@@ -159,16 +155,16 @@ header h1 {
     color: #fff;
     font-size: 30px;
     font-weight: bold;
-    margin-bottom: 20px; /* Dá um espaçamento entre o título e a barra */
+    margin-bottom: 20px; 
 }
 
 .search-bar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--bg-dark); /* Mesma cor do cabeçalho */
+    background-color: var(--bg-dark); 
     padding: 30px;
-    border-radius: 5px 5px 0 0; /* Arredondamento apenas no topo */
+    border-radius: 5px 5px 0 0; 
 }
 
 #searchInput {
