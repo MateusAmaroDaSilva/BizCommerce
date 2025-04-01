@@ -166,13 +166,13 @@ header h1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--table-header); /* Mesma cor do cabeçalho */
-    padding: 12px;
+    background-color: var(--bg-dark); /* Mesma cor do cabeçalho */
+    padding: 30px;
     border-radius: 5px 5px 0 0; /* Arredondamento apenas no topo */
 }
 
 #searchInput {
-    width: 100%;
+    width: 50%;
     padding: 16px 20px;
     border-radius: 6px;
     background-color: var(--search-bg);
@@ -184,7 +184,7 @@ header h1 {
 
 #searchInput:focus {
     outline: none;
-    border-color: var(--purple-button);
+    border-color: var(--text-color);
 }
 
 #searchInput::placeholder {
@@ -193,11 +193,13 @@ header h1 {
 }
 
 .add-button {
+    width: 150px;
+    height: 55px;
     padding: 12px 24px;
     background-color: var(--purple-button);
     color: white;
     border: none;   
-    border-radius: 2px;
+    border-radius: 6px;
     cursor: pointer;
     font-size: 14px;
     font-weight: 700;
@@ -205,6 +207,9 @@ header h1 {
     text-transform: uppercase;
     letter-spacing: 0.5px;
     white-space: nowrap;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .add-button:hover {

@@ -35,13 +35,19 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  padding: 60px;
+  padding: 245px;
+  text-align: left;
+  text-align: 500px;
 }
 
 .logo {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: -15px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+  color: white;
 }
 
 .logo-img {
@@ -58,7 +64,7 @@
 .left p {
   font-size: 1rem;
   color: #ccc;
-  max-width: 700px;
+  max-width: 500px;
   line-height: 1.5;
   margin-bottom: 20px;
 }
@@ -67,11 +73,13 @@ button {
   background-color: #222;
   color: white;
   border: none;
-  padding: 20px 100px;
+  padding: 18px 120px;
   cursor: pointer;
   border-radius: 5px;
   font-size: 1.5rem;
-  margin-top: 15px;
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
 }
 
 .right {

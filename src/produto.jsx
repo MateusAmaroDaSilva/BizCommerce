@@ -61,6 +61,7 @@ const Produto = () => {
 
         <div className="search-bar">
           <input
+            id="searchInput"
             type="text"
             placeholder="Pesquisar por produto..."
             value={searchTerm}
