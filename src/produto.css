@@ -222,14 +222,16 @@ header h1 {
     background-color: var(--table-border);
     border-radius: 4px;
     padding: 80px; 
-    width: 102%;
+    width: 104%;
     max-width: 17000px; 
     margin: 30px auto 50px; 
+    overflow: hidden;
+    margin-left: -30px;
 }
 
 .products-table {
     width: 100%;
-    border-collapse: separate;
+    border-collapse: collapse;
     border-spacing: 0;
     font-size: 14px;
     background-color: var(--bg-light);

@@ -8,6 +8,7 @@ const initialProducts = [
   { id: 4, name: "Camisa Loud", price: 150.0, cost: 85.0 },
   { id: 5, name: "Camisa Corinthians", price: 350.0, cost: 180.0 },
   { id: 6, name: "Calça Nike", price: 284.0, cost: 155.45 },
+  { id: 7, name: "Blusa de frio", price: 245.0, cost: 122.45 },
 ];
 
 const Produto = () => {
