@@ -59,50 +59,61 @@ body {
 
 .menu {
     list-style: none;
-    flex-grow: 1;
+    padding: 0;
+    margin: 0;
 }
 
 .menu li {
-    list-style: none;
-    padding: 10px 15px;
     display: flex;
     align-items: center;
     gap: 10px;
+    padding: 14px;
+    color: white;
+    cursor: pointer;
     border-radius: 8px;
     transition: all 0.3s ease-in-out;
-    cursor: pointer;
-}
-
-.menu li img {
-    width: 20px;
-    height: auto;
-    transition: transform 0.3s ease-in-out;
+    position: relative;
 }
 
 .menu li a {
-    text-decoration: none;
-    color: #fff;
-    font-size: 16px;
-    transition: transform 0.3s ease-in-out;
     display: flex;
     align-items: center;
     gap: 10px;
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
 }
 
+.menu li img {
+    width: 28px; /* Ícones maiores */
+    height: 28px;
+    transition: transform 0.3s ease-in-out;
+    position: relative;
+    top: 0px;
+}
+
+.menu li a span {
+    position: relative;
+    top: 0px;
+}
+
+/* Quando um item é selecionado */
+.menu li:hover, 
+.menu li:focus, 
 .menu li.active {
-    background-color: #111;
-    transform: translateX(5px);
+    background-color: var(--table-border);
+    transform: scale(1.05);
 }
 
-.menu li.active img,
-.menu li.active a {
-    transform: translateX(5px); 
+/* Animação para o ícone se destacar */
+.menu li:hover img {
+    transform: translateX(10px);
+    transition: transform 0.3s ease-in-out;
 }
 
-.menu .icon {
-    margin-right: 12px;
-    font-size: 20px;
-    opacity: 0.9;
+.menu li:hover a span {
+    transform: translateX(10px);
+    transition: transform 0.3s ease-in-out;
 }
 
 .content {
