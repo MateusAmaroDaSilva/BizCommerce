@@ -37,17 +37,17 @@ const Produto = () => {
           <h3>biz.erp</h3>
         </div>
         <ul className="menu">
-          <li><a href="#"><img src="./img/Home.png" alt="" />Dashboard</a></li>
-          <li><a href="#"><img src="./img/Category.png" alt="" /> Produtos</a></li>
-          <li><a href="#"><img src="./img/Bag.png" alt="" /> Relatórios</a></li>
-          <li><a href="#"><img src="./img/Document.png" alt="" /> Vendas</a></li>
-          <li><a href="#"><img src="./img/Setting.png" alt="" /> Settings</a></li>
+          <li><a href="#"><img src="./img/Home.png" alt="" /><span>Dashboard</span></a></li>
+          <li><a href="#"><img src="./img/Category.png" alt="" /> <span>Produtos</span></a></li>
+          <li><a href="#"><img src="./img/Bag.png" alt="" /> <span>Relatórios</span></a></li>
+          <li><a href="#"><img src="./img/Document.png" alt="" /> <span>Vendas</span></a></li>
+          <li><a href="#"><img src="./img/Setting.png" alt="" /> <span>Settings</span></a></li>
         </ul>
         <div className="logout">
           <a href="#"><img src="./img/logout.png" alt="" /> Logout</a>
         </div>
       </nav>
-
+      
       <main className="content">
       <header className="header-container">
           <div className="user-info">
