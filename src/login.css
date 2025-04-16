@@ -1,0 +1,161 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+  position: relative;
+  background-color: white;
+}
+
+/* Hexágonos */
+.hex-top {
+  position: absolute;
+  top: 0;
+  left: 948px;
+  width: 270px; 
+}
+ 
+.hex-bottom {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 250px; 
+}
+
+.left {
+  width: 50%;
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 245px;
+  text-align: left;
+  text-align: 500px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  margin-bottom: -15px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+  color: white;
+}
+
+.logo-img {
+  width: 30px;
+  margin-right: 10px;
+}
+
+.left h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.left p {
+  font-size: 1rem;
+  color: #ccc;
+  max-width: 500px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+button {
+  background-color: #222;
+  color: white;
+  border: none;
+  padding: 18px 120px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+}
+
+.right {
+  width: 50%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-main {
+  width: 300px;
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: #111;
+  padding: 20px;
+  border-radius: 10px;
+  width: 400px;
+  text-align: center;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.modal-content .close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.modal-logo {
+  width: 80px;
+  margin-bottom: 15px;
+}
+
+.modal-content label {
+  align-self: flex-start;
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 5px;
+  background-color: #1D1D1E;
+  color: white;
+}
+
+.modal-content button {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 10px;
+}
