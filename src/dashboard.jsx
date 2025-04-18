@@ -40,7 +40,7 @@ const TopBar = () => (
     <p>Gerencie seu negócio por aqui</p>
     <div className="user-profile">
       <span>Calabreso Silva</span>
-      <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=100&h=100&fit=crop" alt="Profile" className="profile-pic" />
+      <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=100&h=100&fit=crop" alt="" className="profile-pic" />
     </div>
   </header>
 );
