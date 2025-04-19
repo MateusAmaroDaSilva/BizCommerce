@@ -93,18 +93,20 @@ body {
 
 .main-content {
   flex: 1;
-  padding: 2rem;
+  padding: 0rem 2rem 2rem;
   background-color: var(--background);
 }
 
 .top-bar {
   width: 101.7%;
   background-color: var(--surface); 
-  height: 60px;
+  height: 90px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
   padding: 0 30px;
+  margin-bottom: 8rem;
+  border-top: none; 
 }
 
 .top-bar h1 {
