@@ -92,8 +92,9 @@ body {
 }
 
 .main-content {
+  padding-top: 1rem;
   flex: 1;
-  padding: 0rem 2rem 2rem;
+  padding: 0rem 2rem 1rem;
   background-color: var(--background);
 }
 
@@ -109,6 +110,7 @@ body {
   border-top: none; 
 }
 
+
 .top-bar h1 {
   font-size: 2rem;
   font-weight: 600;
@@ -117,6 +119,24 @@ body {
 
 .top-bar p {
   color: var(--text);
+}
+
+.page-header {
+  margin: -6rem 0 5rem 1rem; 
+  z-index: 2;
+  margin-left: 20rem;
+  position: relative;
+}
+
+.page-header h1 {
+  font-size: 2xrem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.page-header p {
+  font-size: 1rem;
+  color: var(--text-secondary);
 }
 
 .user-profile {
@@ -133,6 +153,7 @@ body {
 }
 
 .dashboard-grid {
+  margin-top: -50px; /* Ajuste esse valor como quiser */
   display: flex;
   gap: 1.5rem;
 }
@@ -152,6 +173,8 @@ body {
 }
 
 .card {
+  max-height: 320px; /* Ajuste conforme necessário */
+  overflow: hidden;
   background-color: var(--surface);
   border-radius: 16px;
   padding: 1.5rem;
@@ -299,6 +322,8 @@ body {
   height: 220px;
   display: flex;
   flex-direction: column;
+  height: 193px !important;
+  overflow: hidden;
 }
 
 .kpi-header {

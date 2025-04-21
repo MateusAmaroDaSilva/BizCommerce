@@ -36,8 +36,6 @@ const Sidebar = () => (
 
 const TopBar = () => (
   <header className="top-bar">
-    <h1>Dashboard</h1>
-    <p>Gerencie seu negócio por aqui</p>
     <div className="user-profile">
       <span>Calabreso Silva</span>
       <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=100&h=100&fit=crop" alt="" className="profile-pic" />
@@ -108,6 +106,12 @@ const KpiCard = ({ title, description }) => (
 const Main = () => (
   <main className="main-content">
     <TopBar />
+
+    <div className="page-header">
+      <h1>Dashboard</h1>
+      <p>Gerencie seu negócio por aqui</p>
+    </div>
+
     <div className="dashboard-grid">
       <div className="main-section">
         <section className="card bones-card">
