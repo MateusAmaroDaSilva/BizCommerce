@@ -318,56 +318,80 @@ body {
 }
 
 .kpi-card {
+  width: 300px; 
+  flex-shrink: 0;
+  height: 193px; 
   padding: 1.25rem;
-  height: 220px;
-  display: flex;
-  flex-direction: column;
-  height: 193px !important;
+  background-color: var(--surface);
+  border-radius: 16px;
   overflow: hidden;
 }
 
-.kpi-header {
+.kpi-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.kpi-content {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.25rem;
+  align-items: flex-start;
+  gap: rem;
 }
 
-.kpi-header .icon {
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.kpi-header .icon img {
-  width: 20px;
-  height: 20px;
-}
-
-.lucro .icon {
-  background-color: var(--success);
-}
-
-.vendas .icon {
-  background-color: var(--primary);
-}
-
-.deficit .icon {
-  background-color: var(--danger);
+.kpi-content .text {
+  flex: 1;
 }
 
 .kpi-card h3 {
-  font-size: 1.125rem;
-  font-weight: 600;
+  font-size: 1.25rem;
+  font-weight: 700;
 }
 
 .kpi-card p {
   color: var(--text-secondary);
   font-size: 0.75rem;
-  margin: 0 0 1rem 0;
+  margin: 0.25rem 0 0.75rem;
+}
+
+.kpi-percent {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 2rem; 
+  margin-bottom: 0.25rem;
+  display: block;
+  color: white;
+}
+
+.kpi-progress-bar {
+  height: 8px;
+  background: #000;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.kpi-progress {
+  height: 100%;
+  width: 45%;
+  background-color: currentColor;
+  border-radius: 8px;
+}
+
+.kpi-card .icon {
+  width: 42px;
+  height: 42px;
+  background-color: currentColor;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.kpi-card .icon img {
+  width: 20px;
+  height: 20px;
+  
 }
 
 .progress-circle {
@@ -392,6 +416,12 @@ body {
   font-weight: 600;
 }
 
-.lucro .progress-circle { color: var(--success); }
-.vendas .progress-circle { color: var(--primary); }
-.deficit .progress-circle { color: var(--danger); }
+.kpi-card.lucro { color: var(--success); }
+.kpi-card.vendas { color: var(--primary); }
+.kpi-card.deficit { color: var(--danger); }
+
+.kpi-card.lucro h3,
+.kpi-card.vendas h3,
+.kpi-card.deficit h3 {
+  color: white;
+}

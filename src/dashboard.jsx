@@ -95,11 +95,21 @@ const Tenis = () => (
   </section>
 );
 
-const KpiCard = ({ title, description }) => (
-  <section className="card kpi-card">
-    <h3>{title}</h3>
-    <p>{description}</p>
-    <div className="progress-circle" data-value="45"></div>
+const KpiCard = ({ title, description, type, icon }) => (
+  <section className={`card kpi-card ${type}`}>
+    <div className="kpi-content">
+      <div className="text">
+        <h3>{title}</h3>
+        <p>{description}</p>
+        <span className="kpi-percent">45%</span>
+        <div className="kpi-progress-bar">
+          <div className="kpi-progress" />
+        </div>
+      </div>
+      <div className="icon">
+        <img src={icon} alt={`${title} icon`} />
+      </div>
+    </div>
   </section>
 );
 
@@ -127,12 +137,28 @@ const Main = () => (
           <Tenis />
         </div>
       </div>
-      <div className="side-section">
-        <KpiCard title="Lucro" description="Resumo do lucro baseado no mês" />
-        <KpiCard title="Vendas" description="Resumo das vendas baseado no mês" />
-        <KpiCard title="Déficit" description="Resumo das despesas do mês" />
-      </div>
-    </div>
+
+    <div className="kpi-container">
+  <KpiCard
+      title="Lucro"
+      description={<>Resumo do lucro<br />baseado no mês</>}
+      type="lucro"
+      icon="./img/lucro.png"
+    />
+  <KpiCard
+      title="Vendas"
+      description={<>Resumo das vendas<br />baseado no mês</>}
+      type="vendas"
+      icon="./img/vendas.png"
+    />
+  <KpiCard
+      title="Déficit"
+      description={<>Resumo das<br /> despesas do mês</>}
+      type="deficit"
+      icon="./img/deficit.png"
+    />
+  </div>
+</div>
   </main>
 );
 
