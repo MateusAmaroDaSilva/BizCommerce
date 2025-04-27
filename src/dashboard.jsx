@@ -47,31 +47,41 @@ const Analysis = () => (
   <section className="card analysis-card">
     <h2>Análises</h2>
     <div className="big-number">1200.50</div>
-    <div className="progress-bars">
-      <div className="progress-item">
-        <span>Nike</span>
-        <div className="progress-bar">
-          <div className="progress" style={{ width: '45%', background: '#7C3AED' }}></div>
-        </div>
-        <span>45%</span>
-      </div>
-      <div className="progress-item">
-        <span>Boné</span>
-        <div className="progress-bar">
-          <div className="progress" style={{ width: '35%', background: '#EF4444' }}></div>
-        </div>
-        <span>35%</span>
-      </div>
-      <div className="progress-item">
-        <span>Adidas</span>
-        <div className="progress-bar">
-          <div className="progress" style={{ width: '20%', background: '#10B981' }}></div>
-        </div>
-        <span>20%</span>
-      </div>
+
+    {/* Barra grande de análise */}
+    <div className="stacked-bar">
+      <div className="bar-segment" style={{ width: '45%', background: '#511DB9' }}></div>
+      <div className="bar-segment" style={{ width: '35%', background: '#B93939' }}></div>
+      <div className="bar-segment" style={{ width: '20%', background: '#2BBC45' }}></div>
+      <div className="bar-segment" style={{ width: '10%', background: '#000000' }}></div> {/* Só pra completar 100% */}
     </div>
+
+    {/* Itens em linha */}
+    <div className="progress-bars-inline">
+  <div className="progress-item-inline">
+    <div className="progress-bar-container">
+      <div className="mini-bar" style={{ width: '45%', background: '#511DB9' }}></div>
+    </div>
+    <div className="percentage-inline">45%</div>
+    <div className="label-inline">Nike</div>
+  </div>
+  <div className="progress-item-inline">
+    <div className="progress-bar-container">
+      <div className="mini-bar" style={{ width: '35%', background: '#B93939' }}></div>
+    </div>
+    <div className="percentage-inline">35%</div>
+    <div className="label-inline">Boné</div>
+  </div>
+  <div className="progress-item-inline">
+    <div className="progress-bar-container">
+      <div className="mini-bar" style={{ width: '20%', background: '#2BBC45' }}></div>
+    </div>
+    <div className="percentage-inline">20%</div>
+    <div className="label-inline">Adidas</div>
+  </div>
+</div>
   </section>
-);
+);  
 
 const Tenis = () => (
   <section className="card tenis-card">
