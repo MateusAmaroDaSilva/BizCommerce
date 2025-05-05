@@ -445,9 +445,9 @@ body {
 .divider {
   height: 1px;
   width: 100%;
-  background-color: #444; /* ou use #555, #666 para ajustar o tom */
+  background-color: #444; 
   margin: 12px 0;
-  opacity: 0.5; /* deixa a linha mais discreta */
+  opacity: 0.5; 
 }
 
 .tenis-text,
@@ -464,21 +464,21 @@ body {
   color: #888;
   font-size: 1.25rem;
   font-weight: 500;
-  margin-bottom: 1px; /* Espaço abaixo de SEG/TER */
+  margin-bottom: 1px; 
 }
 
 .tenis-text .value,
 .tenis-info .value {
   font-size: 2rem;
   font-weight: bold;
-  margin-bottom: -5px; /* Espaço abaixo de 10K/10m */
+  margin-bottom: -5px; 
 }
 
 .tenis-text .percent,
 .tenis-info .percent {
   font-size: 1rem;
   font-weight: 500;
-  margin-top: 2px; /* Espaço acima de +43%/+13% */
+  margin-top: 2px; 
 }
 
 .tenis-text .positive,
