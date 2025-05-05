@@ -85,21 +85,35 @@ const Analysis = () => (
 
 const Tenis = () => (
   <section className="card tenis-card">
-    <h2>Tênis</h2>
-    <div className="tenis-stats">
-      <div className="tenis-stat">
-        <div className="stat-header">
-          <span>SEG</span>
-          <span className="value">10k</span>
-        </div>
-        <span className="trend positive">+43%</span>
+    <h2 className="tenis-title">Tênis</h2>
+
+    <div className="tenis-row">
+      <div className="tenis-text">
+        <span className="label">SEG</span>
+        <span className="value">10K</span>
+        <span className="percent positive">+43%</span>
       </div>
-      <div className="tenis-stat">
-        <div className="stat-header">
-          <span>TER</span>
-          <span className="value">10m</span>
-        </div>
-        <span className="trend positive">+13%</span>
+      <div className="bar-graph">
+        <div className="bar red" style={{ height: "40%" }}></div>
+        <div className="bar red" style={{ height: "60%" }}></div>
+        <div className="bar red highlight" style={{ height: "90%" }}></div>
+        <div className="bar red" style={{ height: "50%" }}></div>
+      </div>
+    </div>
+
+    <div className="divider" />
+
+    <div className="tenis-row">
+      <div className="tenis-text">
+        <span className="label">TER</span>
+        <span className="value">10m</span>
+        <span className="percent positive">+13%</span>
+      </div>
+      <div className="bar-graph">
+        <div className="bar green" style={{ height: "40%" }}></div>
+        <div className="bar green" style={{ height: "60%" }}></div>
+        <div className="bar green highlight" style={{ height: "90%" }}></div>
+        <div className="bar green" style={{ height: "50%" }}></div>
       </div>
     </div>
   </section>

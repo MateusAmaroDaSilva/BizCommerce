@@ -266,7 +266,6 @@ body {
   margin-bottom: 1.5rem;
 }
 
-/* Barra grande de análise */
 .stacked-bar {
   display: flex;
   height: 55px;
@@ -275,14 +274,13 @@ body {
   overflow: hidden;
   background-color: #111111;
   margin-bottom: 1.5rem;
-  margin: 2.5 auto 3rem auto; /* centraliza e mantém margem inferior */
+  margin: 2.5 auto 3rem auto; 
 }
 
 .bar-segment {
   height: 100%;
 }
 
-/* Barrinhas menores */
 .progress-bars {
   display: flex;
   flex-direction: column;
@@ -305,8 +303,6 @@ body {
 .percentage {
   font-weight: bold;
 }
-
-/* Barra de Análise da Nike boné Adidas */
 
 .progress-bars-inline {
   display: flex;
@@ -332,7 +328,7 @@ body {
 .progress-bar-container {
   width: 55%;
   height: 8px;
-  background-color: #000; /* Fundo preto para a parte não preenchida */
+  background-color: #000;
   border-radius: 4px;
   overflow: hidden;
   margin-bottom: 0.5rem;
@@ -348,14 +344,6 @@ body {
   opacity: 0.7;
   text-align: left;
   width: 100%;
-}
-
-.tenis-card {
-  flex: 1;
-  max-width: 78%;
-  margin-left: 0rem; 
-  margin-right: 1rem;
-  width: calc(100% - 1rem); 
 }
 
 .progress-bars {
@@ -385,17 +373,122 @@ body {
   transition: width 0.3s ease;
 }
 
-.tenis-stats {
+.tenis-row {
   display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  margin-top: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1px 7;
 }
 
-.tenis-stat {
-  background-color: var(--surface-dark);
-  padding: 1rem;
-  border-radius: 8px;
+.tenis-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1px;
+  color: white;
+  min-width: 220px;
+}
+
+.tenis-text .label {
+  color: #888;
+  font-size: 1.35rem;
+  font-weight: 500;
+}
+
+.tenis-text .value {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.tenis-text .percent {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.tenis-text .positive {
+  color: #4CAF50;
+}
+
+.tenis-text .negative {
+  color: #f44336;
+}
+
+.bar-graph {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  height: 80px;
+}
+
+.bar {
+  width: 20px;
+  border-radius: 2px;
+  background-color: #444;
+}
+
+.bar.red {
+  background-color: #462828;
+}
+
+.bar.red.highlight {
+  background-color: #f40808;
+}
+
+.bar.green {
+  background-color: #3E5243;
+}
+
+.bar.green.highlight {
+  background-color: #07e943;
+}
+
+.divider {
+  height: 1px;
+  width: 100%;
+  background-color: #444; /* ou use #555, #666 para ajustar o tom */
+  margin: 12px 0;
+  opacity: 0.5; /* deixa a linha mais discreta */
+}
+
+.tenis-text,
+.tenis-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: white;
+  min-width: 220px;
+}
+
+.tenis-text .label,
+.tenis-info .label {
+  color: #888;
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-bottom: 1px; /* Espaço abaixo de SEG/TER */
+}
+
+.tenis-text .value,
+.tenis-info .value {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: -5px; /* Espaço abaixo de 10K/10m */
+}
+
+.tenis-text .percent,
+.tenis-info .percent {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-top: 2px; /* Espaço acima de +43%/+13% */
+}
+
+.tenis-text .positive,
+.tenis-info .positive {
+  color: #4CAF50;
+}
+
+.tenis-text .negative,
+.tenis-info .negative {
+  color: #f44336;
 }
 
 .stat-header {
