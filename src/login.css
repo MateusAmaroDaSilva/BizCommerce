@@ -12,7 +12,6 @@
   background-color: white;
 }
 
-/* Hexágonos */
 .hex-top {
   position: absolute;
   top: 0;
@@ -94,7 +93,6 @@ button {
   width: 300px;
 }
 
-/* Modal */
 .modal {
   position: fixed;
   top: 0;

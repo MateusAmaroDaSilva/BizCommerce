@@ -52,7 +52,7 @@ const Analysis = () => (
       <div className="bar-segment" style={{ width: '45%', background: '#511DB9' }}></div>
       <div className="bar-segment" style={{ width: '35%', background: '#B93939' }}></div>
       <div className="bar-segment" style={{ width: '20%', background: '#2BBC45' }}></div>
-      <div className="bar-segment" style={{ width: '10%', background: '#000000' }}></div> {/* Só pra completar 100% */}
+      <div className="bar-segment" style={{ width: '10%', background: '#000000' }}></div> 
     </div>
 
     <div className="progress-bars-inline">
