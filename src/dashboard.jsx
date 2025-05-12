@@ -48,7 +48,6 @@ const Analysis = () => (
     <h2>Análises</h2>
     <div className="big-number">1200.50</div>
 
-    {/* Barra grande de análise */}
     <div className="stacked-bar">
       <div className="bar-segment" style={{ width: '45%', background: '#511DB9' }}></div>
       <div className="bar-segment" style={{ width: '35%', background: '#B93939' }}></div>
@@ -56,7 +55,6 @@ const Analysis = () => (
       <div className="bar-segment" style={{ width: '10%', background: '#000000' }}></div> {/* Só pra completar 100% */}
     </div>
 
-    {/* Itens em linha */}
     <div className="progress-bars-inline">
   <div className="progress-item-inline">
     <div className="progress-bar-container">
@@ -148,15 +146,8 @@ const Main = () => (
 
     <div className="dashboard-grid">
       <div className="main-section">
-        <section className="card bones-card">
-          <div className="card-header">
-            <h2>Bonês</h2>
-            <span className="subtitle">Valores recebidos</span>
-            <div className="value">$1,200.50</div>
-            <span className="trend positive">Valor em R$</span>
-          </div>
-        </section>
-        <div className="analysis-tenis-container">
+        <Bones />
+      <div className="analysis-tenis-container">
           <Analysis />
           <Tenis />
         </div>
@@ -184,6 +175,42 @@ const Main = () => (
   </div>
 </div>
   </main>
+);
+
+const Bones = () => (
+  <section className="card bones-card">
+    <div className="bones-left">
+      <h2>Bonés</h2>
+      <p className="subtitle">Valores recebidos</p>
+      <div className="bones-value">$1,200.50</div>
+      <div className="valor-rs">
+        <span className="green-dot" />
+        Valor em R$
+      </div>
+      <p className="bones-description">
+        Vendas relacionadas<br />aos produtos da<br />categoria de Bonés
+      </p>
+    </div>
+
+    <div className="bones-chart">
+      {[
+        { dia: "DOM", valor: 12 },
+        { dia: "SEG", valor: 10 },
+        { dia: "TER", valor: 14 },
+        { dia: "QUA", valor: 13 },
+        { dia: "QUI", valor: 17 },
+        { dia: "SEX", valor: 17 },
+        { dia: "SAB", valor: 15 },
+        { dia: "SEG", valor: 16 },
+      ].map((item, index) => (
+        <div className="bar-item" key={index}>
+          <div className="bar-value">{item.valor}</div>
+          <div className="bar purple-bar" style={{ height: `${item.valor * 12}px` }}></div>
+          <div className="bar-label">{item.dia}</div>
+        </div>
+      ))}
+    </div>
+  </section>
 );
 
 export default function Dashboard() {

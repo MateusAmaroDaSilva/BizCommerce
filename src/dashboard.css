@@ -188,6 +188,85 @@ body {
   padding: 1.5rem;
   width: calc(100% - 1rem); 
   box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 24px;
+  border-radius: 12px;
+  color: white;
+  gap: 402px;
+}
+
+.bones-left {
+  flex: 1;
+}
+
+.bones-left h2 {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  color: #6e3939;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.bones-value {
+  font-size: 40px;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+.valor-rs {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #aaaaaa;
+  margin-bottom: 24px;
+}
+
+.green-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #2bbc45;
+  margin-right: 8px;
+}
+
+.bones-description {
+  font-size: 14px;
+  color: #888888;
+  line-height: 1.5;
+}
+
+.bones-chart {
+  display: flex;
+  align-items: end;
+  gap: 36px;
+  flex: 5;
+}
+
+.bar-item {
+  text-align: center;
+}
+
+.bar-value {
+  font-size: 12px;
+  margin-bottom: 6px;
+}
+
+.purple-bar {
+  width: 14px;
+  background: #7b4ce0;
+  border-radius: 8px;
+  margin-bottom: 6px;
+  transition: height 0.3s ease;
+}
+
+.bar-label {
+  font-size: 12px;
+  color: #999999;
 }
 
 .card-header {
