@@ -15,6 +15,8 @@ const Produto = () => {
   const [products, setProducts] = useState(initialProducts);
   const [searchTerm, setSearchTerm] = useState("");
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const formatPrice = (price) => price.toFixed(2);
 
   const handleSearch = (event) => {
@@ -28,6 +30,9 @@ const Produto = () => {
   const viewProduct = (id) => alert(`Visualizar produto ${id}`);
   const editProduct = (id) => alert(`Editar produto ${id}`);
   const deleteProduct = (id) => alert(`Deletar produto ${id}`);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false); 
 
   return (
     <div className="container">
@@ -68,13 +73,15 @@ const Produto = () => {
             onChange={handleSearch}
           />
 
-        <button className="ean-button">
+            <button className="ean-button" onClick={openModal}>
               <img src="./img/codigobarras.png" alt="EAN" className="ean-icon" />
               Adicionar por EAN
-        </button>
+            </button>
 
           <button className="add-button">Adicionar</button>
         </div>
+
+
         
           <table className="products-table">
             <thead>
@@ -106,6 +113,33 @@ const Produto = () => {
           </table>
         </div>
       </main>
+
+      {isModalOpen && (
+        <div className="modal-overlay">
+          <div className="modal"> 
+            <button className="close-btn" onClick={closeModal}>×</button>
+            <h2 className="modal-title">📊 Cadastro por código EAN</h2>
+            <p className="modal-subtitle">
+              Insira o código de barras para buscar ou cadastrar um produto
+            </p>
+
+            <div className="input-wrapper">
+              <span className="input-icon">📇</span>
+              <input
+                type="text"
+                placeholder="Digite o código EAN"
+                className="modal-input"
+              />
+            </div>
+
+            <div className="modal-description">
+              Insira o código de barras (EAN) do produto para cadastrá-lo rapidamente no sistema.
+            </div>
+
+            <button className="add-btn">Adicionar</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
