@@ -67,6 +67,12 @@ const Produto = () => {
             value={searchTerm}
             onChange={handleSearch}
           />
+
+        <button className="ean-button">
+              <img src="./img/codigobarras.png" alt="EAN" className="ean-icon" />
+              Adicionar por EAN
+        </button>
+
           <button className="add-button">Adicionar</button>
         </div>
         

@@ -5,7 +5,7 @@
     --text-color: #ffffff;
     --text-secondary: #ffffff;
     --border-color: #333333;
-    --hover-color: #141314;
+    --hover-color: #141314; 
     --purple-button: #511DB9;
     --search-bg: #111111;
     --table-header: #252525;
@@ -195,6 +195,53 @@ header h1 {
     color: var(--text-secondary);
     opacity: 0.7;
 }
+
+.ean-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;                /* espaço entre ícone e texto */
+    padding: 20px 20px;      /* controle de altura e largura */
+    background-color: var(--delete-button); /* cor do fundo (ex: #1E1E1E) */
+    color: var(--text-color);          /* texto branco */
+    border: none;                     /* sem borda visível */
+    border-radius: 6px;               /* cantos levemente arredondados */
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    margin-left: auto;
+    margin-right: 16px; /* espaço entre EAN e Adicionar */
+    transition: background-color 0.2s ease, transform 0.2s ease;
+  }
+  
+  /* Ícone de código de barras no botão */
+  /* Define largura fixa ou máxima para o botão */
+.ean-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 200px;          /* <— largura fixa desejada */
+    max-width: none;       /* garante que não herde outro max-width */
+    padding: 18 px 0;       /* padding só vertical, horizontal zero */
+    justify-content: center; /* centraliza conteúdo dentro do width */
+    background-color: var(--hover-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+  }
+  
+  /* Hover com leve escurecimento e elevação */
+  .ean-button:hover {
+    transform: translateY(-1px);
+  }
+  
+  /* Se precisar de uma variante de fundo bem escura, crie: */
+  .ean-button.dark {
+    background-color: #111; /* igual ao fundo dos cards */
+  }
 
 .add-button {
     width: 150px;
