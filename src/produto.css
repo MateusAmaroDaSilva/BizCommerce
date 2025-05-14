@@ -199,30 +199,28 @@ header h1 {
 .ean-button {
     display: flex;
     align-items: center;
-    gap: 8px;                /* espaço entre ícone e texto */
-    padding: 20px 20px;      /* controle de altura e largura */
-    background-color: var(--delete-button); /* cor do fundo (ex: #1E1E1E) */
-    color: var(--text-color);          /* texto branco */
-    border: none;                     /* sem borda visível */
-    border-radius: 6px;               /* cantos levemente arredondados */
+    gap: 8px;                
+    padding: 20px 20px;      
+    background-color: var(--delete-button); 
+    color: var(--text-color);          
+    border: none;                    
+    border-radius: 6px;              
     cursor: pointer;
     font-size: 14px;
     font-weight: 600;
     margin-left: auto;
-    margin-right: 16px; /* espaço entre EAN e Adicionar */
+    margin-right: 16px; 
     transition: background-color 0.2s ease, transform 0.2s ease;
   }
   
-  /* Ícone de código de barras no botão */
-  /* Define largura fixa ou máxima para o botão */
 .ean-button {
     display: flex;
     align-items: center;
     gap: 8px;
-    width: 200px;          /* <— largura fixa desejada */
-    max-width: none;       /* garante que não herde outro max-width */
-    padding: 18 px 0;       /* padding só vertical, horizontal zero */
-    justify-content: center; /* centraliza conteúdo dentro do width */
+    width: 200px;          
+    max-width: none;      
+    padding: 18 px 0;       
+    justify-content: center; 
     background-color: var(--hover-color);
     color: var(--text-color);
     border: none;
@@ -233,14 +231,12 @@ header h1 {
     transition: background-color 0.2s ease, transform 0.2s ease;
   }
   
-  /* Hover com leve escurecimento e elevação */
   .ean-button:hover {
     transform: translateY(-1px);
   }
   
-  /* Se precisar de uma variante de fundo bem escura, crie: */
   .ean-button.dark {
-    background-color: #111; /* igual ao fundo dos cards */
+    background-color: #111; 
   }
 
 .add-button {
@@ -387,3 +383,116 @@ header h1 {
     margin-right: 12px;
     font-size: 20px;
 }
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(6px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }  
+  
+  .modal {
+    background-color: #111;
+    padding: 32px;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 510px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    position: relative;
+  }  
+  
+  /* Botão de fechar */
+  .close-btn {
+    position: absolute;
+    top: 18px;
+    right: -200px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #ccc;
+    cursor: pointer;
+  }
+  
+  /* Título */
+  .modal-title {
+    font-size: 25px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+  
+  /* Subtítulo */
+  .modal-subtitle {
+    font-size: 14px;
+    color: #ccc;
+    margin-top: -10px;
+  }
+  
+  /* Campo de entrada */
+  .input-wrapper {
+    display: flex;
+    align-items: center;
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 12px 110px;
+  }
+  
+  .input-icon {
+    margin-right: 10px;
+    font-size: 16px;
+    color: #999;
+  }
+  
+  .modal-input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 16px;
+    flex: 1;
+  }
+  
+  .modal-input::placeholder {
+    color: #777;
+  }
+  
+  /* Descrição */
+  .modal-description {
+    font-size: 14px;
+    background-color: #1c1c1c;
+    color: #aaa;
+    padding: 14px;
+    border-radius: 8px;
+    line-height: 1.5;
+  }
+  
+  /* Botão Adicionar */
+  .add-btn {
+    align-self: flex-end;
+    background-color: #551DB9;
+    color: white;
+    border: none;
+    padding: 22px 24px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .add-btn:hover {
+    background-color: #6821d1;
+  }
+  

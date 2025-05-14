@@ -74,7 +74,7 @@ const Produto = () => {
           />
 
             <button className="ean-button" onClick={openModal}>
-              <img src="./img/codigobarras.png" alt="EAN" className="ean-icon" />
+              <img src="./img/codegobarra.png" alt="EAN" className="ean-icon" />
               Adicionar por EAN
             </button>
 
@@ -115,31 +115,25 @@ const Produto = () => {
       </main>
 
       {isModalOpen && (
-        <div className="modal-overlay">
-          <div className="modal"> 
-            <button className="close-btn" onClick={closeModal}>×</button>
-            <h2 className="modal-title">📊 Cadastro por código EAN</h2>
-            <p className="modal-subtitle">
-              Insira o código de barras para buscar ou cadastrar um produto
-            </p>
+  <div className="modal-overlay">
+    <div className="modal">
+      <button className="close-btn" onClick={closeModal}>×</button>
+      <h2 className="modal-title"><img src="./img/codegobarrasroxa.png" alt="" /> Cadastro por código EAN</h2>
+      <p className="modal-subtitle">Insira o código de barras para buscar ou cadastrar um produto</p>
 
-            <div className="input-wrapper">
-              <span className="input-icon">📇</span>
-              <input
-                type="text"
-                placeholder="Digite o código EAN"
-                className="modal-input"
-              />
-            </div>
+      <div className="input-wrapper">
+        <span className="input-icon"><img src="./img/codegobarrasgrande.png" alt="" /></span>
+        <input type="text" placeholder="Digite o código EAN" className="modal-input" />
+      </div>
 
-            <div className="modal-description">
-              Insira o código de barras (EAN) do produto para cadastrá-lo rapidamente no sistema.
-            </div>
+      <div className="modal-description">
+        Insira o código de barras (EAN) do produto para cadastrá-lo rapidamente no sistema. Após a busca, você será <br /> redirecionado para o formulário de cadastro.
+      </div>
 
-            <button className="add-btn">Adicionar</button>
-          </div>
-        </div>
-      )}
+      <button className="add-btn">Adicionar</button>
+    </div>
+  </div>
+)}
     </div>
   );
 };
