@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useEffect } from "react";
 import "./produto.css";
 
 const initialProducts = [
@@ -34,10 +35,22 @@ const Produto = () => {
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false); 
 
-  const token = localStorage.getItem('token');
-  if (!token || token === null) {
-    // Redireciona se não houver token
-  }
+  //Função de Logout
+  const handleLogout = async (e) => {
+    e.preventDefault();
+  
+    localStorage.removeItem('token');
+
+    //{Redirecionar se não estiver autenticado}
+  };
+
+  //Valida usuário Logado
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token || token == null) {
+      //{Redirecionar se não estiver autenticado}
+    }
+  }, []);
 
   return (
     <div className="container">
@@ -53,7 +66,7 @@ const Produto = () => {
           <li><a href="#"><img src="./img/Bag.png" alt="" /> <span>Vendas</span></a></li>
         </ul>
         <div className="logout">
-          <a href="#"><img src="./img/logout.png" alt="" /> Logout</a>
+          <a href="#" onClick={handleLogout}><img src="./img/logout.png" alt="" /> Logout</a>
         </div>
       </nav>
       

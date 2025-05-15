@@ -1,5 +1,14 @@
 import React from 'react';
+import { useEffect } from "react";
 import './dashboard.css';
+
+//Função de Logout
+const handleLogout = async (e) => {
+  e.preventDefault();
+  
+  localStorage.removeItem('token');
+  //Redirecionar para deslogar
+};
 
 const Sidebar = () => (
   <aside className="sidebar">
@@ -27,7 +36,7 @@ const Sidebar = () => (
     </nav>
     <div className="logout">
       <a href="#" className="menu-item">
-        <img src="./img/logout.png" alt="Logout" />
+        <img src="./img/logout.png" alt="Logout" onClick={handleLogout}/>
         Logout
       </a>
     </div>
@@ -214,6 +223,16 @@ const Bones = () => (
 );
 
 export default function Dashboard() {
+
+  //Valida usuário Logado
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token || token == null) {
+      //Redirecionar se não estiver autenticado
+    }
+  }, []);
+
+
   return (
     <div className="container">
       <Sidebar />
