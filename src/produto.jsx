@@ -34,6 +34,11 @@ const Produto = () => {
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false); 
 
+  const token = localStorage.getItem('token');
+  if (!token || token === null) {
+    // Redireciona se não houver token
+  }
+
   return (
     <div className="container">
       <nav className="sidebar">

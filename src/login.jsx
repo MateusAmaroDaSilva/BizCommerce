@@ -1,10 +1,39 @@
 import React, { useState } from "react";
+import { postLogin } from "./services/authAPI";
 import "./login.css";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const navigate = useNavigate();
+
   console.log("Estado inicial do modal:", isModalOpen); 
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+  
+    const email = document.querySelector('input[name="email"]').value;
+    const password = document.querySelector('input[name="password"]').value;
+  
+    const requestBody = {
+      email,
+      password, // Corrigido o nome do campo
+    };
+  
+    const result = await postLogin(requestBody);
+  
+    if (result.status === 200) {
+      const data = await result.json();
+      const token = data.token; 
+      localStorage.setItem('token', data.token);
+      console.log('Token salvo com sucesso:', token);
+      navigate('/produto') // Idealmente use React Router
+    } else {
+      alert('Login falhou. Verifique suas credenciais.'); // Ou setar erro no estado
+    }
+  };
+
   return (
     <div className="container">
       <img src="/img/HexLE.png" alt="Hexágonos" className="hex-top" />
@@ -38,12 +67,12 @@ export default function Login() {
             <h2>Faça login em sua conta</h2>
 
             <label>Email</label>
-            <input type="text" placeholder="Digite seu email" />
+            <input type="text" placeholder="Digite seu email" name="email"/>
 
             <label>Senha</label>
-            <input type="password" placeholder="Digite sua senha" />
+            <input type="password" placeholder="Digite sua senha" name="password"/>
 
-            <button>Login</button>
+            <button type="submit" onClick={handleLogin}>Login</button>
           </div>
         </div>
       )}
