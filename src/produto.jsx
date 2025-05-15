@@ -5,8 +5,7 @@ const initialProducts = [
   { id: 1, name: "Tênis da Nike", price: 60.9, cost: 55.45 },
   { id: 2, name: "Tênis da Adidas", price: 660.9, cost: 55.45 },
   { id: 3, name: "Toca da Nike", price: 760.9, cost: 55.45 },
-  { id: 4, name: "Camisa Loud", price: 150.0, cost: 85.0 },
-  { id: 5, name: "Camisa Corinthians", price: 350.0, cost: 180.0 },
+  { id: 5, name: "Camisa da LOUD", price: 350.0, cost: 180.0 },
   { id: 6, name: "Calça Nike", price: 284.0, cost: 155.45 },
   { id: 7, name: "Blusa de frio", price: 245.0, cost: 122.45 },
 ];
@@ -16,6 +15,9 @@ const Produto = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [productToDelete, setProductToDelete] = useState(null);
+  const [confirmationText, setConfirmationText] = useState("");
 
   const formatPrice = (price) => price.toFixed(2);
 
@@ -33,6 +35,25 @@ const Produto = () => {
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false); 
+
+  const handleDeleteClick = (product) => {
+    setProductToDelete(product);
+    setIsDeleteModalOpen(true);
+    setConfirmationText("");
+  };  
+  
+  const closeDeleteModal = () => {
+    setIsDeleteModalOpen(false);
+    setProductToDelete(null);
+    setConfirmationText("");
+  };
+  
+  const confirmDelete = () => {
+    if (confirmationText === "CONFIRMAR" && productToDelete) {
+      setProducts(products.filter(p => p.id !== productToDelete.id));
+      closeDeleteModal();
+    }
+  };  
 
   const token = localStorage.getItem('token');
   if (!token || token === null) {
@@ -109,7 +130,7 @@ const Produto = () => {
                     <div className="action-buttons">
                       <button className="action-button view-button" onClick={() => viewProduct(product.id)}><img src="./img/olho.png" alt="" /></button>
                       <button className="action-button edit-button" onClick={() => editProduct(product.id)}><img src="./img/lapis.png" alt="" /></button>
-                      <button className="action-button delete-button" onClick={() => deleteProduct(product.id)}><img src="./img/lixo.png" alt="" /></button>
+                      <button className="action-button delete-button" onClick={() => handleDeleteClick(product)}><img src="./img/lixo.png" alt="" /></button>
                     </div>
                   </td>
                 </tr>
@@ -119,16 +140,62 @@ const Produto = () => {
         </div>
       </main>
 
+      {isDeleteModalOpen && (
+  <div className="delete-modal-overlay">
+    <div className="delete-modal-container">
+      <button className="delete-modal-close-btn" onClick={closeDeleteModal}>×</button>
+
+      <h2 className="delete-modal-title">Excluir produto</h2>
+
+      <input
+        type="text"
+        className="delete-modal-input"
+        placeholder="Digite a palavra CONFIRMAR"
+        value={confirmationText}
+        onChange={(e) => setConfirmationText(e.target.value)}
+      />
+
+      <p className="delete-modal-subtitle">
+        Ao confirmar essa ação você está ciente de que é uma <br /> ação irreversível. Caso queira cancelar essa ação, basta <br /> clicar fora da tela ou no X no topo do modal
+      </p>
+
+      <button
+        className="delete-modal-confirm-btn"
+        onClick={confirmDelete}
+        disabled={confirmationText !== "CONFIRMAR"}
+      >
+        EXCLUIR
+      </button>
+    </div>
+  </div>
+)}
+
       {isModalOpen && (
   <div className="modal-overlay">
     <div className="modal">
       <button className="close-btn" onClick={closeModal}>×</button>
-      <h2 className="modal-title"><img src="./img/codegobarrasroxa.png" alt="" /> Cadastro por código EAN</h2>
-      <p className="modal-subtitle">Insira o código de barras para buscar ou cadastrar um produto</p>
+      
+      <h2 className="modal-title">
+        <img src="./img/codegobarrasroxa.png" alt="" /> Cadastro por código EAN
+      </h2>
+      
+      <p className="modal-subtitle">
+        Insira o código de barras para buscar ou cadastrar um produto
+      </p>
 
       <div className="input-wrapper">
-        <span className="input-icon"><img src="./img/codegobarrasgrande.png" alt="" /></span>
-        <input type="text" placeholder="Digite o código EAN" className="modal-input" />
+        <span className="input-icon">
+          <img src="./img/codegobarrasgrande.png" alt="" />
+        </span>
+        
+        <input
+          type="text"
+          placeholder="Digite o código EAN"
+          className="modal-input"
+          onInput={(e) => {
+            e.target.value = e.target.value.replace(/\D/g, '');
+          }}
+        />
       </div>
 
       <div className="modal-description">
@@ -143,4 +210,4 @@ const Produto = () => {
   );
 };
 
-export default Produto;
+export default Produto; 
