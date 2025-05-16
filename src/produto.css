@@ -507,3 +507,93 @@ header h1 {
   .add-btn:hover {
     background-color: #511DB9;
   }
+
+
+/* botão para excluir */
+
+.delete-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(6px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .delete-modal-container {
+    background-color: #111;
+    padding: 50px;
+    border-radius: 8px;
+    width: 100%;
+    height: 380px;
+    max-width: 600px;
+    color: white;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  /* Configurar X*/
+  .delete-modal-close-btn {
+    position: absolute;
+    top: 5px;
+    left: 300px;
+    font-size: 28px;
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .delete-modal-title {
+    font-size: 25px;
+    font-weight: 600;
+    margin-top: 100px;
+    margin: 0;
+    text-align: center;
+  }
+  
+  .delete-modal-subtitle {
+    font-size: 13px;
+    color: #ccc;
+    background-color: #1e1e1e;
+    padding: 12px;
+    border-radius: 6px;
+    line-height: 1.4;
+  }
+  
+  .delete-modal-input {
+    width: 100%;
+    padding: 12px;
+    background-color: #141314;
+    border: 1px solid #333;
+    border-radius: 2px;
+    color: white;
+    font-size: 14px;
+    outline: none;
+  }
+  
+  .delete-modal-confirm-btn {
+    width: 100%;
+    padding: 20px;
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: background 0.2s;
+    cursor: pointer;
+  }
+  
+  .delete-modal-confirm-btn:disabled {
+    background-color: #d9534f;
+    cursor: not-allowed;
+  }
+  
