@@ -1,24 +1,47 @@
 import { useState } from "react";
 import { useEffect } from "react";
+import { listProduct } from "./services/productAPI";
 import "./produto.css";
 
-const initialProducts = [
+/*const initialProducts = [
   { id: 1, name: "Tênis da Nike", price: 60.9, cost: 55.45 },
   { id: 2, name: "Tênis da Adidas", price: 660.9, cost: 55.45 },
   { id: 3, name: "Toca da Nike", price: 760.9, cost: 55.45 },
   { id: 5, name: "Camisa da LOUD", price: 350.0, cost: 180.0 },
   { id: 6, name: "Calça Nike", price: 284.0, cost: 155.45 },
   { id: 7, name: "Blusa de frio", price: 245.0, cost: 122.45 },
-];
+];*/
 
 const Produto = () => {
-  const [products, setProducts] = useState(initialProducts);
+  const [products, setProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [productToDelete, setProductToDelete] = useState(null);
   const [confirmationText, setConfirmationText] = useState("");
+
+  const token = localStorage.getItem("token");
+
+  //Valida usuário Logado
+  useEffect(() => {
+    if (!token || token == null) {
+      //Redirecionar se não estiver autenticado
+    }
+  }, []);
+
+  //Traz a Lista de Produtos
+  useEffect(() => {
+    listProduct(token).then((resposta) => {
+      if (resposta.status === 200) {
+        resposta.json().then((products) => {
+          setProducts(products.data);
+        });
+      }
+    });
+  }, [token]);
+
+  console.log(products)
 
   const formatPrice = (price) => price.toFixed(2);
 
@@ -63,14 +86,6 @@ const Produto = () => {
     localStorage.removeItem('token');
     //Redirecionar para deslogar
   };
-
-  //Valida usuário Logado
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token || token == null) {
-      //Redirecionar se não estiver autenticado
-    }
-  }, []);
   
 
   return (
@@ -137,8 +152,8 @@ const Produto = () => {
                 <tr key={product.id}>
                   <td>{product.id}</td>
                   <td>{product.name}</td>
-                  <td>{formatPrice(product.price)}</td>
-                  <td>{formatPrice(product.cost)}</td>
+                  <td>{formatPrice(99.9)}</td>
+                  <td>{formatPrice(99.9)}</td>
                   <td>
                     <div className="action-buttons">
                       <button className="action-button view-button" onClick={() => viewProduct(product.id)}><img src="./img/olho.png" alt="" /></button>
