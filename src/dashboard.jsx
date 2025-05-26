@@ -1,5 +1,6 @@
 import React from 'react';
 import './dashboard.css';
+import { Link } from "react-router-dom";
 
 const Sidebar = () => (
   <aside className="sidebar">
@@ -10,12 +11,15 @@ const Sidebar = () => (
     <nav className="menu">
       <a href="#" className="menu-item active">
         <img src="./img/home.png" alt="Dashboard" />
-        Dashboard
-      </a>
-      <a href="#" className="menu-item">
-        <img src="./img/Category.png" alt="Produtos" />
+        Dashboard</a>
+      <Link to="/produto" className="menu-item">
+     <img src="./img/Category.png" alt="Produtos" />
         Produtos
-      </a>
+      </Link>
+      <Link to="/categoria" className="menu-item active">
+      <img src="./img/etiqueta.png" alt="Categotia" />
+      Categorias
+      </Link>
       <a href="#" className="menu-item">
         <img src="./img/Document.png" alt="Relatórios" />
         Relatórios
@@ -25,12 +29,8 @@ const Sidebar = () => (
         Vendas
       </a>
     </nav>
-    <div className="logout">
-      <a href="#" className="menu-item">
-        <img src="./img/logout.png" alt="Logout" />
-        Logout
-      </a>
-    </div>
+    <ul className="logout">
+        <li><Link to="/"><img src="./img/logout.png" alt="" /><span>Logout</span></Link></li></ul>
   </aside>
 );
 

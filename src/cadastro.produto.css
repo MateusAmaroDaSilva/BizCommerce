@@ -1,0 +1,352 @@
+:root {
+    --primary-color: #6c5ce7;
+    --bg-dark: #1D1D1E;
+    --bg-light: #1E1E1E;
+    --text-color: #ffffff;
+    --text-secondary: #ffffff;
+    --border-color: #333333;
+    --hover-color: #141314; 
+    --purple-button: #511DB9;
+    --search-bg: #111111;
+    --table-header: #252525;
+    --fundo: #141314; 
+    --edit-button: #444141; 
+    --delete-button: #e74c3c; 
+    --table-border: #111111;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-color);
+    line-height: 1.5;
+}
+
+.container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 280px;
+    background-color: var(--bg-dark);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    height: 100vh;
+}
+
+.logo {
+    padding: 8px 0 32px 8px;
+}
+
+.logo h2 {
+    color: var(--text-color);
+    font-size: 24px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px;
+    color: white;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.3s ease-in-out;
+    position: relative;
+}
+
+.menu li a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+}
+
+.menu li img {
+    width: 28px; 
+    height: 28px;
+    transition: transform 0.3s ease-in-out;
+    position: relative;
+    top: 0px;
+}
+
+.menu li a span {
+    position: relative;
+    top: 0px;
+}
+
+.menu li:hover, 
+.menu li:focus, 
+.menu li.active {
+    background-color: var(--table-border);
+    transform: scale(1.05);
+}
+
+.menu li:hover img,
+.menu li:hover a span {
+    transform: translateX(10px);
+    transition: transform 0.3s ease-in-out;
+}
+
+.content {
+    flex-grow: 1;
+    padding: 24px 32px;
+    background-color: var(--fundo);
+    margin-left: 280px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 322px;
+}
+
+header h1 {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.header-container {
+  background-color: var(--bg-dark);
+  height: 90px;
+  width: 102%; 
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 20px;
+  margin: 0; 
+  position: relative; 
+  top: -22px;
+  left: 0;
+}
+
+
+.user-profile {
+  display: flex;
+  align-items: center;
+}
+
+.user-profile span {
+  margin-right: 0.5rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.profile-pic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+
+.logout {
+    margin-top: auto;
+    padding: 8px;
+}
+
+.logout a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    font-size: 15px;
+}
+
+.logout a:hover {
+    background-color: var(--hover-color);
+    color: var(--text-color);
+}
+
+.logout .icon {
+    margin-right: 12px;
+    font-size: 20px;
+}
+
+/* ---------------------------------------------------- */
+
+.form-produto {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+  .form-grid {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  
+  .form-left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  label {
+    font-size: 14px;
+    color: #ffffff;
+    font-weight: 500;
+  }
+  
+  input, select {
+    background-color: #27272A;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    padding: 14px 18px;
+    font-size: 14px;
+    color: #fff;
+    outline: none;
+    transition: border 0.3s, box-shadow 0.3s;
+    box-shadow: none;
+  }
+  
+  input::placeholder {
+    color: #9499A3;
+  }
+  
+  input:focus {
+    border-color: var(--text-color);
+  }
+  
+  .form-row {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .form-row .form-group {
+    flex: 1;
+  }
+  
+  .form-right {
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .upload-box {
+    background-color: #1D1D1E;
+    border: 2px dashed #333;
+    border-radius: 12px;
+    width: 160%; 
+    height: 572px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    color: #888;
+    text-align: center;
+}
+  
+  .upload-box img {
+    width: 60px;
+    opacity: 0.7;
+  }
+
+  .upload-box .preview-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: 1;
+  }
+  
+  .upload-box p {
+    font-size: 20px;
+    font-weight: 500;
+  }
+  
+  .upload-box small {
+    font-size: 14px;
+    color: #777;
+  }
+  
+  .btn-primary {
+    background-color: var(--purple-button);
+    color: white;
+    border: none;
+    width: 220px; 
+    padding: 14px 0; 
+    border-radius: 11px; 
+    font-size: 18px; 
+    font-weight: 600; 
+    cursor: pointer;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-left: 930px; 
+    margin-right: 0;
+    transition: background-color 0.3s ease, transform 0.2s ease; 
+}
+ 
+  
+  
+  .botao-cadastrar-quadrado {
+    display: flex;
+    align-items: center;
+    gap: 2rem; 
+    margin-bottom: 2rem;
+  }
+  
+  .botao-cadastrar-quadrado .quadrado {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.8rem;
+    border-radius: 0.5rem;
+    background-color: transparent;
+    border: 3px solid #27272A;
+    cursor: pointer;
+    width: auto; 
+    height: auto; 
+}
+
+  
+  .botao-cadastrar-quadrado .quadrado img {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .botao-cadastrar-quadrado h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white; 
+  }
+  

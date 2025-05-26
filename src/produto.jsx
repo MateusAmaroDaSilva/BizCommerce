@@ -1,5 +1,9 @@
 import { useState } from "react";
 import "./produto.css";
+import { Link, useNavigate } from "react-router-dom";
+
+
+
 
 const initialProducts = [
   { id: 1, name: "Tênis da Nike", price: 60.9, cost: 55.45 },
@@ -7,10 +11,14 @@ const initialProducts = [
   { id: 3, name: "Toca da Nike", price: 760.9, cost: 55.45 },
   { id: 5, name: "Camisa da LOUD", price: 350.0, cost: 180.0 },
   { id: 6, name: "Calça Nike", price: 284.0, cost: 155.45 },
-  { id: 7, name: "Blusa de frio", price: 245.0, cost: 122.45 },
+  { id: 7, name: "Bota de Frio", price: 245.0, cost: 122.45 },
+  { id: 8, name: "Blusa de frio", price: 245.0, cost: 122.45 },
+  { id: 9, name: "luvas", price: 245.0, cost: 122.45 },
 ];
 
 const Produto = () => {
+  const navigate = useNavigate();
+
   const [products, setProducts] = useState(initialProducts);
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -32,6 +40,7 @@ const Produto = () => {
   const viewProduct = (id) => alert(`Visualizar produto ${id}`);
   const editProduct = (id) => alert(`Editar produto ${id}`);
   const deleteProduct = (id) => alert(`Deletar produto ${id}`);
+
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false); 
@@ -68,14 +77,14 @@ const Produto = () => {
           <h3>biz.erp</h3>
         </div>
         <ul className="menu">
-          <li><a href="#"><img src="./img/Home.png" alt="" /><span>Dashboard</span></a></li>
+          <Link to="/dashboard" className="menu-item active"><img src="./img/home.png" alt="Dashboard" />Dashboard</Link>
           <li><a href="#"><img src="./img/Category.png" alt="" /> <span>Produtos</span></a></li>
+          <Link to="/categoria" className="menu-item active"><img src="./img/etiqueta.png" alt="Categotia" />Categorias</Link>
           <li><a href="#"><img src="./img/Document.png" alt="" /> <span>Relatórios</span></a></li>
           <li><a href="#"><img src="./img/Bag.png" alt="" /> <span>Vendas</span></a></li>
         </ul>
-        <div className="logout">
-          <a href="#"><img src="./img/logout.png" alt="" /> Logout</a>
-        </div>
+        <ul className="logout">
+        <li><Link to="/"><img src="./img/logout.png" alt="" /><span>Logout</span></Link></li></ul>
       </nav>
       
       <main className="content">
@@ -104,7 +113,7 @@ const Produto = () => {
               Adicionar por EAN
             </button>
 
-          <button className="add-button">Adicionar</button>
+            <button className="add-button" onClick={() => navigate("/cadastro-produto")}>Adicionar</button>
         </div>
 
 
