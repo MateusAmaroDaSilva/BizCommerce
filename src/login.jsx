@@ -26,7 +26,7 @@ export default function Login() {
     if (result.status === 200) {
       const data = await result.json();
       const token = data.token; 
-      localStorage.setItem('token', data.token);
+      localStorage.setItem('token', token);
       console.log('Token salvo com sucesso:', token);
       navigate('/produto') // Idealmente use React Router
     } else {

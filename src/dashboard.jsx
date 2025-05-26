@@ -1,6 +1,6 @@
 import React from 'react';
+import { useEffect } from "react";
 import './dashboard.css';
-import { Link } from "react-router-dom";
 
 const Sidebar = () => (
   <aside className="sidebar">
@@ -29,8 +29,12 @@ const Sidebar = () => (
         Vendas
       </a>
     </nav>
-    <ul className="logout">
-        <li><Link to="/"><img src="./img/logout.png" alt="" /><span>Logout</span></Link></li></ul>
+    <div className="logout">
+      <a href="#" className="menu-item">
+        <img src="./img/logout.png" alt="Logout" />
+        Logout
+      </a>
+    </div>
   </aside>
 );
 
@@ -214,6 +218,16 @@ const Bones = () => (
 );
 
 export default function Dashboard() {
+
+  //Valida usuário Logado
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token || token == null) {
+      //Redirecionar se não estiver autenticado
+    }
+  }, []);
+
+
   return (
     <div className="container">
       <Sidebar />
