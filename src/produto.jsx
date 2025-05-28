@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useEffect } from "react";
-import { listProduct } from "./services/productAPI";
+import { listProduct, postProductEan, deleteProduct } from "./services/productAPI";
 import "./produto.css";
 
 /*const initialProducts = [
@@ -41,8 +41,6 @@ const Produto = () => {
     });
   }, [token]);
 
-  console.log(products)
-
   const formatPrice = (price) => price.toFixed(2);
 
   const handleSearch = (event) => {
@@ -50,13 +48,12 @@ const Produto = () => {
   };
 
   const filteredProducts = products.filter((product) =>
-    product.name.toLowerCase().includes(searchTerm)
+    (product?.name || "Produto sem Nome").toLowerCase().includes(searchTerm)
   );
 
   const viewProduct = (id) => alert(`Visualizar produto ${id}`);
   const editProduct = (id) => alert(`Editar produto ${id}`);
-  const deleteProduct = (id) => alert(`Deletar produto ${id}`);
-
+  
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false); 
 
@@ -73,11 +70,39 @@ const Produto = () => {
   };
   
   const confirmDelete = () => {
-    if (confirmationText === "CONFIRMAR" && productToDelete) {
+    if (confirmationText === "CONFIRMAR" && productToDelete) {    
       setProducts(products.filter(p => p.id !== productToDelete.id));
-      closeDeleteModal();
+
+      console.log(productToDelete.id)
+      console.log(token)
+      deleteProduct(token, productToDelete.id)
+        .then(response => {
+          if (response.status === 200) {
+            alert('Produto excluído com sucesso'); // Ou setar erro no estado
+            closeDeleteModal();
+          } else {
+            alert('Falha ao excluír Produto'); // Ou setar erro no estado
+          }
+        });
+      
     }
   };  
+
+  //Função de Logout
+  const handleAddProductEan = async (e) => {
+    const codigoEan = document.querySelector('input[name="codigoEan"]').value;
+  
+    const requestBody = {
+      "ean": codigoEan // Corrigido o nome do campo
+    };
+  
+    const result = await postProductEan(token, requestBody);
+    if (result.status === 200) {
+      alert('Cadastro com Sucesso'); // Ou setar erro no estado
+    } else {
+      alert('Falha ao Cadastrar Produto'); // Ou setar erro no estado
+    }
+  };
 
   //Função de Logout
   const handleLogout = async (e) => {
@@ -151,9 +176,9 @@ const Produto = () => {
               {filteredProducts.map((product) => (
                 <tr key={product.id}>
                   <td>{product.id}</td>
-                  <td>{product.name}</td>
-                  <td>{formatPrice(99.9)}</td>
-                  <td>{formatPrice(99.9)}</td>
+                  <td>{product?.name || "Produto sem Nome"}</td>
+                  <td>{formatPrice(product.price)}</td>
+                  <td>{formatPrice(product.cost)}</td>
                   <td>
                     <div className="action-buttons">
                       <button className="action-button view-button" onClick={() => viewProduct(product.id)}><img src="./img/olho.png" alt="" /></button>
@@ -218,6 +243,7 @@ const Produto = () => {
         
         <input
           type="text"
+          name="codigoEan"
           placeholder="Digite o código EAN"
           className="modal-input"
           onInput={(e) => {
@@ -230,7 +256,7 @@ const Produto = () => {
         Insira o código de barras (EAN) do produto para cadastrá-lo rapidamente no sistema. Após a busca, você será <br /> redirecionado para o formulário de cadastro.
       </div>
 
-      <button className="add-btn">Adicionar</button>
+      <button className="add-btn" onClick={handleAddProductEan}>Adicionar</button>
     </div>
   </div>
 )}

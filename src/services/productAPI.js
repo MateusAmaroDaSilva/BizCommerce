@@ -36,6 +36,19 @@ export function postProduct(token, produto) {
   return response;
 }
 
+export function postProductEan(token, ean) {
+  var request = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`,
+    },
+    body: JSON.stringify(ean),
+  };
+  var response = fetch(URL_API + "/api/produto", request);
+  return response;
+}
+
 export function deleteProduct(token, id) {
   var request = {
     method: "DELETE",
