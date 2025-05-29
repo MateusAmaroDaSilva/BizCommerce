@@ -1,5 +1,6 @@
 import React from 'react';
 import { useEffect } from "react";
+import { getDashboard } from './services/dashboardAPI';
 import './dashboard.css';
 
 //Função de Logout
@@ -9,6 +10,8 @@ const handleLogout = async (e) => {
   localStorage.removeItem('token');
   //Redirecionar para deslogar
 };
+
+
 
 const Sidebar = () => (
   <aside className="sidebar">
@@ -224,6 +227,8 @@ const Bones = () => (
 
 export default function Dashboard() {
 
+  const token = localStorage.getItem("token");
+
   //Valida usuário Logado
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -231,6 +236,15 @@ export default function Dashboard() {
       //Redirecionar se não estiver autenticado
     }
   }, []);
+
+  //Traz os Dados do Dashboard
+  useEffect(() => {
+    getDashboard(token).then((resposta) => {
+      if (resposta.status === 200) {
+        return resposta.json()
+      }
+    });
+  }, [token]);
 
 
   return (

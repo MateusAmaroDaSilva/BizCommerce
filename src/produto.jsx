@@ -41,7 +41,7 @@ const Produto = () => {
     });
   }, [token]);
 
-  const formatPrice = (price) => price.toFixed(2);
+//  const formatPrice = (price) => price.toFixed(2);
 
   const handleSearch = (event) => {
     setSearchTerm(event.target.value.toLowerCase());
@@ -177,8 +177,8 @@ const Produto = () => {
                 <tr key={product.id}>
                   <td>{product.id}</td>
                   <td>{product?.name || "Produto sem Nome"}</td>
-                  <td>{formatPrice(product.price)}</td>
-                  <td>{formatPrice(product.cost)}</td>
+                  <td>{product.price}</td>
+                  <td>{product.cost}</td>
                   <td>
                     <div className="action-buttons">
                       <button className="action-button view-button" onClick={() => viewProduct(product.id)}><img src="./img/olho.png" alt="" /></button>
