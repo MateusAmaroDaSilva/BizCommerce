@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { getDashboard } from './services/dashboardAPI';
 import './dashboard.css';
 
+<<<<<<< HEAD
 //Função de Logout
 const handleLogout = async (e) => {
   e.preventDefault();
@@ -13,6 +14,8 @@ const handleLogout = async (e) => {
 
 
 
+=======
+>>>>>>> b43b3159341468707050afd7a78719b5df3122c5
 const Sidebar = () => (
   <aside className="sidebar">
     <div className="logo">
@@ -22,12 +25,15 @@ const Sidebar = () => (
     <nav className="menu">
       <a href="#" className="menu-item active">
         <img src="./img/home.png" alt="Dashboard" />
-        Dashboard
-      </a>
-      <a href="#" className="menu-item">
-        <img src="./img/Category.png" alt="Produtos" />
+        Dashboard</a>
+      <Link to="/produto" className="menu-item">
+     <img src="./img/Category.png" alt="Produtos" />
         Produtos
-      </a>
+      </Link>
+      <Link to="/categoria" className="menu-item active">
+      <img src="./img/etiqueta.png" alt="Categotia" />
+      Categorias
+      </Link>
       <a href="#" className="menu-item">
         <img src="./img/Document.png" alt="Relatórios" />
         Relatórios
@@ -39,7 +45,7 @@ const Sidebar = () => (
     </nav>
     <div className="logout">
       <a href="#" className="menu-item">
-        <img src="./img/logout.png" alt="Logout" onClick={handleLogout}/>
+        <img src="./img/logout.png" alt="Logout" />
         Logout
       </a>
     </div>
