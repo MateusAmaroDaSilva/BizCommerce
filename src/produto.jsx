@@ -29,7 +29,6 @@ const Produto = () => {
 
 const Produto = () => {
   const [products, setProducts] = useState([]);
->>>>>>> e87cc67f360746acfc08127b00b3562acd9ea8f8
   const [searchTerm, setSearchTerm] = useState("");
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -119,14 +118,12 @@ const Produto = () => {
           <li><a href="#"><img src="./img/Document.png" alt="" /> <span>Relatórios</span></a></li>
           <li><a href="#"><img src="./img/Bag.png" alt="" /> <span>Vendas</span></a></li>
         </ul>
-<<<<<<< HEAD
         <ul className="logout">
         <li><Link to="/"><img src="./img/logout.png" alt="" /><span>Logout</span></Link></li></ul>
-=======
+
         <div className="logout">
           <a href="#" onClick={handleLogout}><img src="./img/logout.png" alt="" /> Logout</a>
         </div>
->>>>>>> e87cc67f360746acfc08127b00b3562acd9ea8f8
       </nav>
       
       <main className="content">
