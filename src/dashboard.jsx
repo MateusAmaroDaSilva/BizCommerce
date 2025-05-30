@@ -1,5 +1,7 @@
 import React from 'react';
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { getDashboard } from './services/dashboardAPI';
 import './dashboard.css';
 
 //Função de Logout
@@ -19,12 +21,15 @@ const Sidebar = () => (
     <nav className="menu">
       <a href="#" className="menu-item active">
         <img src="./img/home.png" alt="Dashboard" />
-        Dashboard
-      </a>
-      <a href="#" className="menu-item">
-        <img src="./img/Category.png" alt="Produtos" />
+        Dashboard</a>
+      <Link to="/produto" className="menu-item">
+     <img src="./img/Category.png" alt="Produtos" />
         Produtos
-      </a>
+      </Link>
+      <Link to="/categoria" className="menu-item active">
+      <img src="./img/etiqueta.png" alt="Categotia" />
+      Categorias
+      </Link>
       <a href="#" className="menu-item">
         <img src="./img/Document.png" alt="Relatórios" />
         Relatórios
@@ -36,7 +41,7 @@ const Sidebar = () => (
     </nav>
     <div className="logout">
       <a href="#" className="menu-item">
-        <img src="./img/logout.png" alt="Logout" onClick={handleLogout}/>
+        <img src="./img/logout.png" alt="Logout" />
         Logout
       </a>
     </div>
@@ -224,6 +229,8 @@ const Bones = () => (
 
 export default function Dashboard() {
 
+  const token = localStorage.getItem("token");
+
   //Valida usuário Logado
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -231,6 +238,15 @@ export default function Dashboard() {
       //Redirecionar se não estiver autenticado
     }
   }, []);
+
+  //Traz os Dados do Dashboard
+  useEffect(() => {
+    getDashboard(token).then((resposta) => {
+      if (resposta.status === 200) {
+        return resposta.json()
+      }
+    });
+  }, [token]);
 
 
   return (
