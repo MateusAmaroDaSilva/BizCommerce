@@ -1,184 +1,206 @@
-import { useState } from "react";
-import "./vendas.css";
+"use client"
+
+import { useState } from "react"
+import "./vendas.css"
 
 const initialProducts = [
-  { id: 1, date: "20/10/2025", client: "Cláudio Reis", price: 60.90, cost: 55.45 },
-  { id: 17, date: "20/10/2025", client: "Vitor Henrique", price: 660.90, cost: 55.45 },
-  { id: 39, date: "20/10/2025", client: "Mateus Amaro", price: 760.90, cost: 55.45 },
-  { id: 39, date: "20/10/2025", client: "Thiago", price: 760.90, cost: 55.45 },
-  { id: 17, date: "20/10/2025", client: "Miguel", price: 660.90, cost: 55.45 },
-  { id: 39, date: "20/10/2025", client: "Jeann", price: 760.90, cost: 55.45 },
-];
+  { id: 1, date: "20/10/2025", client: "Cláudio Reis", price: 60.9, cost: 55.45, status: "Pago" },
+  { id: 17, date: "20/10/2025", client: "Vitor Henrique", price: 660.9, cost: 55.45, status: "Pendente" },
+  { id: 39, date: "20/10/2025", client: "Mateus Amaro", price: 760.9, cost: 55.45, status: "Cancelado" },
+  { id: 39, date: "20/10/2025", client: "Thiago", price: 760.9, cost: 55.45, status: "Pago" },
+  { id: 17, date: "20/10/2025", client: "Miguel", price: 660.9, cost: 55.45, status: "Pendente" },
+  { id: 39, date: "20/10/2025", client: "Jeann", price: 760.9, cost: 55.45, status: "Pago" },
+]
 
 const Vendas = () => {
-  const [products, setProducts] = useState(initialProducts);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [products] = useState(initialProducts)
+  const [searchTerm, setSearchTerm] = useState("")
+  const [statusFilter, setStatusFilter] = useState("Filtro")
 
-  const formatPrice = (price) => price.toFixed(2);
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value.toLowerCase())
+  }
 
-  const handleSearch = (event) => {
-    setSearchTerm(event.target.value.toLowerCase());
-  };
+  const handleStatusChange = (e) => {
+    setStatusFilter(e.target.value)
+  }
 
-  const filteredProducts = products.filter((product) =>
-    product.date.toLowerCase().includes(searchTerm)
-  );
+  const formatPrice = (price) => price.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })
 
-  const viewProduct = (id) => alert(`Visualizar produto ${id}`);
-  const editProduct = (id) => alert(`Editar produto ${id}`);
-  const deleteProduct = (id) => alert(`Deletar produto ${id}`);
-  const addSale = (id) => alert(`Adicionar venda ${id}`);
-  const addexport = (id) => alert(`Exportar ${id}`);
+  const filteredProducts = products.filter((product) => {
+    const clientMatches = product.client.toLowerCase().includes(searchTerm)
+    const statusMatches = statusFilter === "Filtro" || product.status === statusFilter
+    return clientMatches && statusMatches
+  })
 
   return (
     <div className="container">
       <nav className="sidebar">
-        <div className="logo">
-          <img src="/img/logobiz.png" alt="" />
-          <h3>biz.erp</h3>
+        <div className="sidebar-content">
+          <div className="logo">
+            <img src="/img/logobiz.png" alt="Logo Biz ERP" />
+            <h3>biz.erp</h3>
+          </div>
+          <ul className="menu">
+            <li>
+              <a href="/dashboard">
+                <img src="/img/Home.png" alt="Dashboard" />
+                <span>Dashboard</span>
+              </a>
+            </li>
+            <li>
+              <a href="/produto">
+                <img src="/img/Category.png" alt="Produtos" />
+                <span>Produtos</span>
+              </a>
+            </li>
+            <li>
+              <a href="/relatorios">
+                <img src="/img/Document.png" alt="Relatórios" />
+                <span>Relatórios</span>
+              </a>
+            </li>
+            <li className="active">
+              <a href="/vendas">
+                <img src="/img/Bag.png" alt="Vendas" />
+                <span>Vendas</span>
+              </a>
+            </li>
+          </ul>
         </div>
-        <ul className="menu">
-          <li><a href="./dashboard.jsx"><img src="/img/Home.png" alt="" /><span>Dashboard</span></a></li>
-          <li><a href="./produto.jsx"><img src="/img/Category.png" alt="" /> <span>Produtos</span></a></li>
-          <li><a href="#"><img src="/img/Document.png" alt="" /> <span>Relatórios</span></a></li>
-          <li><a href="./vendas.jsx"><img src="/img/Bag.png" alt="" /> <span>Vendas</span></a></li>
-        </ul>
         <div className="logout">
-          <a href="#"><img src="/img/logout.png" alt="" /> Logout</a>
+          <a href="#">
+            <img src="/img/logout.png" alt="Logout" />
+            Logout
+          </a>
         </div>
       </nav>
 
       <main className="content">
         <header className="header-container">
+          <h1 className="page-title">Vendas</h1>
+          <div className="header-actions">
+            <button className="secondary-button">
+              <img src="/img/icone_exportar.png" alt="Exportar" />
+              Exportar
+            </button>
+            <button className="primary-button">
+              <img src="/img/icone_adicionar.png" alt="Adicionar" />
+              Adicionar
+            </button>
+          </div>
           <div className="user-info">
-            <span>Daniel</span>
-            <img className="avatar" src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=100&h=100&fit=crop" alt="Avatar" />
+            <span>Calabreso Silva</span>
+            <img
+              className="avatar"
+              src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=100&h=100&fit=crop"
+              alt="Avatar"
+            />
+            <div className="dropdown-arrow">▼</div>
           </div>
         </header>
 
+        <div className="metrics-container">
+          <div className="metric-card">
+            <div className="metric-label">Total de pedidos</div>
+            <div className="metric-value">R$ 123,67</div>
+            <div className="metric-percent">+43%</div>
+          </div>
+          <div className="metric-card">
+            <div className="metric-label">Número de vendas</div>
+            <div className="metric-value">1.206</div>
+            <div className="metric-percent">+43%</div>
+          </div>
+          <div className="metric-card">
+            <div className="metric-label">Clientes</div>
+            <div className="metric-value">12</div>
+            <div className="metric-percent">+4%</div>
+          </div>
+        </div>
+
         <div className="table-container">
-          <h1 className="table-title">Vendas</h1>
-
-          <div className="top_buttons">
-            <a href="#" target="_blank" rel="external">
-              <button id="action_top_button" onClick={() => addSale()}>
-                <p id="top_letter">Adicionar</p> 
-                <img src="/img/icone_adicionar.png" alt="+" id="top_img" />
-              </button>
-            </a>
-          </div>
-
-          <div className="top_buttons_second">
-            <a href="#" target="_blank" rel="external">
-              <button id="action_top_button_second" onClick={() => addexport()}>
-                <p id="top_letter">Exportar</p> 
-                <img src="/img/icone_exportar.png" alt="Export" id="top_img_second" />
-              </button>
-            </a>
-          </div>
-
-          <div className="demonstrations">
-            <thead>
-              <tr>
-                <th id="letters">Total de pedidos</th>
-                <th id="numbers">R$123,67</th>
-                <th id="percentage">+43%</th>
-              </tr>
-            </thead>
-          </div>
-
-          <div className="second_demonstration">
-            <thead>
-              <tr>
-                <th id="second_letters">Número de vendas</th>
-                <th id="second_numbers">1.206</th>
-                <th id="second_percentage">+43%</th>
-              </tr>
-            </thead>
-
-            <div className="third_demonstrations">
-              <thead>
-                <tr>
-                  <th id="third_letters">Clientes</th>
-                  <th id="third_numbers">12</th>
-                  <th id="third_percentage">+4%</th>
-                </tr>
-              </thead>
+          <div className="filters-container">
+            <div className="search-container">
+              <input
+                type="text"
+                placeholder="Pesquisar por vendas..."
+                value={searchTerm}
+                onChange={handleSearchChange}
+                className="search-input"
+              />
+            </div>
+            <div className="filter-container">
+              <img src="/img/icone_filtro.png" alt="Filtro" className="filter-icon" />
+              <select value={statusFilter} onChange={handleStatusChange} className="filter-select">
+                <option value="Filtro">Filtro</option>
+                <option value="Pago">Pago</option>
+                <option value="Pendente">Pendente</option>
+                <option value="Cancelado">Cancelado</option>
+              </select>
             </div>
           </div>
 
-          <div className="search-bar">
-            <input
-              id="searchInput"
-              type="text"
-              placeholder="Pesquisar por vendas..."
-              value={searchTerm}
-              onChange={handleSearch}
-            />
-            <input 
-              id="searchInput" 
-              type="text" 
-              placeholder="Filtro"  
-            />
-          </div>
-          
-          <div className="table-scroll-wrapper" id="scrollContainer">
+          <div className="table-scroll-wrapper">
             <table className="products-table">
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Data</th>
-                  <th>Cliente</th>
-                  <th>Preço</th>
-                  <th>Frete</th>
-                  <th>Status</th>
-                  <th>Pagamento</th>
-                  <th>Ações</th>
+                  <th>DATA</th>
+                  <th>CLIENTE</th>
+                  <th>PREÇO</th>
+                  <th>FRETE</th>
+                  <th>STATUS</th>
+                  <th>PAGAMENTO</th>
+                  <th>AÇÕES</th>
                 </tr>
               </thead>
               <tbody>
-                {filteredProducts.map((product) => (
-                  <tr key={product.id}>
-                    <td>{product.id}</td>
-                    <td>{product.date}</td>
-                    <td>{product.client}</td>
-                    <td>{formatPrice(product.price)}</td>
-                    <td>{formatPrice(product.cost)}</td>
-                    <td>
-                      <div className="status">
-                        <th id="pay">Pago</th>
-                        <th id="pendence">Pendente</th>
-                        <th id="canceled">Cancelado</th>
-                      </div>
-                    </td>
-                    <td>
-                      <div className="pagamento">
-                        <img className="pamento-cartao" src="/img/icone_master.png" alt="master" />
-                        <img className="pagamento-pix" src="/img/icone_pix.png" alt="icone pix" />
-                      </div>
-                    </td>
-                    <td>
-                      <div className="action-buttons">
-                        <button className="action-button view-button" onClick={() => viewProduct(product.id)}>
-                          <img src="/img/olho.png" alt="" />
-                        </button>
-                        <button className="action-button edit-button" onClick={() => editProduct(product.id)}>
-                          <img src="/img/lapis.png" alt="" />
-                        </button>
-                        <button className="action-button delete-button" onClick={() => deleteProduct(product.id)}>
-                          <img src="/img/lixo.png" alt="" />
-                        </button>
-                      </div>
+                {filteredProducts.length > 0 ? (
+                  filteredProducts.map((product, index) => (
+                    <tr key={`${product.id}-${index}`}>
+                      <td>{product.id}</td>
+                      <td>{product.date}</td>
+                      <td>{product.client}</td>
+                      <td>{formatPrice(product.price)}</td>
+                      <td>{formatPrice(product.cost)}</td>
+                      <td>
+                        <span className={`status-badge ${product.status.toLowerCase()}`}>{product.status}</span>
+                      </td>
+                      <td>
+                        <div className="payment-methods">
+                          <img src="/img/icone_master.png" alt="Cartão" />
+                          <img src="/img/icone_pix.png" alt="PIX" />
+                        </div>
+                      </td>
+                      <td>
+                        <div className="action-buttons">
+                          <button className="action-button view-button" title="Visualizar">
+                            <img src="/img/olho.png" alt="Visualizar" />
+                          </button>
+                          <button className="action-button edit-button" title="Editar">
+                            <img src="/img/lapis.png" alt="Editar" />
+                          </button>
+                          <button className="action-button delete-button" title="Excluir">
+                            <img src="/img/lixo.png" alt="Excluir" />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan="8" style={{ textAlign: "center", color: "#aaa" }}>
+                      Nenhuma venda encontrada.
                     </td>
                   </tr>
-                ))}
+                )}
               </tbody>
             </table>
           </div>
         </div>
       </main>
     </div>
-  );
-};
+  )
+}
 
-export default Vendas;
+export default Vendas
