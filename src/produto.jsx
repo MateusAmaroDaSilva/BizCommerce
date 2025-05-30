@@ -20,7 +20,7 @@ import { Link, useNavigate } from "react-router-dom";
 ];
 
 const Produto = () => {
-  const navigate = useNavigate();
+  
 
   const [products, setProducts] = useState(initialProducts);
 =======
@@ -30,6 +30,8 @@ const Produto = () => {
 const Produto = () => {
   const [products, setProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+
+  const navigate = useNavigate();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -41,7 +43,7 @@ const Produto = () => {
   //Valida usuário Logado
   useEffect(() => {
     if (!token || token == null) {
-      //Redirecionar se não estiver autenticado
+      navigate("/")
     }
   }, []);
 
@@ -67,14 +69,11 @@ const Produto = () => {
   );
 
   const viewProduct = (id) => alert(`Visualizar produto ${id}`);
-  const editProduct = (id) => alert(`Editar produto ${id}`);
-<<<<<<< HEAD
-  
-=======
-  const deleteProduct = (id) => alert(`Deletar produto ${id}`);
+  const editProduct = (id) => navigate(`/cadastro-produto/${id}`);
+
+  //const deleteProduct = (id) => alert(`Deletar produto ${id}`);
 
 
->>>>>>> b43b3159341468707050afd7a78719b5df3122c5
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false); 
 
@@ -142,18 +141,14 @@ const Produto = () => {
           <h3>biz.erp</h3>
         </div>
         <ul className="menu">
-          <Link to="/dashboard" className="menu-item active"><img src="./img/home.png" alt="Dashboard" />Dashboard</Link>
+          <Link to="/dashboard" className="menu-item active"><img src="./img/Home.png" alt="Dashboard" />Dashboard</Link>
           <li><a href="#"><img src="./img/Category.png" alt="" /> <span>Produtos</span></a></li>
           <Link to="/categoria" className="menu-item active"><img src="./img/etiqueta.png" alt="Categotia" />Categorias</Link>
           <li><a href="#"><img src="./img/Document.png" alt="" /> <span>Relatórios</span></a></li>
           <li><a href="#"><img src="./img/Bag.png" alt="" /> <span>Vendas</span></a></li>
         </ul>
         <ul className="logout">
-        <li><Link to="/"><img src="./img/logout.png" alt="" /><span>Logout</span></Link></li></ul>
-
-        <div className="logout">
-          <a href="#" onClick={handleLogout}><img src="./img/logout.png" alt="" /> Logout</a>
-        </div>
+        <li onClick={handleLogout}><Link to="/" ><img src="./img/logout.png" alt="" /><span>Logout</span></Link></li></ul>
       </nav>
       
       <main className="content">

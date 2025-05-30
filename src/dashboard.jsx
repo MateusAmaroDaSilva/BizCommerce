@@ -1,9 +1,9 @@
 import React from 'react';
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { getDashboard } from './services/dashboardAPI';
 import './dashboard.css';
 
-<<<<<<< HEAD
 //Função de Logout
 const handleLogout = async (e) => {
   e.preventDefault();
@@ -12,10 +12,6 @@ const handleLogout = async (e) => {
   //Redirecionar para deslogar
 };
 
-
-
-=======
->>>>>>> b43b3159341468707050afd7a78719b5df3122c5
 const Sidebar = () => (
   <aside className="sidebar">
     <div className="logo">

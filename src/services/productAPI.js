@@ -23,16 +23,16 @@ export function getProduct(token, id) {
   return response;
 }
 
-export function postProduct(token, produto) {
+export function postProduct(token, produto, id) {
   var request = {
-    method: produto.id ? "PUT" : "POST",
+    method: id ? "PUT" : "POST",
     headers: {
       "Content-Type": "application/json",
       "Authorization": `Bearer ${token}`,
     },
-    body: JSON.stringify(produto),
+    body: JSON.stringify(produto, (id ? id : null)),
   };
-  var response = fetch(URL_API + "/api/produtos", request);
+  var response = fetch(URL_API + "/api/produtos" + (id ? `/${id}` : ""), request);
   return response;
 }
 

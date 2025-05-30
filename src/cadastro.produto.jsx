@@ -1,10 +1,15 @@
 import "./cadastro.produto.css";
-import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { postProduct, getProduct } from "./services/productAPI";
+import { useEffect, useState } from "react";
 
 const CadastroProduto = () => {
+  const { id } = useParams();
   const [preview, setPreview] = useState(null);
+  const [product, setProduct] = useState({});
   const navigate = useNavigate();
+
+  const token = localStorage.getItem("token");
 
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
@@ -16,23 +21,79 @@ const CadastroProduto = () => {
       reader.readAsDataURL(file);
     }
   };
+    
+  //Valida usuário Logado
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token || token == null) {
+      navigate('/');
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!id) return;
+    getProduct(token, id).then((resposta) => {
+          if (resposta.status === 200) {
+            resposta.json().then((product) => {
+              setProduct(product);
+              console.log(product)
+            });
+          }
+        });
+  }, [id, token]);
+
+  const handleLogout = async (e) => {
+    e.preventDefault();
+    
+    localStorage.removeItem('token');
+    //Redirecionar para deslogar
+  };
+
+  const handleRegister = async (e) => {
+    e.preventDefault();
+  
+    const ean = document.querySelector('input[name="ean"]').value;
+    const description = document.querySelector('input[name="descricao"]').value;
+    const price = document.querySelector('input[name="preco"]').value;
+    const cost = document.querySelector('input[name="custo"]').value;
+    const unit = document.querySelector('input[name="estoque"]').value;
+    
+    const requestBody = {
+      ean,
+      description,
+      price, 
+      cost,
+      unit
+    };
+  
+    const result = await postProduct(token, requestBody, id);
+
+    console.log(result)
+  
+    if (result.status === 201 || result.status === 500) {
+      navigate('/produto') // Idealmente use React Router
+    }
+    else {
+      alert("Produto de Cadastro Invalido")
+    }
+  };
 
   return (
     <div className="container">
       <nav className="sidebar">
         <div className="logo">
-          <img src="./img/logobiz.png" alt="Logo" />
+          <img src="../img/logobiz.png" alt="Logo" />
           <h3>biz.erp</h3>
         </div>
         <ul className="menu">
-          <li><Link to="/dashboard"><img src="./img/Home.png" alt="" /><span>Dashboard</span></Link></li>
-          <li><Link to="/produto"><img src="./img/Category.png" alt="" /><span>Produtos</span></Link></li>
-          <Link to="#" className="menu-item active"><img src="./img/etiqueta.png" alt="Categotia" />Categorias</Link>
-          <li><a href="#"><img src="./img/Document.png" alt="" /><span>Relatórios</span></a></li>
-          <li><a href="#"><img src="./img/Bag.png" alt="" /><span>Vendas</span></a></li>
+          <li><Link to="/dashboard"><img src="../img/Home.png" alt="" /><span>Dashboard</span></Link></li>
+          <li><Link to="/produto"><img src="../img/Category.png" alt="" /><span>Produtos</span></Link></li>
+          <Link to="#" className="menu-item active"><img src="../img/etiqueta.png" alt="Categotia" />Categorias</Link>
+          <li><a href="#"><img src="../img/Document.png" alt="" /><span>Relatórios</span></a></li>
+          <li><a href="#"><img src="../img/Bag.png" alt="" /><span>Vendas</span></a></li>
         </ul>
         <ul className="logout">
-          <li><Link to="/"><img src="./img/logout.png" alt="" /><span>Logout</span></Link></li>
+          <li onClick={handleLogout}><Link to="/"><img src="../img/logout.png" alt="" /><span>Logout</span></Link></li>
         </ul>
       </nav>
 
@@ -50,9 +111,9 @@ const CadastroProduto = () => {
         
         <div className="botao-cadastrar-quadrado">
   <button className="quadrado" onClick={() => navigate("/produto")}>
-    <img src="./img/seta.png" alt="Voltar" />
+    <img src="../img/seta.png" alt="Voltar" />
   </button>
-  <h2>Cadastrar Produto</h2>
+  <h2>{id ? "Editar Produto" : "Cadastrar Produto" }</h2>
 </div>  
 
         <div className="form-produto">
@@ -60,35 +121,35 @@ const CadastroProduto = () => {
             <div className="form-left">
               <div className="form-group">
                 <label>Nome</label>
-                <input type="text" placeholder="Nome do produto" />
+                <input type="text" placeholder="Nome do produto" defaultValue={product.description} name="descricao"/>
               </div>
               <div className="form-group">
                 <label>Descrição</label>
-                <input type="text" placeholder="Descrição do produto" />
+                <input type="text" placeholder="Descrição do produto"/>
               </div>
               <div className="form-row">
                 <div className="form-group">
                   <label>Código EAN</label>
-                  <input type="number" placeholder="Digite o EAN" min="0" />
+                  <input type="number" placeholder="Digite o EAN" defaultValue={product.ean} min="0" name="ean"/>
                 </div>
                 <div className="form-group">
                   <label>Estoque</label>
-                  <input type="number" placeholder="Quantidade de estoque" min="0" />
+                  <input type="number" placeholder="Quantidade de estoque" defaultValue={product.unit} min="0"  name="estoque"/>
                 </div>
               </div>
               <div className="form-row">
                 <div className="form-group">
                   <label>Preço de venda</label>
-                  <input type="number" placeholder="R$0,00" min="0" step="0.01" />
+                  <input type="number" placeholder="R$0,00" defaultValue={product.price} min="0" step="0.01" name="preco"/>
                 </div>
                 <div className="form-group">
                   <label>Preço de custo</label>
-                  <input type="number" placeholder="R$0,00" min="0" step="0.01" />
+                  <input type="number" placeholder="R$0,00" defaultValue={product.cost} min="0" step="0.01" name="custo"/>
                 </div>
               </div>
               <div className="form-group">
                 <label>Categoria</label>
-                <input type="text" placeholder="Selecione a categoria do produto" />
+                <input type="text" placeholder="Selecione a categoria do produto" name="categoria"/>
               </div>
             </div>
 
@@ -118,7 +179,7 @@ const CadastroProduto = () => {
             </div>
           </div>
 
-          <button className="btn-primary">Cadastrar</button>
+          <button className="btn-primary" onClick={handleRegister}>Cadastrar</button>
         </div>
       </main>
     </div>
