@@ -3,7 +3,7 @@ import Login from "./login";
 import Produto from "./produto";
 import Dashboard from "./dashboard";
 import CadastroProduto from "./cadastro.produto";
-import Categoria from "./categoria"
+import Categoria from "./categoria";
 
 function App() {
   return (

@@ -1,15 +1,31 @@
 import "./cadastro.produto.css";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { postProduct, getProduct } from "./services/productAPI";
+import { listCategorias, postCategorias } from "./services/categoriaAPI";
 import { useEffect, useState } from "react";
 
 const CadastroProduto = () => {
   const { id } = useParams();
   const [preview, setPreview] = useState(null);
   const [product, setProduct] = useState({});
+  const [categorias, setCategorias] = useState([]);
+  const normalize = (str) =>
+    str.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   const navigate = useNavigate();
+  
 
   const token = localStorage.getItem("token");
+
+  //Traz a Lista de Produtos
+    useEffect(() => {
+      listCategorias().then((resposta) => {
+        if (resposta.status === 200) {
+          resposta.json().then((categorias) => {
+            setCategorias(categorias.data);
+          });
+        }
+      });
+    }, []);
 
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
@@ -42,11 +58,13 @@ const CadastroProduto = () => {
         });
   }, [id, token]);
 
+  const categoriaSelecionada = categorias.find(cat => cat.id === product.category_id);
+
   const handleLogout = async (e) => {
     e.preventDefault();
     
     localStorage.removeItem('token');
-    //Redirecionar para deslogar
+    navigate('/');
   };
 
   const handleRegister = async (e) => {
@@ -57,25 +75,50 @@ const CadastroProduto = () => {
     const price = document.querySelector('input[name="preco"]').value;
     const cost = document.querySelector('input[name="custo"]').value;
     const unit = document.querySelector('input[name="estoque"]').value;
+    const brand = document.querySelector('input[name="marca"]').value;
+    const category_name = document.querySelector('input[name="categoria"]').value;
+    const status = "ativo"
+
+    const categoriaExistente = categorias.find(
+      (cat) => normalize(cat.name) === normalize(category_name)
+    );
+    console.log(categoriaExistente)
+
+    let categoria_id;
+    if(categoriaExistente){
+      categoria_id = categoriaExistente.id
+      console.log(categoria_id)
+    } else {
+      const requestBody = {
+        category_name,
+        status
+      };
+      const result = await postCategorias(token, requestBody);
+      if(result.status === 500 || result.status === 200){
+        const data = await result.json()
+        categoria_id = data.id
+        console.log(result)
+      }
+    }
     
     const requestBody = {
       ean,
       description,
       price, 
       cost,
-      unit
+      unit,
+      brand,
+      categoria_id
     };
   
     const result = await postProduct(token, requestBody, id);
-
-    console.log(result)
-  
-    if (result.status === 201 || result.status === 500) {
-      navigate('/produto') // Idealmente use React Router
+    if (result.status === 201 || result.status === 200) {
+       navigate('/produto') // Idealmente use React Router
     }
     else {
-      alert("Produto de Cadastro Invalido")
+       alert("Produto de Cadastro Invalido")
     }
+  
   };
 
   return (
@@ -124,8 +167,8 @@ const CadastroProduto = () => {
                 <input type="text" placeholder="Nome do produto" defaultValue={product.description} name="descricao"/>
               </div>
               <div className="form-group">
-                <label>Descrição</label>
-                <input type="text" placeholder="Descrição do produto"/>
+                <label>Marca</label>
+                <input type="text" placeholder="Marca do produto" defaultValue={product.brand} name="marca"/>
               </div>
               <div className="form-row">
                 <div className="form-group">
@@ -148,8 +191,18 @@ const CadastroProduto = () => {
                 </div>
               </div>
               <div className="form-group">
-                <label>Categoria</label>
-                <input type="text" placeholder="Selecione a categoria do produto" name="categoria"/>
+              <label>Categoria</label>
+              <input
+                  list="categorias"
+                  defaultValue={categoriaSelecionada?.name || ""}
+                  placeholder="Selecione a categoria do produto"
+                  name="categoria"
+              />
+              <datalist id="categorias">
+                {categorias.map((cat) => (
+                  <option key={cat.id} value={cat.name}/>
+                ))}
+              </datalist>
               </div>
             </div>
 

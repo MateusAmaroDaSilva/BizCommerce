@@ -10,7 +10,7 @@ const CategoriaSidebar = () => (
     </div>
     <nav className="categoria-menu">
       <a href="/dashboard" className="categoria-menu-item active">
-        <img src="./img/home.png" alt="Dashboard" />
+        <img src="./img/Home.png" alt="Dashboard" />
         Dashboard</a>
       <Link to="/produto" className="categoria-menu-item">
         <img src="./img/Category.png" alt="Produtos" />
