@@ -1,5 +1,3 @@
-"use client"
-
 import { useState } from "react"
 import "./cadastrarvenda.css"
 
@@ -40,7 +38,7 @@ const CadastrarVenda = () => {
               </a>
             </li>
             <li>
-              <a href="#">
+              <a href="./relatorios.jsx">
                 <img src="/img/Document.png" alt="Relatórios" />
                 <span>Relatórios</span>
               </a>

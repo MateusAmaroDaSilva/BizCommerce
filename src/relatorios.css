@@ -1,12 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600&display=swap");
+
 :root {
   --primary-color: #6c5ce7;
-  --bg-dark: #1a1a1a;
-  --bg-light: #2a2a2a;
-  --bg-card: #2d2d2d;
+  --bg-dark: #121212;
+  --bg-light: #1e1e1e;
+  --bg-card: #252525;
   --text-color: #ffffff;
   --text-secondary: #a0a0a0;
-  --border-color: #404040;
-  --hover-color: #333333;
+  --border-color: #333333;
+  --hover-color: #2a2a2a;
   --purple-button: #7c3aed;
   --blue-chart: #3b82f6;
   --green-button: #10b981;
@@ -24,6 +26,7 @@ body {
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   background-color: var(--bg-dark);
   color: var(--text-color);
+  font-size: 14px;
 }
 
 .container {
@@ -33,14 +36,14 @@ body {
 }
 
 .sidebar {
-  width: 280px;
+  width: 230px;
   height: 100vh;
-  background-color: var(--bg-dark);
+  background-color: var(--bg-light);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 24px;
-  border-right: 1px solid var(--border-color);
+  padding: 24px 16px;
+  border-right: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -53,18 +56,19 @@ body {
 .logo {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 40px;
+  gap: 10px;
+  margin-bottom: 30px;
+  padding-left: 8px;
 }
 
 .logo img {
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
 }
 
 .logo h3 {
   color: var(--text-color);
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 600;
 }
 
@@ -75,8 +79,8 @@ body {
 }
 
 .menu li {
-  margin-bottom: 8px;
-  border-radius: 8px;
+  margin-bottom: 4px;
+  border-radius: 6px;
   transition: var(--transition);
 }
 
@@ -84,140 +88,155 @@ body {
   background-color: var(--hover-color);
 }
 
-.menu li:hover {
+.menu li:not(.active):hover {
   background-color: var(--hover-color);
 }
 
 .menu li a {
-  color: var(--text-color);
+  color: var(--text-secondary);
   text-decoration: none;
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 12px 16px;
-  border-radius: 8px;
+  padding: 10px 16px;
+  border-radius: 6px;
   font-size: 14px;
   font-weight: 500;
+  transition: color 0.2s ease-in-out;
+}
+
+.menu li.active a {
+  color: var(--text-color);
+}
+
+.menu li:hover a {
+  color: var(--text-color);
 }
 
 .menu img {
   width: 20px;
   height: 20px;
+  filter: grayscale(100%) brightness(1.5);
+}
+
+.menu li.active img,
+.menu li:hover img {
+  filter: none;
 }
 
 .logout {
   border-top: 1px solid var(--border-color);
-  padding-top: 20px;
+  margin: 0 -16px -24px;
+  padding: 20px 16px 24px 16px;
 }
 
 .logout a {
   display: flex;
   align-items: center;
   gap: 12px;
-  color: var(--text-color);
+  color: var(--text-secondary);
   font-weight: 500;
   text-decoration: none;
-  padding: 12px 16px;
-  border-radius: 8px;
+  padding: 10px 16px;
+  border-radius: 6px;
   transition: var(--transition);
   font-size: 14px;
 }
 
 .logout a:hover {
   background-color: var(--hover-color);
+  color: var(--text-color);
 }
 
 .logout img {
   width: 20px;
   height: 20px;
+  filter: grayscale(100%) brightness(1.5);
+}
+
+.logout a:hover img {
+  filter: none;
 }
 
 .content {
-  margin-left: 280px;
-  padding: 32px;
+  margin-left: 230px;
+  padding: 24px 32px;
   flex: 1;
-  background-color: var(--bg-dark);
-  min-height: 100vh;
-  width: calc(100% - 280px);
+  background-color: var(--bg-light);
 }
 
 .header-container {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
+  width: 100%;
+  position: relative;
 }
 
 .header-left {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 8px;
+  flex: 1;
 }
 
 .page-title {
-  color: var(--text-color);
-  font-size: 32px;
+  font-size: 28px;
   font-weight: 600;
-  margin: 0;
+  color: var(--text-color);
 }
 
-.period-selector {
+.period-center {
   display: flex;
   flex-direction: column;
   gap: 4px;
+  align-items: center;
+  flex: 1;
+  text-align: center;
 }
 
 .period-label {
-  color: var(--text-secondary);
   font-size: 14px;
+  color: var(--text-secondary);
   font-weight: 500;
 }
 
 .period-value {
+  font-size: 14px;
   color: var(--text-color);
-  font-size: 16px;
-  font-weight: 600;
 }
 
 .user-info {
   display: flex;
   align-items: center;
   gap: 12px;
-}
-
-.user-info span {
-  color: var(--text-color);
-  font-size: 14px;
-  font-weight: 500;
+  flex: 1;
+  justify-content: flex-end;
 }
 
 .avatar {
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   object-fit: cover;
 }
 
 .dropdown-arrow {
+  font-size: 10px;
   color: var(--text-secondary);
-  font-size: 12px;
-  margin-left: 4px;
 }
 
 .report-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 32px;
-  padding: 24px;
-  background-color: var(--bg-card);
-  border-radius: var(--card-radius);
-  border: 1px solid var(--border-color);
+  margin-bottom: 24px;
 }
 
 .report-title {
   color: var(--text-color);
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 600;
 }
 
@@ -226,51 +245,71 @@ body {
   gap: 12px;
 }
 
+/* Botões com máxima fidelidade */
 .action-button {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 10px 16px;
+  justify-content: center;
+  gap: 6px;
+  padding: 0 12px;
   border: 1px solid var(--border-color);
   border-radius: 6px;
-  background-color: var(--bg-light);
+  background-color: var(--bg-dark);
   color: var(--text-color);
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 500;
   cursor: pointer;
   transition: var(--transition);
+  height: 28px;
+}
+
+.action-icon {
+  width: 14px;
+  height: 14px;
+  color: var(--text-color);
+}
+
+.share-button {
+  width: 120px;
+  border-radius: 6px;
+}
+
+.export-button {
+  width: 100px;
+  border-radius: 6px;
 }
 
 .action-button:hover {
   background-color: var(--hover-color);
+  border-color: var(--text-secondary);
 }
 
 .dashboard-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 32px;
-  margin-bottom: 32px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-bottom: 24px;
 }
 
 .chart-section {
   background-color: var(--bg-card);
-  padding: 24px;
+  padding: 20px;
   border-radius: var(--card-radius);
-  border: 1px solid var(--border-color);
+  border: none;
 }
 
 .section-title {
   color: var(--text-color);
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
 .total-sales .total-value {
   color: var(--text-color);
-  font-size: 28px;
-  font-weight: 700;
-  margin-bottom: 24px;
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 20px;
   text-align: center;
 }
 
@@ -282,7 +321,7 @@ body {
 
 .chart-bar {
   background-color: var(--purple-button);
-  height: 32px;
+  height: 24px;
   border-radius: 4px;
   display: flex;
   align-items: center;
@@ -340,15 +379,12 @@ body {
   font-size: 12px;
   color: var(--text-secondary);
   text-align: center;
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  max-width: 60px;
 }
 
 .product-list {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 8px;
 }
 
 .product-item {
@@ -390,16 +426,16 @@ body {
 
 .clients-section {
   background-color: var(--bg-card);
-  padding: 24px;
+  padding: 20px;
   border-radius: var(--card-radius);
-  border: 1px solid var(--border-color);
+  border: none;
 }
 
 .clients-section .section-title {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
 .client-icon {
@@ -409,14 +445,14 @@ body {
 .clients-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
+  gap: 20px;
 }
 
 .client-item {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  padding: 16px 0;
+  padding: 12px 0;
   border-bottom: 1px solid var(--border-color);
 }
 
@@ -439,12 +475,12 @@ body {
 /* Responsive design */
 @media (max-width: 1024px) {
   .sidebar {
-    width: 240px;
+    width: 220px;
   }
 
   .content {
-    margin-left: 240px;
-    width: calc(100% - 240px);
+    margin-left: 220px;
+    width: calc(100% - 220px);
   }
 
   .dashboard-grid {
@@ -461,6 +497,7 @@ body {
   .sidebar {
     transform: translateX(-100%);
     transition: transform 0.3s ease;
+    z-index: 100;
   }
 
   .content {

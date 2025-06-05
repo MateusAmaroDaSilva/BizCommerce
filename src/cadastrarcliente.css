@@ -1,0 +1,569 @@
+/* Reset e configurações base */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+html,
+body,
+#root /* Assuming a common root div */ {
+  background-color: #0a0a0a;
+  color: #EFF2F4; /* Default text color from specs */
+  height: 100%;
+}
+
+/* Layout principal */
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+  background-color: #0a0a0a;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 305px; /* Width from specs */
+  background-color: #111111; /* Keeping original dark sidebar */
+  border-right: 1px solid #1e1e1e;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Pushes logout to bottom */
+  padding: 30.03px 22.52px; /* Padding from specs */
+  height: 100vh; /* Full height */
+  position: fixed; /* Fixed sidebar */
+  left: 0;
+  top: 0;
+}
+
+.sidebar-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Add some gap between logo/nav */
+}
+
+/* Logo */
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 42px; /* Height from specs */
+}
+
+.logo-icon {
+  width: 32px;
+  height: 32px;
+  background-color: #f97316; /* Original orange */
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.logo-inner {
+  width: 16px;
+  height: 16px;
+  background-color: white;
+  border-radius: 2px;
+}
+
+.logo-text {
+  font-size: 20px;
+  font-weight: 600;
+  color: white;
+}
+
+/* Navegação */
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 7.51px; /* Padding L/R from specs */
+  border-radius: 3.75px; /* Radius from specs */
+  color: #9ca3af;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  font-size: 14px;
+  height: 45.05px; /* Height from specs */
+  background-color: #1D1D1E; /* Background from specs */
+  width: 259.95px; /* Width from specs */
+  margin: 0 auto; /* Center items if sidebar is wider */
+}
+
+.nav-item:hover {
+  background-color: #141314; /* Hover/Active background from specs */
+  color: white;
+}
+
+.nav-item.active {
+  background-color: #141314; /* Active background from specs */
+  color: white;
+}
+
+.nav-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+/* Logout */
+.logout-container {
+  /* Styles applied directly to nav-item inside */
+}
+
+.logout-container .nav-item {
+    gap: 22.52px; /* Gap from specs */
+}
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #0a0a0a;
+  margin-left: 305px; /* Offset by fixed sidebar width */
+  min-height: 100vh;
+}
+
+/* Header */
+.header {
+  background-color: #1D1D1E; /* Background from specs */
+  border-bottom: 1px solid #1e1e1e;
+  padding: 0 24px; /* Padding L/R */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 78px; /* Height from specs */
+  flex-shrink: 0;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.back-button {
+  background: transparent;
+  border: none;
+  color: #9ca3af;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0; /* Remove padding if size is fixed */
+  width: 17px; /* Width from specs */
+  height: 17px; /* Height from specs */
+}
+
+.back-button svg {
+    width: 100%;
+    height: 100%;
+}
+
+.back-button:hover {
+  color: white;
+}
+
+.page-title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 22.52px; /* Line height from specs */
+  letter-spacing: 1%; /* Letter spacing from specs */
+  color: #EFF2F4; /* Color from specs */
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 24px; /* Increased gap for spacing */
+}
+
+.action-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.btn {
+  height: 45px; /* Height from specs */
+  width: 170px; /* Width from specs */
+  border-radius: 8px; /* Radius from specs */
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  transition: background-color 0.2s ease;
+  font-family: 'Poppins', sans-serif;
+}
+
+.btn-cancel {
+  background-color: transparent;
+  border: 1px solid #27272A; /* Border from specs */
+  color: #d1d5db;
+}
+
+.btn-cancel:hover {
+  background-color: #27272A; /* Darken border color on hover */
+}
+
+.btn-save {
+  background-color: #511DB9; /* Background from specs */
+  color: white;
+}
+
+.btn-save svg {
+    width: 16px;
+    height: 16px;
+}
+
+.btn-save:hover {
+  background-color: #45189a; /* Darker shade for hover */
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+}
+
+.user-name {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 22.52px; /* Line height from specs */
+  letter-spacing: 1%; /* Letter spacing from specs */
+  color: #EFF2F4; /* Color from specs */
+  text-align: right;
+}
+
+.user-avatar {
+  width: 47px; /* Width from specs */
+  height: 47px; /* Height from specs */
+  border-radius: 100px; /* Radius from specs */
+  background-color: #1e1e1e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.user-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.chevron-down {
+  width: 10px;
+  height: 10px;
+  border-left: 2px solid #9ca3af;
+  border-bottom: 2px solid #9ca3af;
+  transform: rotate(-45deg);
+  flex-shrink: 0;
+}
+
+/* Form Container */
+.form-container {
+  flex: 1; /* Take remaining height */
+  padding: 32px;
+  background-color: #0a0a0a;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  overflow-y: auto; /* Allow scrolling for the form area if needed */
+}
+
+.form-wrapper {
+  width: 1112px; /* Width from specs */
+  max-width: 100%;
+  border-radius: 3px; /* Radius from specs */
+  border: 2px solid #1D1D1E; /* Border from specs */
+  padding: 24px;
+  background-color: #111111;
+}
+
+/* Form Sections */
+.form-section {
+  margin-bottom: 48px;
+}
+
+.form-section:last-child {
+  margin-bottom: 0;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.section-icon {
+  width: 20px;
+  height: 20px;
+  color: #9ca3af;
+  flex-shrink: 0;
+}
+
+.section-title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 24px; /* Size from specs */
+  line-height: 22.52px; /* Line height from specs */
+  letter-spacing: 1%; /* Letter spacing from specs */
+  color: white;
+}
+
+/* Form Grid */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+/* Specific grid for address section */
+.form-grid-address {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; /* Equal columns initially */
+    gap: 24px;
+    grid-template-areas:
+      "cep logradouro logradouro"
+      "numero complemento complemento"
+      "bairro cidade estado";
+}
+
+/* Assign grid areas */
+.form-group.cep { grid-area: cep; }
+.form-group.logradouro { grid-area: logradouro; }
+.form-group.numero { grid-area: numero; }
+.form-group.complemento { grid-area: complemento; }
+.form-group.bairro { grid-area: bairro; }
+.form-group.cidade { grid-area: cidade; }
+.form-group.estado { grid-area: estado; }
+
+.form-group.cpf { grid-column: span 2; } /* Span for CPF field */
+
+/* Form Fields */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-label {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 13px; /* Size from specs */
+  line-height: 22.52px; /* Line height from specs */
+  letter-spacing: 1%; /* Letter spacing from specs */
+  color: #d1d5db;
+}
+
+.required {
+  color: #ef4444;
+  margin-left: 2px;
+}
+
+.form-input,
+.form-select {
+  height: 41px; /* Height from specs */
+  padding: 10px 16px;
+  background-color: #27272A; /* Background from specs */
+  border: 1px solid #27272A; /* Match background, maybe slightly lighter/darker on focus */
+  border-radius: 3px; /* Radius from specs */
+  color: #EFF2F4; /* Text color */
+  font-size: 12px; /* Placeholder/Input text size from specs */
+  font-weight: 500; /* Weight from specs */
+  line-height: 22.52px; /* Line height from specs */
+  letter-spacing: 1%; /* Letter spacing from specs */
+  transition: border-color 0.2s ease;
+  font-family: 'Poppins', sans-serif;
+  width: 100%; /* Make inputs fill their grid cell */
+}
+
+.form-input:focus,
+.form-select:focus {
+  outline: none;
+  border-color: #511DB9; /* Use save button color for focus */
+}
+
+.form-input::placeholder {
+  color: #6b7280;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 22.52px;
+  letter-spacing: 1%;
+}
+
+/* Specific widths from specs - applied via grid template columns/areas now */
+/* .form-group.nomeCompleto input, ... { width: 330px; } */
+/* .form-group.cpf input { width: 696px; } */
+/* ... etc ... */
+
+/* Select */
+.select-wrapper {
+  position: relative;
+}
+
+.form-select {
+  appearance: none;
+  cursor: pointer;
+  padding-right: 40px; /* Space for arrow */
+}
+
+.select-arrow {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid #9ca3af;
+  border-bottom: 2px solid #9ca3af;
+  pointer-events: none;
+}
+
+/* Responsividade */
+@media (max-width: 1200px) { /* Adjust breakpoint for form grid change */
+  .form-grid,
+  .form-grid-address {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas: /* Adjust grid areas for 2 columns */
+      "nomeCompleto email"
+      "telefone tipoDocumento"
+      "cpf cpf"
+      "cep logradouro"
+      "numero complemento"
+      "bairro cidade"
+      "estado ." /* Add placeholder for last item if needed */
+      ;
+  }
+  /* Reassign grid areas for 2 columns */
+  .form-group.nomeCompleto { grid-area: nomeCompleto; }
+  .form-group.email { grid-area: email; }
+  .form-group.telefone { grid-area: telefone; }
+  .form-group.tipoDocumento { grid-area: tipoDocumento; }
+  .form-group.cpf { grid-area: cpf; grid-column: span 2; } /* Ensure span */
+  .form-group.cep { grid-area: cep; }
+  .form-group.logradouro { grid-area: logradouro; }
+  .form-group.numero { grid-area: numero; }
+  .form-group.complemento { grid-area: complemento; }
+  .form-group.bairro { grid-area: bairro; }
+  .form-group.cidade { grid-area: cidade; }
+  .form-group.estado { grid-area: estado; }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: static; /* Change sidebar position */
+    border-right: none;
+    border-bottom: 1px solid #1e1e1e;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px 16px;
+  }
+  .sidebar-content {
+      flex-direction: row;
+      align-items: center;
+      gap: 10px;
+  }
+  .logo-text { display: none; } /* Hide logo text */
+  .sidebar-nav {
+    flex-direction: row;
+    gap: 5px;
+  }
+  .nav-item {
+    padding: 8px;
+    height: auto;
+    width: auto;
+    background: none;
+  }
+  .nav-item span { display: none; } /* Hide nav text */
+  .nav-item.active {
+     background-color: #141314;
+     border-radius: 50%; /* Circle for active icon */
+     padding: 8px;
+  }
+  .nav-icon { margin: 0; }
+  .logout-container {
+     /* Keep logout visible */
+  }
+  .logout-container .nav-item span { display: none; }
+  .logout-container .nav-item { background: none; padding: 8px; width: auto; height: auto; gap: 0;}
+
+  .main-content {
+    margin-left: 0; /* Remove margin */
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+    height: auto;
+    padding: 16px;
+  }
+  .header-left {
+    order: 1;
+    justify-content: space-between; /* Move title and back button apart */
+  }
+  .header-right {
+    order: 3; /* User profile last */
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .action-buttons {
+    order: 2;
+    width: 100%;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .btn {
+    width: 100%;
+  }
+
+  .form-container {
+    padding: 16px;
+  }
+
+  .form-wrapper {
+    width: 100%;
+    padding: 16px;
+    border: 1px solid #1D1D1E;
+  }
+
+  .form-grid,
+  .form-grid-address {
+    grid-template-columns: 1fr;
+    grid-template-areas: initial; /* Reset areas for single column */
+    gap: 16px;
+  }
+
+  /* Reset grid area assignments for single column */
+  .form-group.cep, .form-group.logradouro, .form-group.numero, .form-group.complemento, .form-group.bairro, .form-group.cidade, .form-group.estado, .form-group.cpf, .form-group.nomeCompleto, .form-group.email, .form-group.telefone, .form-group.tipoDocumento {
+    grid-area: auto;
+    grid-column: auto; /* Reset span */
+  }
+}
+

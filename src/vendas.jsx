@@ -1,16 +1,26 @@
-"use client"
-
 import { useState } from "react"
 import "./vendas.css"
 
 const initialProducts = [
-  { id: 1, date: "20/10/2025", client: "Cláudio Reis", price: 60.9, cost: 55.45, status: "Pago" },
-  { id: 17, date: "20/10/2025", client: "Vitor Henrique", price: 660.9, cost: 55.45, status: "Pendente" },
-  { id: 39, date: "20/10/2025", client: "Mateus Amaro", price: 760.9, cost: 55.45, status: "Cancelado" },
-  { id: 39, date: "20/10/2025", client: "Thiago", price: 760.9, cost: 55.45, status: "Pago" },
-  { id: 17, date: "20/10/2025", client: "Miguel", price: 660.9, cost: 55.45, status: "Pendente" },
-  { id: 39, date: "20/10/2025", client: "Jeann", price: 760.9, cost: 55.45, status: "Pago" },
+  { id: 1, date: "20/10/2025", client: "Cláudio Reis", price: 60.90, cost: 55.45, status: "Pago", payment: "mastercard" },
+  { id: 17, date: "20/10/2025", client: "Vitor Henrique", price: 660.90, cost: 55.45, status: "Pendente", payment: "pix" },
+  { id: 39, date: "20/10/2025", client: "Mateus Amaro", price: 760.90, cost: 55.45, status: "Cancelado", payment: "mastercard" },
+  { id: 39, date: "20/10/2025", client: "Thiago", price: 760.90, cost: 55.45, status: "Pago", payment: "pix" },
+  { id: 17, date: "20/10/2025", client: "Miguel", price: 660.90, cost: 55.45, status: "Pago", payment: "pix" },
+  { id: 39, date: "20/10/2025", client: "Jeann", price: 760.90, cost: 55.45, status: "Pago", payment: "pix" },
 ]
+
+const formatNumber = (num) => num.toFixed(2)
+
+const getPaymentIcon = (paymentType) => {
+  if (paymentType === "mastercard") {
+    return "/img/icone_master.png"
+  }
+  if (paymentType === "pix") {
+    return "/img/icone_pix.png"
+  }
+  return "/img/icone_default_payment.png"
+}
 
 const Vendas = () => {
   const [products] = useState(initialProducts)
@@ -24,8 +34,6 @@ const Vendas = () => {
   const handleStatusChange = (e) => {
     setStatusFilter(e.target.value)
   }
-
-  const formatPrice = (price) => price.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })
 
   const filteredProducts = products.filter((product) => {
     const clientMatches = product.client.toLowerCase().includes(searchTerm)
@@ -55,6 +63,12 @@ const Vendas = () => {
               </a>
             </li>
             <li>
+              <a href="/categorias">
+                <img src="/img/icone_categorias.png" alt="Categorias" />
+                <span>Categorias</span>
+              </a>
+            </li>
+            <li>
               <a href="/relatorios">
                 <img src="/img/Document.png" alt="Relatórios" />
                 <span>Relatórios</span>
@@ -64,6 +78,12 @@ const Vendas = () => {
               <a href="/vendas">
                 <img src="/img/Bag.png" alt="Vendas" />
                 <span>Vendas</span>
+              </a>
+            </li>
+            <li>
+              <a href="/clientes">
+                <img src="/img/icone-clientes.png" alt="Clientes" />
+                <span>Clientes</span>
               </a>
             </li>
           </ul>
@@ -77,26 +97,33 @@ const Vendas = () => {
       </nav>
 
       <main className="content">
+        {/* Título fixo no canto superior esquerdo */}
+        <h1 className="page-title-fixed">Vendas</h1>
+
         <header className="header-container">
-          <h1 className="page-title">Vendas</h1>
-          <div className="header-actions">
-            <button className="secondary-button">
-              <img src="/img/icone_exportar.png" alt="Exportar" />
-              Exportar
-            </button>
-            <button className="primary-button">
-              <img src="/img/icone_adicionar.png" alt="Adicionar" />
-              Adicionar
-            </button>
-          </div>
-          <div className="user-info">
-            <span>Calabreso Silva</span>
-            <img
-              className="avatar"
-              src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=100&h=100&fit=crop"
-              alt="Avatar"
-            />
-            <div className="dropdown-arrow">▼</div>
+          {/* Espaço reservado para manter o layout */}
+          <div className="page-title-spacer"></div>
+          
+          <div className="header-right-section">
+            <div className="header-actions">
+              <button className="secondary-button">
+                <img src="/img/icone_exportar.png" alt="Exportar" />
+                Exportar
+              </button>
+              <button className="primary-button">
+                <img src="/img/icone_adicionar.png" alt="Adicionar" />
+                Adicionar
+              </button>
+            </div>
+            <div className="user-info">
+              <span>Calabreso Silva</span>
+              <img
+                className="avatar"
+                src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=100&h=100&fit=crop"
+                alt="Avatar"
+              />
+              <div className="dropdown-arrow">▼</div>
+            </div>
           </div>
         </header>
 
@@ -121,6 +148,7 @@ const Vendas = () => {
         <div className="table-container">
           <div className="filters-container">
             <div className="search-container">
+              <img src="/img/Search.png" alt="Search" className="search-icon" />
               <input
                 type="text"
                 placeholder="Pesquisar por vendas..."
@@ -145,31 +173,30 @@ const Vendas = () => {
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>DATA</th>
-                  <th>CLIENTE</th>
-                  <th>PREÇO</th>
-                  <th>FRETE</th>
-                  <th>STATUS</th>
-                  <th>PAGAMENTO</th>
-                  <th>AÇÕES</th>
+                  <th>Data</th>
+                  <th>Cliente</th>
+                  <th>Preço</th>
+                  <th>Frete</th>
+                  <th>Status</th>
+                  <th>Pagamento</th>
+                  <th>Ações</th>
                 </tr>
               </thead>
               <tbody>
                 {filteredProducts.length > 0 ? (
-                  filteredProducts.map((product, index) => (
-                    <tr key={`${product.id}-${index}`}>
+                  filteredProducts.map((product) => (
+                    <tr key={`${product.id}-${product.client}-${product.date}`}> 
                       <td>{product.id}</td>
                       <td>{product.date}</td>
                       <td>{product.client}</td>
-                      <td>{formatPrice(product.price)}</td>
-                      <td>{formatPrice(product.cost)}</td>
+                      <td>{formatNumber(product.price)}</td>
+                      <td>{formatNumber(product.cost)}</td>
                       <td>
                         <span className={`status-badge ${product.status.toLowerCase()}`}>{product.status}</span>
                       </td>
                       <td>
                         <div className="payment-methods">
-                          <img src="/img/icone_master.png" alt="Cartão" />
-                          <img src="/img/icone_pix.png" alt="PIX" />
+                          <img src={getPaymentIcon(product.payment)} alt={product.payment} />
                         </div>
                       </td>
                       <td>
@@ -189,13 +216,17 @@ const Vendas = () => {
                   ))
                 ) : (
                   <tr>
-                    <td colSpan="8" style={{ textAlign: "center", color: "#aaa" }}>
+                    <td colSpan="8" style={{ textAlign: "center", color: "var(--text-secondary)" }}>
                       Nenhuma venda encontrada.
                     </td>
                   </tr>
                 )}
               </tbody>
             </table>
+          </div>
+          <div className="pagination-container">
+             <button className="pagination-button">&lt;</button>
+             <button className="pagination-button">&gt;</button>
           </div>
         </div>
       </main>
