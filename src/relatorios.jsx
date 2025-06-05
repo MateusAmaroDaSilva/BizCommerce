@@ -77,7 +77,7 @@ const Relatorios = () => {
               </a>
             </li>
             <li className="active">
-              <a href="#">
+              <a href="./relatorios.jsx">
                 <img src="/img/Document.png" alt="Relatórios" />
                 <span>Relatórios</span>
               </a>
