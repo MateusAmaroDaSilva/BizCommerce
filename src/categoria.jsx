@@ -1,6 +1,6 @@
 import './categoria.css';
 import React from 'react';
-import { Link } from "react-router-dom";
+import { Link,useNavigate  } from "react-router-dom";
 
 const CategoriaSidebar = () => (
   <aside className="categoria-sidebar">
@@ -28,6 +28,10 @@ const CategoriaSidebar = () => (
         <img src="./img/Bag.png" alt="Vendas" />
         Vendas
       </a>
+      <Link to="/clientes" className="categoria-menu-item active">
+        <img src="./img/clientes.png" alt="clientes" />
+        Clientes
+      </Link>
     </nav>
     <ul className="categoria-logout">
     <li>
@@ -68,9 +72,9 @@ export default function Categoria() {
                 </div>
               </div>
 
-              <button className="categoria-add">            
-                    + Categoria
-              </button>
+              <Link to="/cadastro.categoria" className="categoria-add">
+                  + Categoria
+              </Link>
             </div>
 
   
@@ -93,10 +97,16 @@ export default function Categoria() {
                 <td><span className="categoria-status ativo">Ativo</span></td>
                 <td>20/11/1980</td>
                 <td>
-                  <button className="acao ver"></button>
-                  <button className="acao editar"></button>
-                  <button className="acao deletar"></button>
-                </td>
+                  <button className="acao ver">
+                    <img src="./img/olho.png" alt="Ver" />
+                  </button>
+                  <button className="acao editar">
+                     <img src="./img/lapis.png" alt="Editar" />
+                  </button>
+                  <button className="acao deletar">
+                     <img src="./img/lixo.png" alt="Deletar" />
+                  </button>
+                 </td>
               </tr>
               <tr>
                 <td>3</td>
@@ -105,9 +115,15 @@ export default function Categoria() {
                 <td><span className="categoria-status ativo">Ativo</span></td>
                 <td>20/11/1980</td>
                 <td>
-                  <button className="acao ver"></button>
-                  <button className="acao editar"></button>
-                  <button className="acao deletar"></button>
+                <button className="acao ver">
+                    <img src="./img/olho.png" alt="Ver" />
+                  </button>
+                  <button className="acao editar">
+                     <img src="./img/lapis.png" alt="Editar" />
+                  </button>
+                  <button className="acao deletar">
+                     <img src="./img/lixo.png" alt="Deletar" />
+                  </button>
                 </td>
               </tr>
               <tr>

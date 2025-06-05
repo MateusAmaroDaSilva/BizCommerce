@@ -2,8 +2,8 @@ import React from 'react';
 import { useEffect } from "react";
 import { getDashboard } from './services/dashboardAPI';
 import './dashboard.css';
+import { Link } from 'react-router-dom';
 
-<<<<<<< HEAD
 //Função de Logout
 const handleLogout = async (e) => {
   e.preventDefault();
@@ -14,8 +14,6 @@ const handleLogout = async (e) => {
 
 
 
-=======
->>>>>>> b43b3159341468707050afd7a78719b5df3122c5
 const Sidebar = () => (
   <aside className="sidebar">
     <div className="logo">
@@ -42,6 +40,10 @@ const Sidebar = () => (
         <img src="./img/Bag.png" alt="Vendas" />
         Vendas
       </a>
+      <Link to="/clientes" className="categoria-menu-item active">
+        <img src="./img/clientes.png" alt="clientes" />
+        Clientes
+      </Link>
     </nav>
     <div className="logout">
       <a href="#" className="menu-item">

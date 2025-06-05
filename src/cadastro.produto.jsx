@@ -30,6 +30,7 @@ const CadastroProduto = () => {
           <Link to="#" className="menu-item active"><img src="./img/etiqueta.png" alt="Categotia" />Categorias</Link>
           <li><a href="#"><img src="./img/Document.png" alt="" /><span>Relatórios</span></a></li>
           <li><a href="#"><img src="./img/Bag.png" alt="" /><span>Vendas</span></a></li>
+          <Link to="/clientes" className="categoria-menu-item active"><img src="./img/clientes.png" alt="clientes" />Clientes</Link>
         </ul>
         <ul className="logout">
           <li><Link to="/"><img src="./img/logout.png" alt="" /><span>Logout</span></Link></li>

@@ -68,13 +68,10 @@ const Produto = () => {
 
   const viewProduct = (id) => alert(`Visualizar produto ${id}`);
   const editProduct = (id) => alert(`Editar produto ${id}`);
-<<<<<<< HEAD
-  
-=======
+
   const deleteProduct = (id) => alert(`Deletar produto ${id}`);
 
 
->>>>>>> b43b3159341468707050afd7a78719b5df3122c5
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false); 
 
@@ -147,6 +144,7 @@ const Produto = () => {
           <Link to="/categoria" className="menu-item active"><img src="./img/etiqueta.png" alt="Categotia" />Categorias</Link>
           <li><a href="#"><img src="./img/Document.png" alt="" /> <span>Relatórios</span></a></li>
           <li><a href="#"><img src="./img/Bag.png" alt="" /> <span>Vendas</span></a></li>
+          <Link to="/clientes" className="categoria-menu-item active"><img src="./img/clientes.png" alt="clientes" />Clientes</Link>
         </ul>
         <ul className="logout">
         <li><Link to="/"><img src="./img/logout.png" alt="" /><span>Logout</span></Link></li></ul>
@@ -182,7 +180,7 @@ const Produto = () => {
               Adicionar por EAN
             </button>
 
-            <button className="add-button" onClick={() => navigate("/cadastro-produto")}>Adicionar</button>
+            <button className="add-button" onClick={() => navigator("/cadastro-produto")}>Adicionar</button>
         </div>
 
 
