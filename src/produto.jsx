@@ -1,35 +1,16 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { listProduct, postProductEan, deleteProduct } from "./services/productAPI";
+import { initialProducts } from "./services/productsInitial";
 import "./produto.css";
 import { Link, useNavigate } from "react-router-dom";
 
 
-
-
-/*const initialProducts = [
-  { id: 1, name: "Tênis da Nike", price: 60.9, cost: 55.45 },
-  { id: 2, name: "Tênis da Adidas", price: 660.9, cost: 55.45 },
-  { id: 3, name: "Toca da Nike", price: 760.9, cost: 55.45 },
-  { id: 5, name: "Camisa da LOUD", price: 350.0, cost: 180.0 },
-  { id: 6, name: "Calça Nike", price: 284.0, cost: 155.45 },
-<<<<<<< HEAD
-  { id: 7, name: "Bota de Frio", price: 245.0, cost: 122.45 },
-  { id: 8, name: "Blusa de frio", price: 245.0, cost: 122.45 },
-  { id: 9, name: "luvas", price: 245.0, cost: 122.45 },
-];
-
-const Produto = () => {
-  const navigate = useNavigate();
-
-  const [products, setProducts] = useState(initialProducts);
-=======
-  { id: 7, name: "Blusa de frio", price: 245.0, cost: 122.45 },
-];*/
-
-const Produto = () => {
+const Produto = () => { 
   const [products, setProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+
+  const navigator = useNavigate();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -41,20 +22,33 @@ const Produto = () => {
   //Valida usuário Logado
   useEffect(() => {
     if (!token || token == null) {
-      //Redirecionar se não estiver autenticado
+      navigator("/")
     }
   }, []);
 
-  //Traz a Lista de Produtos
   useEffect(() => {
-    listProduct(token).then((resposta) => {
-      if (resposta.status === 200) {
-        resposta.json().then((products) => {
-          setProducts(products.data);
-        });
+    const fetchProducts = async () => {
+      try {
+        const response = await listProduct(token);
+  
+        if (response.status === 200) {
+          const data = await response.json();
+          setProducts(data.data);
+        } else {
+          throw new Error("Erro ao carregar da API");
+        }
+      } catch (error) {
+        console.warn("Erro ao buscar da API, carregando dados locais...");
+  
+        setProducts(initialProducts().data)
       }
-    });
+    };
+  
+    fetchProducts();
   }, [token]);
+  
+
+  console.log(products);
 
 //  const formatPrice = (price) => price.toFixed(2);
 
@@ -67,9 +61,9 @@ const Produto = () => {
   );
 
   const viewProduct = (id) => alert(`Visualizar produto ${id}`);
-  const editProduct = (id) => alert(`Editar produto ${id}`);
+  const editProduct = (id) => navigator(`/cadastro-produto/${id}`);
 
-  const deleteProduct = (id) => alert(`Deletar produto ${id}`);
+  //const deleteProduct = (id) => alert(`Deletar produto ${id}`);
 
 
   const openModal = () => setIsModalOpen(true);
@@ -135,24 +129,22 @@ const Produto = () => {
     <div className="container">
       <nav className="sidebar">
         <div className="logo">
-          <img src="./img/logobiz.png" alt="" />
+          <img src="../img/logobiz.png" alt="Logo" />
           <h3>biz.erp</h3>
         </div>
         <ul className="menu">
-          <Link to="/dashboard" className="menu-item active"><img src="./img/home.png" alt="Dashboard" />Dashboard</Link>
-          <li><a href="#"><img src="./img/Category.png" alt="" /> <span>Produtos</span></a></li>
-          <Link to="/categoria" className="menu-item active"><img src="./img/etiqueta.png" alt="Categotia" />Categorias</Link>
-          <li><a href="#"><img src="./img/Document.png" alt="" /> <span>Relatórios</span></a></li>
-          <li><a href="#"><img src="./img/Bag.png" alt="" /> <span>Vendas</span></a></li>
-          <Link to="/clientes" className="categoria-menu-item active"><img src="./img/clientes.png" alt="clientes" />Clientes</Link>
+          <li><Link to="/dashboard"><img src="../img/Home.png" alt="" /><span>Dashboard</span></Link></li>
+          <li><Link to="/produto"><img src="../img/Category.png" alt="" /><span>Produtos</span></Link></li>
+          <li><Link to="/categorias"><img src="../img/etiqueta.png" alt="Categotia" /><span>Categorias</span></Link></li>
+          <li><Link to="/relatorios"><img src="../img/Document.png" alt="" /><span>Relatórios</span></Link></li>
+          <li><Link to="/vendas"><img src="../img/Bag.png" alt="" /><span>Vendas</span></Link></li>
+          <li><Link to="/clientes" className="categoria-menu-item active"><img src="./img/clientes.png" alt="clientes" />Clientes</Link></li>
         </ul>
         <ul className="logout">
-        <li><Link to="/"><img src="./img/logout.png" alt="" /><span>Logout</span></Link></li></ul>
-
-        <div className="logout">
-          <a href="#" onClick={handleLogout}><img src="./img/logout.png" alt="" /> Logout</a>
-        </div>
+          <li onClick={handleLogout}><Link to="/"><img src="../img/logout.png" alt="" /><span>Logout</span></Link></li>
+        </ul>
       </nav>
+
       
       <main className="content">
       <header className="header-container">

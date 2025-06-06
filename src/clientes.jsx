@@ -1,37 +1,75 @@
 import "./clientes.css"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { listCustomers } from "./services/custumerAPI";
+import { initialCustomers } from "./services/custumerInitial";
 
-const ClientesSidebar = () => (
+
+const ClientesSidebar = () => {
+
+  const token = localStorage.getItem("token");
+
+  //Valida usuário Logado
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token || token == null) {
+      //Redirecionar se não estiver autenticado
+    }
+  }, []);
+
+  //Função de Logout
+  const handleLogout = async (e) => {
+    e.preventDefault();
+
+    localStorage.removeItem("token");
+    //Redirecionar para deslogar
+  };
+
+  return (
   <aside className="clientes-sidebar">
     <div className="clientes-logo">
       <img src="./img/logobiz.png" alt="Logo" className="clientes-logo-icon" />
       <span>biz.erp</span>
     </div>
     <nav className="clientes-menu">
-      <a href="/dashboard" className="clientes-menu-item">
-        <img src="./img/home.png" alt="Dashboard" />
-        Dashboard
-      </a>
-      <Link to="/produto" className="clientes-menu-item">
-        <img src="./img/Category.png" alt="Produtos" />
-        Produtos
-      </Link>
-      <Link to="/categoria" className="clientes-menu-item">
-        <img src="./img/etiqueta.png" alt="Categoria" />
-        Categorias
-      </Link>
-      <a href="#" className="clientes-menu-item">
-        <img src="./img/Document.png" alt="Relatórios" />
-        Relatórios
-      </a>
-      <a href="#" className="clientes-menu-item">
-        <img src="./img/Bag.png" alt="Vendas" />
-        Vendas
-      </a>
-      <Link to="/clientes" className="clientes-menu-item active">
-        <img src="./img/clientes.png" alt="clientes" />
-        Clientes
-      </Link>
+      <ul className="menu">
+          <li>
+            <Link to="/dashboard">
+              <img src="../img/Home.png" alt="" />
+              <span>Dashboard</span>
+            </Link>
+          </li>
+          <li>
+            <Link to="/produto">
+              <img src="../img/Category.png" alt="" />
+              <span>Produtos</span>
+            </Link>
+          </li>
+          <li>
+            <Link to="/categorias">
+              <img src="../img/etiqueta.png" alt="Categotia" />
+              <span>Categorias</span>
+            </Link>
+          </li>
+          <li>
+            <Link to="/relatorios">
+              <img src="../img/Document.png" alt="" />
+              <span>Relatórios</span>
+            </Link>
+          </li>
+          <li>
+            <Link to="/vendas">
+              <img src="../img/Bag.png" alt="" />
+              <span>Vendas</span>
+            </Link>
+          </li>
+          <li>
+            <Link to="/clientes" className="categoria-menu-item active">
+              <img src="./img/clientes.png" alt="clientes" />
+              Clientes
+            </Link>
+          </li>
+        </ul>
     </nav>
     <ul className="clientes-logout">
       <li>
@@ -43,6 +81,7 @@ const ClientesSidebar = () => (
     </ul>
   </aside>
 )
+}
 
 const ClientesTopBar = () => (
   <header className="clientes-top-bar">
@@ -58,6 +97,39 @@ const ClientesTopBar = () => (
 )
 
 export default function Clientes() {
+  const [custumers, setCustumers] = useState([]);
+
+  useEffect(() => {
+  
+    const fetchCostumers = async () => {
+      try {
+        const response = await listCustomers();
+    
+        if (response.status === 200) {
+          const data = await response.json();
+          setCustumers(data.data);
+        } else {
+          throw new Error("Erro ao carregar da API");
+        }
+      } catch (error) {
+        console.warn("Erro ao buscar da API, carregando dados locais...");
+    
+        setCustumers(initialCustomers().data)
+      }
+    };
+    fetchCostumers();
+ 
+    // listCustomers(token).then((resposta) => {
+    //   if (resposta.status === 200) {
+    //     resposta.json().then((custumers) => {
+    //       setCustumers(custumers.data);
+    //     });
+    //   }
+    // });
+  }, []);
+
+  console.log(custumers)
+
   return (
     <div className="clientes-container">
       <ClientesSidebar />
@@ -91,57 +163,25 @@ export default function Clientes() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>Thiago</td>
-              <td>example@gmail.com</td>
-              <td>14997200010</td>
-              <td>
-                <button className="acao ver">
-                  <img src="./img/olho.png" alt="Ver" />
-                </button>
-                <button className="acao editar">
-                  <img src="./img/lapis.png" alt="Editar" />
-                </button>
-                <button className="acao deletar">
-                  <img src="./img/lixo.png" alt="Deletar" />
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>17</td>
-              <td>Vinícius</td>
-              <td>example@gmail.com</td>
-              <td>73434343143</td>
-              <td>
-                <button className="acao ver">
-                  <img src="./img/olho.png" alt="Ver" />
-                </button>
-                <button className="acao editar">
-                  <img src="./img/lapis.png" alt="Editar" />
-                </button>
-                <button className="acao deletar">
-                  <img src="./img/lixo.png" alt="Deletar" />
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>39</td>
-              <td>Calabreso Silva</td>
-              <td>example@gmail.com</td>
-              <td>13023234323</td>
-              <td>
-                <button className="acao ver">
-                  <img src="./img/olho.png" alt="Ver" />
-                </button>
-                <button className="acao editar">
-                  <img src="./img/lapis.png" alt="Editar" />
-                </button>
-                <button className="acao deletar">
-                  <img src="./img/lixo.png" alt="Deletar" />
-                </button>
-              </td>
-            </tr>
+            {custumers.map((cliente) => (
+              <tr key={cliente.id}>
+                <td>{cliente.id}</td>
+                <td>{cliente.name}</td>
+                <td>{cliente.email}</td>
+                <td>{cliente.phone}</td>
+                <td>
+                  <button className="acao ver">
+                    <img src="./img/olho.png" alt="Ver" />
+                  </button>
+                  <button className="acao editar">
+                    <img src="./img/lapis.png" alt="Editar" />
+                  </button>
+                  <button className="acao deletar">
+                    <img src="./img/lixo.png" alt="Deletar" />
+                  </button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

@@ -1,40 +1,34 @@
 
 import "./cadastro.clientes.css"
-import { useState } from "react"
-import { Link } from "react-router-dom"
+import { useState, useEffect } from "react"
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { postCustomers } from "./services/custumerAPI"
 
-const CategoriaSidebar = () => (
+const CategoriaSidebar = () => {
+
+  return (
   <aside className="categoria-sidebar">
     <div className="categoria-logo">
       <img src="./img/logobiz.png" alt="Logo" className="categoria-logo-icon" />
       <span>biz.erp</span>
     </div>
-    <nav className="categoria-menu">
-      <a href="/dashboard" className="categoria-menu-item">
-        <img src="./img/home.png" alt="Dashboard" />
-        Dashboard
-      </a>
-      <Link to="/produto" className="categoria-menu-item">
-        <img src="./img/Category.png" alt="Produtos" />
-        Produtos
-      </Link>
-      <Link to="/categoria" className="categoria-menu-item">
-        <img src="./img/etiqueta.png" alt="Categoria" />
-        Categorias
-      </Link>
-      <a href="#" className="categoria-menu-item">
-        <img src="./img/Document.png" alt="Relatórios" />
-        Relatórios
-      </a>
-      <a href="#" className="categoria-menu-item active">
-        <img src="./img/Bag.png" alt="Vendas" />
-        Vendas
-      </a>
-      <Link to="/clientes" className="painel-menu-item">
-        <img src="./img/clientes.png" alt="clientes" />
-        Clientes
-      </Link>
-    </nav>
+    <nav className="sidebar">
+        <div className="logo">
+          <img src="../img/logobiz.png" alt="Logo" />
+          <h3>biz.erp</h3>
+        </div>
+        <ul className="menu">
+          <li><Link to="/dashboard"><img src="../img/Home.png" alt="" /><span>Dashboard</span></Link></li>
+          <li><Link to="/produto"><img src="../img/Category.png" alt="" /><span>Produtos</span></Link></li>
+          <li><Link to="/categorias"><img src="../img/etiqueta.png" alt="Categotia" /><span>Categorias</span></Link></li>
+          <li><Link to="/relatorios"><img src="../img/Document.png" alt="" /><span>Relatórios</span></Link></li>
+          <li><Link to="/vendas"><img src="../img/Bag.png" alt="" /><span>Vendas</span></Link></li>
+          <li><Link to="/clientes" className="categoria-menu-item active"><img src="./img/clientes.png" alt="clientes" />Clientes</Link></li>
+        </ul>
+        <ul className="logout">
+          <li><Link to="/"><img src="../img/logout.png" alt="" /><span>Logout</span></Link></li>
+        </ul>
+      </nav>
     <ul className="categoria-logout">
       <li>
         <Link to="/">
@@ -45,6 +39,7 @@ const CategoriaSidebar = () => (
     </ul>
   </aside>
 )
+}
 
 const CategoriaTopBar = () => (
   <header className="categoria-top-bar">
@@ -63,6 +58,17 @@ const CategoriaTopBar = () => (
 )
 
 export default function CadastroCliente() {
+
+  const navigate = useNavigate();
+  const token = localStorage.getItem("token");
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token || token == null) {
+      navigate('/');
+    }
+  }, []);
+
   const [formData, setFormData] = useState({
     nomeCompleto: "",
     email: "",
@@ -86,8 +92,32 @@ export default function CadastroCliente() {
     }))
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const name = formData.nomeCompleto;
+    const email = formData.email;
+    const phone = formData.telefone;
+    const address = `${formData.cep ? formData.cep : ''}, ${formData.logradouro}, ${formData.numero} ${formData.complemento ? formData.complemento : ''} - ${formData.cidade}, ${formData.estado}`
+
+    const requestBody = {
+      name,
+      email,
+      phone,
+      address
+    };
+    console.log(requestBody)
+
+    const result = await postCustomers(token, formData);
+        console.log(result)
+        if (result.status === 201) {
+           navigate('/categorias') // Idealmente use React Router
+        }
+        else {
+           alert("Cadastro Falha no Cadastro")
+        }
+
+
     console.log("Dados do cliente:", formData)
   }
 
@@ -342,3 +372,4 @@ export default function CadastroCliente() {
     </div>
   )
 }
+

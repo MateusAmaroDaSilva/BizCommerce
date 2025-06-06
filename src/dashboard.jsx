@@ -1,8 +1,10 @@
 import React from 'react';
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { getDashboard } from './services/dashboardAPI';
+import { initialDashboard } from './services/dashboardInitian';
 import './dashboard.css';
-import { Link } from 'react-router-dom';
+
 
 //Função de Logout
 const handleLogout = async (e) => {
@@ -12,46 +14,24 @@ const handleLogout = async (e) => {
   //Redirecionar para deslogar
 };
 
-
-
 const Sidebar = () => (
-  <aside className="sidebar">
+  <nav className="sidebar">
     <div className="logo">
-      <img src="./img/logobiz.png" alt="Logo" className="logo-icon" />
-      <span>biz.erp</span>
+      <img src="../img/logobiz.png" alt="Logo" />
+      <h3>biz.erp</h3>
     </div>
-    <nav className="menu">
-      <a href="#" className="menu-item active">
-        <img src="./img/home.png" alt="Dashboard" />
-        Dashboard</a>
-      <Link to="/produto" className="menu-item">
-     <img src="./img/Category.png" alt="Produtos" />
-        Produtos
-      </Link>
-      <Link to="/categoria" className="menu-item active">
-      <img src="./img/etiqueta.png" alt="Categotia" />
-      Categorias
-      </Link>
-      <a href="#" className="menu-item">
-        <img src="./img/Document.png" alt="Relatórios" />
-        Relatórios
-      </a>
-      <a href="#" className="menu-item">
-        <img src="./img/Bag.png" alt="Vendas" />
-        Vendas
-      </a>
-      <Link to="/clientes" className="categoria-menu-item active">
-        <img src="./img/clientes.png" alt="clientes" />
-        Clientes
-      </Link>
-    </nav>
-    <div className="logout">
-      <a href="#" className="menu-item">
-        <img src="./img/logout.png" alt="Logout" />
-        Logout
-      </a>
-    </div>
-  </aside>
+    <ul className="menu">
+      <li><Link to="/dashboard"><img src="../img/Home.png" alt="" /><span>Dashboard</span></Link></li>
+      <li><Link to="/produto"><img src="../img/Category.png" alt="" /><span>Produtos</span></Link></li>
+      <li><Link to="/categorias"><img src="../img/etiqueta.png" alt="Categotia" /><span>Categorias</span></Link></li>
+      <li><Link to="/relatorios"><img src="../img/Document.png" alt="" /><span>Relatórios</span></Link></li>
+      <li><Link to="/vendas"><img src="../img/Bag.png" alt="" /><span>Vendas</span></Link></li>
+      <li><Link to="/clientes" className="categoria-menu-item active"><img src="./img/clientes.png" alt="clientes" />Clientes</Link></li>
+    </ul>
+    <ul className="logout">
+      <li onClick={handleLogout}><Link to="/"><img src="../img/logout.png" alt="" /><span>Logout</span></Link></li>
+    </ul>
+  </nav>
 );
 
 const TopBar = () => (
@@ -63,45 +43,61 @@ const TopBar = () => (
   </header>
 );
 
-const Analysis = () => (
+const Analysis = ({ categoriesData }) => {
+  // Calculate total revenue for all categories
+  const totalRevenue = categoriesData?.reduce((sum, category) => sum + Number.parseFloat(category.revenue), 0) || 0;
+
+  // Get top 3 categories by revenue
+  const topCategories =
+    categoriesData?.sort((a, b) => Number.parseFloat(b.revenue) - Number.parseFloat(a.revenue)).slice(0, 3) || [];
+
+  // Calculate percentages
+  const percentages = topCategories.map((category) => ({
+    name: category.name,
+    percentage: Math.round((Number.parseFloat(category.revenue) / totalRevenue) * 100),
+  }));
+
+  return (
   <section className="card analysis-card">
     <h2>Análises</h2>
-    <div className="big-number">1200.50</div>
+    <div className="big-number">R${new Intl.NumberFormat("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(totalRevenue)}</div>
 
     <div className="stacked-bar">
-      <div className="bar-segment" style={{ width: '45%', background: '#511DB9' }}></div>
-      <div className="bar-segment" style={{ width: '35%', background: '#B93939' }}></div>
-      <div className="bar-segment" style={{ width: '20%', background: '#2BBC45' }}></div>
-      <div className="bar-segment" style={{ width: '10%', background: '#000000' }}></div> 
+        {percentages.map((item, index) => (
+          <div
+            key={index}
+            className="bar-segment"
+            style={{
+              width: `${item.percentage}%`,
+              background: index === 0 ? "#511DB9" : index === 1 ? "#B93939" : "#2BBC45",
+            }}
+          ></div>
+        ))}
     </div>
 
-    <div className="progress-bars-inline">
-  <div className="progress-item-inline">
-    <div className="progress-bar-container">
-      <div className="mini-bar" style={{ width: '45%', background: '#511DB9' }}></div>
-    </div>
-    <div className="percentage-inline">45%</div>
-    <div className="label-inline">Nike</div>
+  <div className="progress-bars-inline">
+    {percentages.map((item, index) => (
+      <div className="progress-item-inline" key={index}>
+        <div className="progress-bar-container">
+          <div
+            className="mini-bar"
+            style={{
+              width: `${item.percentage}%`,
+              background: index === 0 ? "#511DB9" : index === 1 ? "#B93939" : "#2BBC45",
+            }}
+          ></div>
+        </div>
+        <div className="percentage-inline">{item.percentage}%</div>
+        <div className="label-inline">{item.name}</div>
+      </div>
+    ))}
   </div>
-  <div className="progress-item-inline">
-    <div className="progress-bar-container">
-      <div className="mini-bar" style={{ width: '35%', background: '#B93939' }}></div>
-    </div>
-    <div className="percentage-inline">35%</div>
-    <div className="label-inline">Boné</div>
-  </div>
-  <div className="progress-item-inline">
-    <div className="progress-bar-container">
-      <div className="mini-bar" style={{ width: '20%', background: '#2BBC45' }}></div>
-    </div>
-    <div className="percentage-inline">20%</div>
-    <div className="label-inline">Adidas</div>
-  </div>
-</div>
   </section>
-);  
+);
+};  
 
-const Tenis = () => (
+const Tenis = ({ tenisData }) => {
+  return (
   <section className="card tenis-card">
     <h2 className="tenis-title">Tênis</h2>
 
@@ -136,26 +132,42 @@ const Tenis = () => (
     </div>
   </section>
 );
+};
 
-const KpiCard = ({ title, description, type, icon }) => (
+const KpiCard = ({ title, description, value, type, icon }) => (
   <section className={`card kpi-card ${type}`}>
     <div className="kpi-content">
       <div className="text">
         <h3>{title}</h3>
         <p>{description}</p>
-        <span className="kpi-percent">45%</span>
+        <span className="kpi-percent">{value.toFixed(2)}%</span>
         <div className="kpi-progress-bar">
-          <div className="kpi-progress" />
+          <div className="kpi-progress" style={{ width: `${value}%` }}/>
         </div>
       </div>
       <div className="icon">
-        <img src={icon} alt={`${title} icon`} />
+        <img src={icon || "/placeholder.svg"} alt={`${title} icon`} />
       </div>
     </div>
   </section>
 );
 
-const Main = () => (
+const Main = ({ dashboardData }) => {
+
+  const bonesCategory = dashboardData?.categories_performance?.find((cat) => cat.name === "Boné")
+  const tenisCategory = dashboardData?.categories_performance?.find((cat) => cat.name === "Tênis")
+  const categoriesData = dashboardData?.categories_performance || []
+
+  // Calculate profit percentage from profit analysis
+  const profitPercentage = dashboardData?.profit_analysis?.profit_margin || 45
+
+  // Calculate sales percentage (using total_sales change as percentage)
+  const salesPercentage = Math.min(100, Math.abs(dashboardData?.overview?.total_sales?.change / 10)) || 45
+
+  // Calculate deficit percentage (inverse of profit for visualization)
+  const deficitPercentage = Math.min(100, 100 - profitPercentage) || 45
+
+  return(
   <main className="main-content">
     <TopBar />
 
@@ -166,10 +178,10 @@ const Main = () => (
 
     <div className="dashboard-grid">
       <div className="main-section">
-        <Bones />
+        <Bones bonesData={bonesCategory} />
       <div className="analysis-tenis-container">
-          <Analysis />
-          <Tenis />
+          <Analysis categoriesData={categoriesData} />
+          <Tenis tenisData={tenisCategory}/>
         </div>
       </div>
 
@@ -178,31 +190,43 @@ const Main = () => (
       title="Lucro"
       description={<>Resumo do lucro<br />baseado no mês</>}
       type="lucro"
+      value={profitPercentage}
       icon="./img/lucro.png"
     />
   <KpiCard
       title="Vendas"
       description={<>Resumo das vendas<br />baseado no mês</>}
       type="vendas"
+      value={salesPercentage}
       icon="./img/vendas.png"
     />
   <KpiCard
       title="Déficit"
       description={<>Resumo das<br /> despesas do mês</>}
       type="deficit"
+      value={deficitPercentage}
       icon="./img/deficit.png"
     />
   </div>
 </div>
   </main>
-);
+)
+};
 
-const Bones = () => (
+const Bones = ({ bonesData }) => {
+
+  const boneCategory = bonesData || {}
+
+  const dailyData = boneCategory?.daily_chart?.slice(-8) || []
+
+  const formattedRevenue = boneCategory.formatted_revenue || "$1,200.50"
+
+  return (
   <section className="card bones-card">
     <div className="bones-left">
       <h2>Bonés</h2>
       <p className="subtitle">Valores recebidos</p>
-      <div className="bones-value">$1,200.50</div>
+      <div className="bones-value">{formattedRevenue.replace(' ', '')}</div>
       <div className="valor-rs">
         <span className="green-dot" />
         Valor em R$
@@ -213,29 +237,32 @@ const Bones = () => (
     </div>
 
     <div className="bones-chart">
-      {[
-        { dia: "DOM", valor: 12 },
-        { dia: "SEG", valor: 10 },
-        { dia: "TER", valor: 14 },
-        { dia: "QUA", valor: 13 },
-        { dia: "QUI", valor: 17 },
-        { dia: "SEX", valor: 17 },
-        { dia: "SAB", valor: 15 },
-        { dia: "SEG", valor: 16 },
-      ].map((item, index) => (
-        <div className="bar-item" key={index}>
-          <div className="bar-value">{item.valor}</div>
-          <div className="bar purple-bar" style={{ height: `${item.valor * 12}px` }}></div>
-          <div className="bar-label">{item.dia}</div>
-        </div>
-      ))}
+        {dailyData.map((item, index) => {
+          // Extract day from date (format: "DD/MM")
+          const day = item.date.split("/")[0]
+          // Map day number to abbreviation
+          const dayAbbr = ["DOM", "SEG", "TER", "QUA", "QUI", "SEX", "SAB", "SEG"][index % 8]
+          // Calculate value for chart (normalize to range similar to original)
+          const chartValue = Math.min(17, Math.max(10, Math.round(Number.parseFloat(item.value) / 100)))
+
+          return (
+            <div className="bar-item" key={index}>
+              <div className="bar-value">{chartValue}</div>
+              <div className="bar purple-bar" style={{ height: `${chartValue * 12}px` }}></div>
+              <div className="bar-label">{dayAbbr}</div>
+            </div>
+          )
+        })}
     </div>
   </section>
-);
+)
+};
 
 export default function Dashboard() {
 
   const token = localStorage.getItem("token");
+
+  const [dashboardData, setDashboardData] = useState(null)
 
   //Valida usuário Logado
   useEffect(() => {
@@ -245,20 +272,43 @@ export default function Dashboard() {
     }
   }, []);
 
-  //Traz os Dados do Dashboard
   useEffect(() => {
-    getDashboard(token).then((resposta) => {
-      if (resposta.status === 200) {
-        return resposta.json()
+
+    // getDashboard(token).then((resposta) => {
+    //       if (resposta.status === 200) {
+    //         resposta.json().then((data) => {
+    //           setDashboardData(data.data);
+    //         });
+    //       }
+    //     });
+
+    const fetchDashboard = async () => {
+      try {
+        const response = await getDashboard(token);
+  
+        if (response.status === 200) {
+          const data = await response.json();
+          setDashboardData(data.data);
+        } else {
+          throw new Error("Erro ao carregar da API");
+        }
+      } catch (error) {
+        console.warn("Erro ao buscar da API, carregando dados locais...");
+  
+        setDashboardData(initialDashboard().data)
       }
-    });
+    };
+  
+    fetchDashboard();
+    
+  
   }, [token]);
 
 
   return (
     <div className="container">
       <Sidebar />
-      <Main />
+      <Main dashboardData={dashboardData} />
     </div>
   );
 }

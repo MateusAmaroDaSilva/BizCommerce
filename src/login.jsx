@@ -13,25 +13,27 @@ export default function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
   
-    const email = document.querySelector('input[name="email"]').value;
-    const password = document.querySelector('input[name="password"]').value;
+    // const email = document.querySelector('input[name="email"]').value;
+    // const password = document.querySelector('input[name="password"]').value;
   
-    const requestBody = {
-      email,
-      password, // Corrigido o nome do campo
-    };
+    // const requestBody = {
+    //   email,
+    //   password, // Corrigido o nome do campo
+    // };
   
-    const result = await postLogin(requestBody);
+    // const result = await postLogin(requestBody);
   
-    if (result.status === 200) {
-      const data = await result.json();
-      const token = data.token; 
-      localStorage.setItem('token', token);
-      console.log('Token salvo com sucesso:', token);
-      navigate('/produto') // Idealmente use React Router
-    } else {
-      alert('Login falhou. Verifique suas credenciais.'); // Ou setar erro no estado
-    }
+    // if (result.status === 200) {
+    //   const data = await result.json();
+    //   const token = data.token; 
+    //   localStorage.setItem('token', token);
+    //   console.log('Token salvo com sucesso:', token);
+    //   navigate('/produto') // Idealmente use React Router
+    // } else {
+    //   alert('Login falhou. Verifique suas credenciais.'); // Ou setar erro no estado
+    // }
+
+    navigate('/produto') // Idealmente use React Router
   };
 
   return (
