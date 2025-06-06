@@ -163,18 +163,19 @@ body {
 
 .categoria-search-wrapper {
   position: relative;
-  flex: 1; /* faz o input ocupar o espaço máximo possível */
+  flex: 1; 
 }
 
 .categoria-search {
-  width: 100%;
-  padding: 0.75rem 3.5rem 0.75rem 1rem; /* espaço à direita para ícone e texto */
-  background-color: #1f1f1f;
-  border: 1px solid #333;
-  border-radius: 6px;
+  width: 100%; 
+  padding: 0.75rem 3.5rem 0.75rem 1rem; 
+  background-color: #363535; 
+  border: 1px solid var(--primary); 
+  border-radius: 8px; 
   color: #fff;
-  font-size: 0.875rem;
+  font-size: 1rem; 
 }
+
 
 .categoria-search-icon {
   position: absolute;
@@ -196,7 +197,7 @@ body {
 }
 
 .categoria-add {
-  background-color: #7c3aed; /* roxo */
+  background-color: #7c3aed; 
   color: white;
   padding: 0.75rem 1rem;
   border-radius: 6px;
@@ -205,6 +206,8 @@ body {
   border: none;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  text-decoration: none; 
+  display: inline-block; 
 }
 
 .categoria-add:hover {
@@ -213,7 +216,7 @@ body {
 
 
 .categoria-title {
-    font-size: 1.5rem; /* ligeiramente menor */
+    font-size: 1.5rem; 
     font-weight: 600;
     margin-bottom: 1.5rem;
     color: var(--text);
@@ -222,15 +225,15 @@ body {
   .categoria-actions {
     display: flex;
     align-items: center;
-    gap: 0.75rem; /* espaço menor entre busca e botão */
+    gap: 1.75rem; 
     margin-bottom: 1.5rem;
-  }
+  } 
   
   .categoria-search {
     flex: 1;
     padding: 0.65rem 1rem;
     background-color: #121214;
-    border: 1px solid #2e2e2e; /* borda sutil */
+    border: 1px solid #2e2e2e; 
     border-radius: 6px;
     color: var(--text);
     font-size: 0.875rem;
@@ -246,17 +249,19 @@ body {
     font-size: 0.875rem;
   }
   
-  .categoria-add-btn {
-    padding: 0.65rem 1.25rem;
+  .categoria-add {
+    width: 160px;
     background-color: var(--primary);
-    border: none;
-    border-radius: 6px;
-    color: #fff;
+    color: white;
+    padding: 0.85rem 1rem; 
+    border-radius: 5px; 
+    border: 4px solid var(--primary); 
     font-weight: 600;
-    cursor: pointer;
     font-size: 0.875rem;
-  }
-  
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }  
+
   .categoria-table {
     width: 100%;
     border-collapse: collapse;
@@ -294,25 +299,39 @@ body {
   }
   
   .acao {
-    width: 28px;
-    height: 28px;
+    width: 27px;
+    height: 27px;
     border: none;
-    border-radius: 6px;
-    margin-right: 6px;
+    border-radius: 3px; 
+    margin-right: 15px; 
     cursor: pointer;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    padding: 0; 
+  }
+  
+  .acao:hover {
+    transform: scale(1.1);
+    opacity: 0.9;
   }
   
   .acao.ver {
-    background-color: #6925f5;
+    background-color: #511DB9; 
   }
   
   .acao.editar {
-    background-color: #3c3c3c;
+    background-color: #444141; 
   }
   
   .acao.deletar {
-    background-color: var(--danger);
+    background-color: #B93939; 
   }
+  
+  .acao img {
+    width: 12px;
+    height: 12px;
+    filter: brightness(0) invert(1);
+  }
+  

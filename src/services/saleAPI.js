@@ -23,16 +23,16 @@ export function listSales(token) {
   return response;
 }*/
 
-export function postSales(token, venda) {
+export function postSales(token, venda, id) {
   var request = {
-    method: venda.id ? "PUT" : "POST",
+    method: id ? "PUT" : "POST",
     headers: {
       "Content-Type": "application/json",
       "Authorization": `Bearer ${token}`,
     },
-    body: JSON.stringify(venda),
+    body: JSON.stringify(venda, (id ? id : null)),
   };
-  var response = fetch(URL_API + "/api/sales", request);
+  var response = fetch(URL_API + "/api/sales" + (id ? `/${id}` : ""), request);
   return response;
 }
 

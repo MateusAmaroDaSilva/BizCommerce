@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { listProduct, postProductEan, deleteProduct } from "./services/productAPI";
+import { initialProducts } from "./services/productsInitial";
 import "./produto.css";
 import { Link, useNavigate } from "react-router-dom";
 
 
+<<<<<<< HEAD
 
 
 /*const initialProducts = [
@@ -32,6 +34,13 @@ const Produto = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const navigate = useNavigate();
+=======
+const Produto = () => { 
+  const [products, setProducts] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const navigator = useNavigate();
+>>>>>>> 56e04d10b89bbe1160046689791e2cc85e249409
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -41,22 +50,43 @@ const Produto = () => {
   const token = localStorage.getItem("token");
 
   //Valida usuário Logado
+<<<<<<< HEAD
   useEffect(() => {
     if (!token || token == null) {
       navigate("/")
     }
   }, []);
+=======
+  // useEffect(() => {
+  //   if (!token || token == null) {
+  //     navigator("/")
+  //   }
+  // }, []);
+>>>>>>> 56e04d10b89bbe1160046689791e2cc85e249409
 
-  //Traz a Lista de Produtos
   useEffect(() => {
-    listProduct(token).then((resposta) => {
-      if (resposta.status === 200) {
-        resposta.json().then((products) => {
-          setProducts(products.data);
-        });
+    const fetchProducts = async () => {
+      try {
+        const response = await listProduct(token);
+  
+        if (response.status === 200) {
+          const data = await response.json();
+          setProducts(data.data);
+        } else {
+          throw new Error("Erro ao carregar da API");
+        }
+      } catch (error) {
+        console.warn("Erro ao buscar da API, carregando dados locais...");
+  
+        setProducts(initialProducts().data)
       }
-    });
+    };
+  
+    fetchProducts();
   }, [token]);
+  
+
+  console.log(products);
 
 //  const formatPrice = (price) => price.toFixed(2);
 
@@ -69,7 +99,11 @@ const Produto = () => {
   );
 
   const viewProduct = (id) => alert(`Visualizar produto ${id}`);
+<<<<<<< HEAD
   const editProduct = (id) => navigate(`/cadastro-produto/${id}`);
+=======
+  const editProduct = (id) => navigator(`/cadastro-produto/${id}`);
+>>>>>>> 56e04d10b89bbe1160046689791e2cc85e249409
 
   //const deleteProduct = (id) => alert(`Deletar produto ${id}`);
 
@@ -137,10 +171,11 @@ const Produto = () => {
     <div className="container">
       <nav className="sidebar">
         <div className="logo">
-          <img src="./img/logobiz.png" alt="" />
+          <img src="../img/logobiz.png" alt="Logo" />
           <h3>biz.erp</h3>
         </div>
         <ul className="menu">
+<<<<<<< HEAD
           <Link to="/dashboard" className="menu-item active"><img src="./img/Home.png" alt="Dashboard" />Dashboard</Link>
           <li><a href="#"><img src="./img/Category.png" alt="" /> <span>Produtos</span></a></li>
           <Link to="/categoria" className="menu-item active"><img src="./img/etiqueta.png" alt="Categotia" />Categorias</Link>
@@ -149,7 +184,20 @@ const Produto = () => {
         </ul>
         <ul className="logout">
         <li onClick={handleLogout}><Link to="/" ><img src="./img/logout.png" alt="" /><span>Logout</span></Link></li></ul>
+=======
+          <li><Link to="/dashboard"><img src="../img/Home.png" alt="" /><span>Dashboard</span></Link></li>
+          <li><Link to="/produto"><img src="../img/Category.png" alt="" /><span>Produtos</span></Link></li>
+          <li><Link to="/categorias"><img src="../img/etiqueta.png" alt="Categotia" /><span>Categorias</span></Link></li>
+          <li><Link to="/relatorios"><img src="../img/Document.png" alt="" /><span>Relatórios</span></Link></li>
+          <li><Link to="/vendas"><img src="../img/Bag.png" alt="" /><span>Vendas</span></Link></li>
+          <li><Link to="/clientes"><img src="./img/clientes.png" alt="clientes" />Clientes</Link></li>
+        </ul>
+        <ul className="logout">
+          <li onClick={handleLogout}><Link to="/"><img src="../img/logout.png" alt="" /><span>Logout</span></Link></li>
+        </ul>
+>>>>>>> 56e04d10b89bbe1160046689791e2cc85e249409
       </nav>
+
       
       <main className="content">
       <header className="header-container">
@@ -177,7 +225,7 @@ const Produto = () => {
               Adicionar por EAN
             </button>
 
-            <button className="add-button" onClick={() => navigate("/cadastro-produto")}>Adicionar</button>
+            <button className="add-button" onClick={() => navigator("/cadastro-produto")}>Adicionar</button>
         </div>
 
 

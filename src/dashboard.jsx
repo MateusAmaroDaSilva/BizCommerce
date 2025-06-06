@@ -2,8 +2,13 @@ import React from 'react';
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getDashboard } from './services/dashboardAPI';
+import { initialDashboard } from './services/dashboardInitian';
 import './dashboard.css';
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 56e04d10b89bbe1160046689791e2cc85e249409
 //Função de Logout
 const handleLogout = async (e) => {
   e.preventDefault();
@@ -13,11 +18,12 @@ const handleLogout = async (e) => {
 };
 
 const Sidebar = () => (
-  <aside className="sidebar">
+  <nav className="sidebar">
     <div className="logo">
-      <img src="./img/logobiz.png" alt="Logo" className="logo-icon" />
-      <span>biz.erp</span>
+      <img src="../img/logobiz.png" alt="Logo" />
+      <h3>biz.erp</h3>
     </div>
+<<<<<<< HEAD
     <nav className="menu">
       <a href="#" className="menu-item active">
         <img src="./img/Home.png" alt="Dashboard" />
@@ -46,6 +52,20 @@ const Sidebar = () => (
       </a>
     </div>
   </aside>
+=======
+    <ul className="menu">
+      <li><Link to="/dashboard"><img src="../img/Home.png" alt="" /><span>Dashboard</span></Link></li>
+      <li><Link to="/produto"><img src="../img/Category.png" alt="" /><span>Produtos</span></Link></li>
+      <li><Link to="/categorias"><img src="../img/etiqueta.png" alt="Categotia" /><span>Categorias</span></Link></li>
+      <li><Link to="/relatorios"><img src="../img/Document.png" alt="" /><span>Relatórios</span></Link></li>
+      <li><Link to="/vendas"><img src="../img/Bag.png" alt="" /><span>Vendas</span></Link></li>
+      <li><Link to="/clientes"><img src="./img/clientes.png" alt="clientes" />Clientes</Link></li>
+    </ul>
+    <ul className="logout">
+      <li><Link to="/"><img src="../img/logout.png" alt="" /><span>Logout</span></Link></li>
+    </ul>
+  </nav>
+>>>>>>> 56e04d10b89bbe1160046689791e2cc85e249409
 );
 
 const TopBar = () => (
@@ -177,7 +197,10 @@ const Main = ({ dashboardData }) => {
 
   // Calculate sales percentage (using total_sales change as percentage)
   const salesPercentage = Math.min(100, Math.abs(dashboardData?.overview?.total_sales?.change / 10)) || 45
+<<<<<<< HEAD
   console.log(Math.min(100, Math.abs(dashboardData?.overview?.total_sales?.change / 10)))
+=======
+>>>>>>> 56e04d10b89bbe1160046689791e2cc85e249409
 
   // Calculate deficit percentage (inverse of profit for visualization)
   const deficitPercentage = Math.min(100, 100 - profitPercentage) || 45
@@ -280,6 +303,7 @@ export default function Dashboard() {
   const [dashboardData, setDashboardData] = useState(null)
 
   //Valida usuário Logado
+<<<<<<< HEAD
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token || token == null) {
@@ -302,6 +326,46 @@ export default function Dashboard() {
 
     fetchDashboard()
   }, [token])
+=======
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token");
+  //   if (!token || token == null) {
+  //     //Redirecionar se não estiver autenticado
+  //   }
+  // }, []);
+
+  useEffect(() => {
+
+    // getDashboard(token).then((resposta) => {
+    //       if (resposta.status === 200) {
+    //         resposta.json().then((data) => {
+    //           setDashboardData(data.data);
+    //         });
+    //       }
+    //     });
+
+    const fetchDashboard = async () => {
+      try {
+        const response = await getDashboard(token);
+  
+        if (response.status === 200) {
+          const data = await response.json();
+          setDashboardData(data.data);
+        } else {
+          throw new Error("Erro ao carregar da API");
+        }
+      } catch (error) {
+        console.warn("Erro ao buscar da API, carregando dados locais...");
+  
+        setDashboardData(initialDashboard().data)
+      }
+    };
+  
+    fetchDashboard();
+    
+  
+  }, [token]);
+>>>>>>> 56e04d10b89bbe1160046689791e2cc85e249409
 
 
   return (

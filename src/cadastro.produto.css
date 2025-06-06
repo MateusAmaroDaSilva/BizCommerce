@@ -1,352 +1,726 @@
+/* Definição de variáveis CSS globais para cores e valores reutilizáveis */
 :root {
-    --primary-color: #6c5ce7;
-    --bg-dark: #1D1D1E;
-    --bg-light: #1E1E1E;
-    --text-color: #ffffff;
-    --text-secondary: #ffffff;
-    --border-color: #333333;
-    --hover-color: #141314; 
-    --purple-button: #511DB9;
-    --search-bg: #111111;
-    --table-header: #252525;
-    --fundo: #141314; 
-    --edit-button: #444141; 
-    --delete-button: #e74c3c; 
-    --table-border: #111111;
+  --primary-color: #511DB9; /* Cor principal roxa para botões e destaques */
+  --bg-dark: #1d1d1e; /* Cor de fundo escura principal */
+  --bg-light: #1e1e1e; /* Cor de fundo escura mais clara para cards */
+  --text-color: #ffffff; /* Cor do texto principal (branco) */
+  --text-secondary: #9499a3; /* Cor do texto secundário (cinza claro) */
+  --border-color: #333333; /* Cor das bordas padrão */
+  --hover-color: #141314; /* Cor de fundo ao passar o mouse */
+  --purple-button: #6c5ce7; /* Cor dos botões roxos */
+  --search-bg: #1c1c1d; /* Cor de fundo da barra de pesquisa */
+  --table-header-bg: #252525; /* Cor de fundo do cabeçalho da tabela */
+  --fundo: #222222; /* Cor de fundo geral da aplicação - ALTERADA */
+  --edit-button-bg: #2e2e2e; /* Cor de fundo dos botões de edição */
+  --delete-button-bg: #e74c3c; /* Cor de fundo dos botões de exclusão (vermelho) */
+  --table-border: #111111; /* Cor das bordas das tabelas */
+  --input-bg: #2a2a2a; /* Cor de fundo dos campos de input */
+  --input-border: #404040; /* Cor das bordas dos campos de input */
+
+  --table-row-bg: #1d1d1e; /* Cor de fundo das linhas da tabela */
+  --table-row-hover-bg: #252525; /* Cor de fundo das linhas da tabela ao passar o mouse */
+  --status-active-bg: #28a745; /* Cor de fundo do status ativo (verde) */
+  --icon-button-hover-bg: #3a3a3a; /* Cor de fundo dos botões de ícone ao passar o mouse */
+  --search-border: #333333; /* Cor da borda da barra de pesquisa */
 }
 
+/* Reset CSS - remove margens, paddings e define box-sizing para todos os elementos */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0; /* Remove margem padrão */
+  padding: 0; /* Remove padding padrão */
+  box-sizing: border-box; /* Inclui padding e border no cálculo da largura/altura */
 }
 
+/* Estilos globais do body */
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    background-color: var(--bg-dark);
-    color: var(--text-color);
-    line-height: 1.5;
+  font-family: "Inter", -apple-system, BlinkMacMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif; /* Define a fonte principal */
+  background-color: #2a2a2a !important; /* Aplica cor de fundo escura forçada */
+  color: var(--text-color); /* Define cor do texto como branco */
+  line-height: 1.5; /* Define altura da linha para melhor legibilidade */
 }
 
+/* Container principal que organiza sidebar e conteúdo */
 .container {
-    display: flex;
-    min-height: 100vh;
+  display: flex; /* Layout flexbox horizontal */
+  min-height: 100vh; /* Altura mínima de 100% da viewport */
 }
 
+/* Estilos da barra lateral (sidebar) */
 .sidebar {
-    width: 280px;
-    background-color: var(--bg-dark);
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    height: 100vh;
+  width: 280px; /* Largura fixa da sidebar */
+  background-color: var(--bg-dark); /* Cor de fundo escura */
+  padding: 24px; /* Espaçamento interno */
+  display: flex; /* Layout flexbox */
+  flex-direction: column; /* Organiza itens verticalmente */
+  position: fixed; /* Posição fixa na tela */
+  height: 100vh; /* Altura total da viewport */
+  z-index: 100; /* Camada alta para ficar sobre outros elementos */
 }
 
+/* Estilos da área do logo */
 .logo {
-    padding: 8px 0 32px 8px;
+  padding: 8px 0 32px 8px; /* Espaçamento interno (topo, direita, baixo, esquerda) */
+  display: flex; /* Layout flexbox */
+  align-items: center; /* Alinha itens verticalmente ao centro */
+  gap: 8px; /* Espaço entre logo e texto */
 }
 
-.logo h2 {
-    color: var(--text-color);
-    font-size: 24px;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+/* Estilos da imagem do logo */
+.logo img {
+  width: 32px; /* Largura da imagem */
+  height: 32px; /* Altura da imagem */
 }
 
+/* Estilos do texto do logo */
+.logo h3 {
+  color: var(--text-color); /* Cor do texto branca */
+  font-size: 24px; /* Tamanho da fonte */
+  font-weight: 600; /* Peso da fonte (semi-bold) */
+}
+
+/* Estilos da lista do menu */
 .menu {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  list-style: none; /* Remove marcadores da lista */
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margem */
 }
 
+/* Estilos dos itens do menu */
 .menu li {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 14px;
-    color: white;
-    cursor: pointer;
-    border-radius: 8px;
-    transition: all 0.3s ease-in-out;
-    position: relative;
+  display: flex; /* Layout flexbox */
+  align-items: center; /* Alinha itens verticalmente ao centro */
+  gap: 10px; /* Espaço entre ícone e texto */
+  padding: 14px; /* Espaçamento interno */
+  color: white; /* Cor do texto branca */
+  cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
+  border-radius: 8px; /* Bordas arredondadas */
+  transition: all 0.3s ease-in-out; /* Transição suave para todas as propriedades */
+  position: relative; /* Posicionamento relativo para elementos filhos */
 }
 
+/* Estilos dos links dentro dos itens do menu */
 .menu li a {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
-    color: white;
-    font-size: 16px;
+  display: flex; /* Layout flexbox */
+  align-items: center; /* Alinha itens verticalmente ao centro */
+  gap: 10px; /* Espaço entre ícone e texto */
+  text-decoration: none; /* Remove sublinhado do link */
+  color: white; /* Cor do texto branca */
+  font-size: 16px; /* Tamanho da fonte */
+  width: 100%; /* Largura total disponível */
 }
 
+/* Estilos das imagens (ícones) do menu */
 .menu li img {
-    width: 28px; 
-    height: 28px;
-    transition: transform 0.3s ease-in-out;
-    position: relative;
-    top: 0px;
+  width: 28px; /* Largura do ícone */
+  height: 28px; /* Altura do ícone */
+  transition: transform 0.3s ease-in-out; /* Transição suave para transformações */
+  position: relative; /* Posicionamento relativo */
+  top: 0px; /* Posição vertical */
 }
 
+/* Estilos do texto dos itens do menu */
 .menu li a span {
-    position: relative;
-    top: 0px;
+  position: relative; /* Posicionamento relativo */
+  top: 0px; /* Posição vertical */
 }
 
-.menu li:hover, 
-.menu li:focus, 
-.menu li.active {
-    background-color: var(--table-border);
-    transform: scale(1.05);
+/* Estilos de hover, focus e item ativo do menu */
+.menu li:hover,
+.menu li:focus,
+.menu-item.active {
+  background-color: var(--table-border); /* Cor de fundo ao passar o mouse */
+  transform: scale(1.02); /* Aumenta ligeiramente o tamanho */
 }
 
+/* Efeito de movimento ao passar o mouse sobre itens do menu */
 .menu li:hover img,
 .menu li:hover a span {
-    transform: translateX(10px);
-    transition: transform 0.3s ease-in-out;
+  transform: translateX(5px); /* Move 5px para a direita */
+  transition: transform 0.3s ease-in-out; /* Transição suave */
 }
 
+/* Estilos da área de conteúdo principal */
 .content {
-    flex-grow: 1;
-    padding: 24px 32px;
-    background-color: var(--fundo);
-    margin-left: 280px;
+  flex-grow: 1; /* Ocupa todo o espaço restante */
+  padding: 24px 32px; /* Espaçamento interno */
+  background-color: #141314 !important; /* Cor de fundo forçada */
+  margin-left: 280px; /* Margem esquerda para não sobrepor a sidebar */
+  min-height: 100vh; /* Altura mínima de 100% da viewport */
+  display: flex; /* ADICIONADO: Layout flexbox */
+  flex-direction: column; /* ADICIONADO: Organiza itens verticalmente */
+  align-items: center; /* ADICIONADO: Centraliza horizontalmente */
 }
 
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 322px;
-}
-
-header h1 {
-    font-size: 24px;
-    font-weight: 600;
-}
-
+/* Estilos do cabeçalho */
 .header-container {
-  background-color: var(--bg-dark);
-  height: 90px;
-  width: 102%; 
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  padding: 0 20px;
-  margin: 0; 
-  position: relative; 
-  top: -22px;
-  left: 0;
+  background-color: var(--bg-dark); /* Cor de fundo escura */
+  height: 90px; /* Altura fixa */
+  width: calc(100% + 64px); /* Largura que compensa o padding do content */
+  display: flex; /* Layout flexbox */
+  justify-content: flex-end; /* Alinha conteúdo à direita */
+  align-items: center; /* Alinha itens verticalmente ao centro */
+  padding: 0 32px; /* Espaçamento interno horizontal */
+  margin: -24px -32px 0px -32px; /* Margem negativa para compensar padding do content */
+  position: sticky; /* Posição sticky para fixar no topo ao rolar */
+  top: 0; /* Posição no topo */
+  z-index: 50; /* Camada para ficar sobre outros elementos */
+  border-bottom: 1px solid var(--border-color); /* Borda inferior */
 }
 
-
-.user-profile {
-  display: flex;
-  align-items: center;
+/* Estilos da informação do usuário no cabeçalho */
+.user-info {
+  display: flex; /* Layout flexbox */
+  align-items: center; /* Alinha itens verticalmente ao centro */
+  gap: 10px; /* Espaço entre elementos */
+  color: var(--text-color); /* Cor do texto */
+  font-weight: 500; /* Peso da fonte */
+  cursor: pointer; /* Cursor de ponteiro */
 }
 
-.user-profile span {
-  margin-right: 0.5rem;
-  font-weight: 500;
-  color: var(--text);
+/* Estilos do nome do usuário */
+.user-info span {
+  margin-right: 0.5rem; /* Margem direita */
+  font-weight: 500; /* Peso da fonte */
+  color: var(--text-color); /* Cor do texto */
 }
 
-.profile-pic {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  object-fit: cover;
+/* Estilos do avatar do usuário */
+.avatar {
+  width: 40px; /* Largura */
+  height: 40px; /* Altura */
+  border-radius: 50%; /* Bordas arredondadas (círculo) */
+  object-fit: cover; /* Ajusta a imagem para cobrir toda a área */
 }
 
+/* Estilos da seta dropdown */
+.dropdown-arrow {
+  width: 16px; /* Largura */
+  height: 16px; /* Altura */
+  filter: invert(1); /* Inverte as cores (torna branco) */
+}
 
+/* Estilos da área de logout */
 .logout {
-    margin-top: auto;
-    padding: 8px;
+  margin-top: auto; /* Empurra para o final da sidebar */
+  padding: 8px; /* Espaçamento interno */
 }
 
+/* Estilos do link de logout */
 .logout a {
-    color: var(--text-secondary);
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    padding: 12px 16px;
-    border-radius: 8px;
-    transition: all 0.2s ease;
-    font-size: 15px;
+  color: var(--text-secondary); /* Cor do texto secundária */
+  text-decoration: none; /* Remove sublinhado */
+  display: flex; /* Layout flexbox */
+  align-items: center; /* Alinha itens verticalmente ao centro */
+  padding: 12px 16px; /* Espaçamento interno */
+  border-radius: 8px; /* Bordas arredondadas */
+  transition: all 0.2s ease; /* Transição suave */
+  font-size: 15px; /* Tamanho da fonte */
 }
 
+/* Estilos da imagem do logout */
+.logout a img {
+  margin-right: 12px; /* Margem direita */
+  width: 20px; /* Largura */
+  height: 20px; /* Altura */
+}
+
+/* Estilos de hover do logout */
 .logout a:hover {
-    background-color: var(--hover-color);
-    color: var(--text-color);
+  background-color: var(--hover-color); /* Cor de fundo ao passar o mouse */
+  color: var(--text-color); /* Cor do texto */
 }
 
-.logout .icon {
-    margin-right: 12px;
-    font-size: 20px;
+/* Estilos para o botão de voltar e título */
+.botao-cadastrar-quadrado {
+  display: flex; /* Layout flexbox */
+  align-items: center; /* Alinha itens verticalmente ao centro */
+  gap: 16px; /* Espaço entre botão e título */
+  margin: 24px 0; /* Margem vertical reduzida */
+  padding: 0; /* Remove padding extra */
+  width: 100%; /* ADICIONADO: Largura total */
+  max-width: 1200px; /* ADICIONADO: Largura máxima */
 }
 
-/* ---------------------------------------------------- */
+/* Estilos do botão quadrado de voltar */
+.quadrado {
+  background-color: #141314; /* Fundo escuro mais suave */
+  border: 2px solid #404040; 
+  border-radius: 4px; /* Bordas ainda menos arredondadas para ficar mais quadrado */
+  width: auto; /* Largura menor - ALTERADO */
+  height: 36px; /* Altura menor - ALTERADO */
+  display: flex; /* Layout flexbox */
+  align-items: center; /* Alinha itens verticalmente ao centro */
+  justify-content: center; /* Alinha itens horizontalmente ao centro */
+  cursor: pointer; /* Cursor de ponteiro */
+  transition: all 0.2s ease; /* Transição suave */
+  padding: 23px 16px;
+}
 
+/* Estilos da imagem dentro do botão quadrado */
+.quadrado img {
+  width: 25px; /* Largura menor - ALTERADO */
+  height: 25px; /* Altura menor - ALTERADO */
+}
+
+/* Estilos do título na área do botão */
+.botao-cadastrar-quadrado h2 {
+  color: var(--text-color); /* Cor do texto */
+  font-size: 20px; /* Tamanho da fonte menor */
+  font-weight: 600; /* Peso da fonte */
+  margin: 0; /* Remove margem */
+}
+
+/* Estilos para o formulário principal */
 .form-produto {
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-    max-width: 1000px;
-    margin: 0 auto;
-  }
-  
+  background-color: transparent; /* Fundo transparente */
+  border-radius: 0; /* Remove bordas arredondadas */
+  padding: 0; /* Remove padding */
+  border: none; /* Remove borda */
+  max-width: 1200px; /* Largura máxima */
+  width: 100%; /* ADICIONADO: Largura total */
+}
+
+/* Estilos do grid do formulário */
+.form-grid {
+  display: grid; /* Layout grid */
+  grid-template-columns: 1fr 320px; /* Coluna esquerda flexível, direita fixa */
+  gap: 48px; /* Espaço maior entre colunas */
+  margin-bottom: 32px; /* Margem inferior */
+}
+
+/* Estilos da coluna esquerda do formulário */
+.form-left {
+  display: flex; /* Layout flexbox */
+  flex-direction: column; /* Organiza itens verticalmente */
+  gap: 20px; /* Espaço menor entre elementos */
+}
+
+/* Estilos dos grupos de campos do formulário */
+.form-group {
+  display: flex; /* Layout flexbox */
+  flex-direction: column; /* Organiza itens verticalmente */
+  gap: 8px; /* Espaço entre label e input */
+}
+
+/* Estilos das labels dos campos */
+.form-group label {
+  color: var(--text-color); /* Cor do texto */
+  font-size: 14px; /* Tamanho da fonte */
+  font-weight: 500; /* Peso da fonte */
+  margin-bottom: 4px; /* Margem inferior pequena */
+}
+
+/* Estilos dos campos de input */
+.form-group input,
+.form-group input[list] {
+  background-color: #2c2c2c; /* Cor de fundo mais escura */
+  border: 1px solid #3a3a3a; /* Borda mais sutil */
+  border-radius: 6px; /* Bordas menos arredondadas */
+  padding: 12px 16px; /* Espaçamento interno */
+  color: var(--text-color); /* Cor do texto */
+  font-size: 14px; /* Tamanho da fonte */
+  transition: all 0.2s ease; /* Transição suave */
+  height: 44px; /* Altura fixa */
+}
+
+/* Estilos de focus dos campos de input */
+.form-group input:focus,
+.form-group input[list]:focus {
+  outline: none; /* Remove outline padrão */
+  border-color: var(--primary-color); /* Cor da borda ao focar */
+  box-shadow: 0 0 0 2px rgba(108, 92, 231, 0.2); /* Sombra mais sutil ao focar */
+}
+
+/* Estilos do placeholder dos inputs */
+.form-group input::placeholder {
+  color: #6b6b6b; /* Cor do placeholder mais escura */
+}
+
+/* Estilos das linhas com dois campos lado a lado */
+.form-row {
+  display: grid; /* Layout grid */
+  grid-template-columns: 1fr 1fr; /* Duas colunas iguais */
+  gap: 16px; /* Espaço entre colunas */
+}
+
+/* Estilos para upload de imagem */
+.form-right {
+  display: flex; /* Layout flexbox */
+  flex-direction: column; /* Organiza itens verticalmente */
+  gap: 8px; /* Espaço menor entre elementos */
+}
+
+/* Estilos da label da área de upload */
+.form-right label {
+  color: var(--text-color); /* Cor do texto */
+  font-size: 14px; /* Tamanho da fonte */
+  font-weight: 500; /* Peso da fonte */
+  margin-bottom: 4px; /* Margem inferior pequena */
+}
+
+/* Estilos da caixa de upload */
+.upload-box {
+  background-color: #2c2c2c; /* Cor de fundo mais escura */
+  border: 2px dashed #4a4a4a; /* Borda tracejada mais clara */
+  border-radius: 8px; /* Bordas arredondadas */
+  padding: 264px 20px; /* Espaçamento interno menor */
+  text-align: center; /* Alinhamento central do texto */
+  cursor: pointer; /* Cursor de ponteiro */
+  transition: all 0.2s ease; /* Transição suave */
+  height: 280px; /* Altura fixa */
+  display: flex; /* Layout flexbox */
+  flex-direction: column; /* Organiza itens verticalmente */
+  align-items: center; /* Alinha itens horizontalmente ao centro */
+  justify-content: center; /* Alinha itens verticalmente ao centro */
+  gap: 12px; /* Espaço entre elementos */
+}
+
+/* Estilos de hover da caixa de upload */
+.upload-box:hover {
+  border-color: var(--text-color); /* Cor da borda ao passar o mouse */
+  background-color: rgba(185, 182, 212, 0.05); /* Cor de fundo com transparência */
+}
+
+/* Estilos da imagem de ícone na caixa de upload */
+.upload-box img:not(.preview-image) {
+  width: 48px; /* Largura */
+  height: 48px; /* Altura */
+  opacity: 0.5; /* Transparência maior */
+  filter: invert(0.5); /* Inverte parcialmente as cores */
+}
+
+/* Estilos do texto principal na caixa de upload */
+.upload-box p {
+  color: var(--text-color); /* Cor do texto */
+  font-size: 14px; /* Tamanho da fonte menor */
+  font-weight: 500; /* Peso da fonte */
+  margin: 0; /* Remove margem */
+}
+
+/* Estilos do texto secundário na caixa de upload */
+.upload-box small {
+  color: var(--text-secondary); /* Cor do texto secundário */
+  font-size: 12px; /* Tamanho da fonte menor */
+}
+
+/* Estilos da imagem de preview */
+.preview-image {
+  max-width: 100%; /* Largura máxima */
+  max-height: 240px; /* Altura máxima */
+  border-radius: 6px; /* Bordas arredondadas */
+  object-fit: cover; /* Ajusta a imagem para cobrir toda a área */
+}
+
+/* Container para o botão de cadastrar */
+.form-produto {
+  position: relative; /* Posicionamento relativo */
+}
+
+/* Estilos do botão principal */
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 18px 80px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: absolute;
+  bottom: -40px;
+  right: 0;
+  width: auto;
+  height: auto;
+}
+
+/* Estilos de hover do botão principal */
+.btn-primary:hover {
+  background-color: #584bda; /* Cor de fundo mais escura ao passar o mouse */
+  transform: translateY(-1px); /* Move ligeiramente para cima */
+}
+
+/* Estilos de active (clique) do botão principal */
+.btn-primary:active {
+  transform: translateY(0); /* Retorna à posição original */
+}
+
+/* Responsividade para tablets */
+@media (max-width: 1024px) {
   .form-grid {
-    display: flex;
-    justify-content: space-between;
-    gap: 40px;
-    flex-wrap: wrap;
+    grid-template-columns: 1fr; /* Uma coluna apenas */
+    gap: 24px; /* Reduz o espaço entre elementos */
   }
-  
-  .form-left {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 50px;
-  }
-  
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-  
-  label {
-    font-size: 14px;
-    color: #ffffff;
-    font-weight: 500;
-  }
-  
-  input, select {
-    background-color: #27272A;
-    border: 2px solid transparent;
-    border-radius: 5px;
-    padding: 14px 18px;
-    font-size: 14px;
-    color: #fff;
-    outline: none;
-    transition: border 0.3s, box-shadow 0.3s;
-    box-shadow: none;
-  }
-  
-  input::placeholder {
-    color: #9499A3;
-  }
-  
-  input:focus {
-    border-color: var(--text-color);
-  }
-  
-  .form-row {
-    display: flex;
-    gap: 20px;
-  }
-  
-  .form-row .form-group {
-    flex: 1;
-  }
-  
+
   .form-right {
-    width: 250px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-  
-  .upload-box {
-    background-color: #1D1D1E;
-    border: 2px dashed #333;
-    border-radius: 12px;
-    width: 160%; 
-    height: 572px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
-    color: #888;
-    text-align: center;
-}
-  
-  .upload-box img {
-    width: 60px;
-    opacity: 0.7;
+    order: -1; /* Move a área de upload para o topo */
   }
 
-  .upload-box .preview-image {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    opacity: 1;
-  }
-  
-  .upload-box p {
-    font-size: 20px;
-    font-weight: 500;
-  }
-  
-  .upload-box small {
-    font-size: 14px;
-    color: #777;
-  }
-  
   .btn-primary {
-    background-color: var(--purple-button);
-    color: white;
-    border: none;
-    width: 220px; 
-    padding: 14px 0; 
-    border-radius: 11px; 
-    font-size: 18px; 
-    font-weight: 600; 
-    cursor: pointer;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    margin-left: 930px; 
-    margin-right: 0;
-    transition: background-color 0.3s ease, transform 0.2s ease; 
-}
- 
-  
-  
-  .botao-cadastrar-quadrado {
-    display: flex;
-    align-items: center;
-    gap: 2rem; 
-    margin-bottom: 2rem;
+    position: static; /* Remove posicionamento absoluto */
+    align-self: flex-start; /* Alinha à esquerda */
+    margin-top: 24px; /* Adiciona margem superior */
   }
-  
-  .botao-cadastrar-quadrado .quadrado {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.8rem;
-    border-radius: 0.5rem;
-    background-color: transparent;
-    border: 3px solid #27272A;
-    cursor: pointer;
-    width: auto; 
-    height: auto; 
 }
 
-  
-  .botao-cadastrar-quadrado .quadrado img {
-    width: 20px;
-    height: 20px;
+/* Responsividade para celulares */
+@media (max-width: 768px) {
+  .form-row {
+    grid-template-columns: 1fr; /* Uma coluna apenas para campos lado a lado */
   }
-  
-  .botao-cadastrar-quadrado h1 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: white; 
+
+  .sidebar {
+    width: 240px; /* Reduz largura da sidebar */
   }
-  
+
+  .content {
+    margin-left: 240px; /* Ajusta margem do conteúdo */
+    padding: 16px 24px; /* Reduz padding */
+  }
+
+  .form-produto {
+    padding: 0; /* Remove padding do formulário */
+  }
+
+  .upload-box {
+    height: 200px; /* Reduz altura da caixa de upload */
+  }
+}
+
+/* Estilos restantes para tabelas (mantidos do CSS original) */
+.categories-section h2 {
+  font-size: 24px; /* Tamanho da fonte */
+  font-weight: 600; /* Peso da fonte */
+  margin-bottom: 24px; /* Margem inferior */
+  color: var(--text-color); /* Cor do texto */
+}
+
+/* Estilos da área de pesquisa e botão adicionar */
+.search-and-add {
+  display: flex; /* Layout flexbox */
+  justify-content: space-between; /* Distribui espaço entre elementos */
+  align-items: center; /* Alinha itens verticalmente ao centro */
+  margin-bottom: 24px; /* Margem inferior */
+  gap: 16px; /* Espaço entre elementos */
+}
+
+/* Estilos da caixa de pesquisa */
+.search-box {
+  display: flex; /* Layout flexbox */
+  align-items: center; /* Alinha itens verticalmente ao centro */
+  background-color: var(--search-bg); /* Cor de fundo */
+  border-radius: 8px; /* Bordas arredondadas */
+  overflow: hidden; /* Esconde conteúdo que ultrapassa as bordas */
+  flex-grow: 1; /* Ocupa espaço disponível */
+  border: 1px solid var(--search-border); /* Borda */
+  height: 48px; /* Altura fixa */
+}
+
+/* Estilos do input de pesquisa */
+.search-box input {
+  flex-grow: 1; /* Ocupa espaço disponível */
+  padding: 12px 16px; /* Espaçamento interno */
+  border: none; /* Remove borda */
+  background-color: transparent; /* Fundo transparente */
+  color: var(--text-color); /* Cor do texto */
+  font-size: 14px; /* Tamanho da fonte */
+  outline: none; /* Remove outline */
+}
+
+/* Estilos do placeholder do input de pesquisa */
+.search-box input::placeholder {
+  color: #9499a3; /* Cor do placeholder */
+}
+
+/* Estilos do botão de pesquisa */
+.search-button {
+  background-color: transparent; /* Fundo transparente */
+  border: none; /* Remove borda */
+  color: var(--text-secondary); /* Cor do texto */
+  padding: 12px 16px; /* Espaçamento interno */
+  cursor: pointer; /* Cursor de ponteiro */
+  display: flex; /* Layout flexbox */
+  align-items: center; /* Alinha itens verticalmente ao centro */
+  gap: 8px; /* Espaço entre elementos */
+  font-size: 14px; /* Tamanho da fonte */
+  font-weight: 500; /* Peso da fonte */
+  transition: background-color 0.2s ease; /* Transição suave */
+}
+
+/* Estilos da imagem do botão de pesquisa */
+.search-button img {
+  width: 20px; /* Largura */
+  height: 20px; /* Altura */
+  filter: invert(0.8); /* Inverte parcialmente as cores */
+}
+
+/* Estilos de hover do botão de pesquisa */
+.search-button:hover {
+  background-color: var(--hover-color); /* Cor de fundo ao passar o mouse */
+}
+
+/* Estilos do botão adicionar categoria */
+.add-category-button {
+  background-color: var(--purple-button); /* Cor de fundo roxa */
+  color: white; /* Cor do texto branca */
+  border: none; /* Remove borda */
+  padding: 12px 20px; /* Espaçamento interno */
+  border-radius: 8px; /* Bordas arredondadas */
+  font-size: 14px; /* Tamanho da fonte */
+  font-weight: 600; /* Peso da fonte */
+  cursor: pointer; /* Cursor de ponteiro */
+  transition: background-color 0.3s ease; /* Transição suave */
+  display: flex; /* Layout flexbox */
+  align-items: center; /* Alinha itens verticalmente ao centro */
+  justify-content: center; /* Alinha itens horizontalmente ao centro */
+  min-width: 120px; /* Largura mínima */
+  height: 48px; /* Altura fixa */
+}
+
+/* Estilos de hover do botão adicionar categoria */
+.add-category-button:hover {
+  background-color: #584bda; /* Cor de fundo mais escura ao passar o mouse */
+}
+
+/* Estilos da tabela de categorias */
+.categories-table {
+  width: 100%; /* Largura total */
+  border-collapse: separate; /* Bordas separadas */
+  border-spacing: 0 12px; /* Espaçamento entre linhas */
+}
+
+/* Estilos do cabeçalho da tabela */
+.categories-table thead th {
+  background-color: var(--table-header-bg); /* Cor de fundo */
+  color: var(--text-secondary); /* Cor do texto */
+  padding: 12px 16px; /* Espaçamento interno */
+  text-align: left; /* Alinhamento do texto à esquerda */
+  font-weight: 500; /* Peso da fonte */
+  font-size: 14px; /* Tamanho da fonte */
+}
+
+/* Bordas arredondadas do primeiro cabeçalho */
+.categories-table thead th:first-child {
+  border-top-left-radius: 8px; /* Borda superior esquerda arredondada */
+}
+
+/* Bordas arredondadas do último cabeçalho */
+.categories-table thead th:last-child {
+  border-top-right-radius: 8px; /* Borda superior direita arredondada */
+}
+
+/* Estilos das linhas do corpo da tabela */
+.categories-table tbody tr {
+  background-color: var(--table-row-bg); /* Cor de fundo */
+  border-radius: 8px; /* Bordas arredondadas */
+  transition: background-color 0.2s ease; /* Transição suave */
+}
+
+/* Estilos de hover das linhas da tabela */
+.categories-table tbody tr:hover {
+  background-color: var(--table-row-hover-bg); /* Cor de fundo ao passar o mouse */
+}
+
+/* Estilos das células do corpo da tabela */
+.categories-table tbody td {
+  padding: 16px; /* Espaçamento interno */
+  color: var(--text-color); /* Cor do texto */
+  font-size: 14px; /* Tamanho da fonte */
+  border: none; /* Remove borda */
+}
+
+/* Bordas arredondadas da primeira célula de cada linha */
+.categories-table tbody tr td:first-child {
+  border-top-left-radius: 8px; /* Borda superior esquerda arredondada */
+  border-bottom-left-radius: 8px; /* Borda inferior esquerda arredondada */
+}
+
+/* Bordas arredondadas da última célula de cada linha */
+.categories-table tbody tr td:last-child {
+  border-top-right-radius: 8px; /* Borda superior direita arredondada */
+  border-bottom-right-radius: 8px; /* Borda inferior direita arredondada */
+}
+
+/* Estilos do status ativo */
+.status-active {
+  background-color: var(--status-active-bg); /* Cor de fundo verde */
+  color: white; /* Cor do texto branca */
+  padding: 4px 10px; /* Espaçamento interno */
+  border-radius: 50px; /* Bordas muito arredondadas (pílula) */
+  font-size: 12px; /* Tamanho da fonte */
+  font-weight: 500; /* Peso da fonte */
+  display: inline-block; /* Display inline-block */
+}
+
+/* Estilos da área de ações */
+.actions {
+  display: flex; /* Layout flexbox */
+  gap: 8px; /* Espaço entre botões */
+  justify-content: center; /* Alinha botões ao centro */
+}
+
+/* Estilos dos botões de ação */
+.actions button {
+  background-color: var(--edit-button-bg); /* Cor de fundo */
+  border: none; /* Remove borda */
+  border-radius: 6px; /* Bordas arredondadas */
+  width: 32px; /* Largura */
+  height: 32px; /* Altura */
+  display: flex; /* Layout flexbox */
+  align-items: center; /* Alinha itens verticalmente ao centro */
+  justify-content: center; /* Alinha itens horizontalmente ao centro */
+  cursor: pointer; /* Cursor de ponteiro */
+  transition: background-color 0.2s ease; /* Transição suave */
+}
+
+/* Estilos das imagens dos botões de ação */
+.actions button img {
+  width: 18px; /* Largura */
+  height: 18px; /* Altura */
+  filter: invert(0.8); /* Inverte parcialmente as cores */
+}
+
+/* Estilos de hover dos botões de ação */
+.actions button:hover {
+  background-color: var(--icon-button-hover-bg); /* Cor de fundo ao passar o mouse */
+}
+
+/* Estilos do botão de deletar */
+.actions .delete-button {
+  background-color: var(--delete-button-bg); /* Cor de fundo vermelha */
+}
+
+/* Estilos de hover do botão de deletar */
+.actions .delete-button:hover {
+  background-color: #c0392b; /* Cor de fundo mais escura ao passar o mouse */
+}
+
+/* Larguras específicas das colunas da tabela */
+.categories-table thead th:nth-child(1),
+.categories-table tbody td:nth-child(1) {
+  width: 40px; /* Largura da primeira coluna */
+  text-align: center; /* Alinhamento central */
+}
+
+.categories-table thead th:nth-child(3),
+.categories-table tbody td:nth-child(3) {
+  width: 100px; /* Largura da terceira coluna */
+  text-align: center; /* Alinhamento central */
+}
+
+.categories-table thead th:nth-child(4),
+.categories-table tbody td:nth-child(4) {
+  width: 100px; /* Largura da quarta coluna */
+  text-align: center; /* Alinhamento central */
+}
+
+.categories-table thead th:nth-child(5),
+.categories-table tbody td:nth-child(5) {
+  width: 150px; /* Largura da quinta coluna */
+}
+
+.categories-table thead th:nth-child(6),
+.categories-table tbody td:nth-child(6) {
+  width: 100px; /* Largura da sexta coluna */
+  text-align: center; /* Alinhamento central */
+}
