@@ -64,7 +64,7 @@ const ClientesSidebar = () => {
             </Link>
           </li>
           <li>
-            <Link to="/clientes" className="categoria-menu-item active">
+            <Link to="/clientes">
               <img src="./img/clientes.png" alt="clientes" />
               Clientes
             </Link>

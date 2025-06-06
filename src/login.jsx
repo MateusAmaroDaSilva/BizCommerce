@@ -33,7 +33,7 @@ export default function Login() {
     //   alert('Login falhou. Verifique suas credenciais.'); // Ou setar erro no estado
     // }
 
-    navigate('/produto') // Idealmente use React Router
+    navigate('/dashboard') // Idealmente use React Router
   };
 
   return (

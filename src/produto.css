@@ -240,23 +240,12 @@ header h1 {
   }
 
 .add-button {
-    width: 150px;
-    height: 55px;
-    padding: 12px 24px;
-    background-color: var(--purple-button);
-    color: white;
-    border: none;   
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 700;
-    transition: all 0.2s ease;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    white-space: nowrap;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background-color: #511DB9 !important;
+  color: white !important;
+  border-radius: 6px !important;
+  padding: 12px 24px !important;
+  width: 150px !important;
+  height: 55px !important;
 }
 
 .add-button:hover {
