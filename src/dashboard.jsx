@@ -265,12 +265,12 @@ export default function Dashboard() {
   const [dashboardData, setDashboardData] = useState(null)
 
   //Valida usuário Logado
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token || token == null) {
-      //Redirecionar se não estiver autenticado
-    }
-  }, []);
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token");
+  //   if (!token || token == null) {
+  //     //Redirecionar se não estiver autenticado
+  //   }
+  // }, []);
 
   useEffect(() => {
 

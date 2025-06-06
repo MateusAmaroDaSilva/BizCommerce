@@ -62,12 +62,12 @@ export default function CadastroCliente() {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token || token == null) {
-      navigate('/');
-    }
-  }, []);
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token");
+  //   if (!token || token == null) {
+  //     navigate('/');
+  //   }
+  // }, []);
 
   const [formData, setFormData] = useState({
     nomeCompleto: "",

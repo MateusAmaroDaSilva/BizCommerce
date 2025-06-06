@@ -20,11 +20,11 @@ const Produto = () => {
   const token = localStorage.getItem("token");
 
   //Valida usuário Logado
-  useEffect(() => {
-    if (!token || token == null) {
-      navigator("/")
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!token || token == null) {
+  //     navigator("/")
+  //   }
+  // }, []);
 
   useEffect(() => {
     const fetchProducts = async () => {

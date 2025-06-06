@@ -58,12 +58,12 @@ const CadastroProduto = () => {
   };
     
   //Valida usuário Logado
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token || token == null) {
-      navigate('/');
-    }
-  }, []);
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token");
+  //   if (!token || token == null) {
+  //     navigate('/');
+  //   }
+  // }, []);
 
   const handleLogout = async (e) => {
     e.preventDefault();

@@ -34,12 +34,12 @@ const CadastrarVenda = () => {
   const token = localStorage.getItem("token");
 
   //Valida usuário Logado
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token || token == null) {
-      //Redirecionar se não estiver autenticado
-    }
-  }, []);
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token");
+  //   if (!token || token == null) {
+  //     //Redirecionar se não estiver autenticado
+  //   }
+  // }, []);
   
   //Função de Logout
   const handleLogout = async (e) => {
