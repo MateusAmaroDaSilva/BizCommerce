@@ -489,8 +489,6 @@ body {
   opacity: 0.9;
 }
 
-<<<<<<< HEAD
-=======
 /* Cart Items Styles */
 .cart-items {
   max-height: 300px;
@@ -743,7 +741,6 @@ body {
 }
 
 
->>>>>>> 56e04d10b89bbe1160046689791e2cc85e249409
 /* Responsive design */
 @media (max-width: 1024px) {
   .form-container {

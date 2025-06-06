@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 "use client"
 
 import { useState } from "react"
@@ -318,7 +317,6 @@ export default function Clientes() {
             </table>
           </div>
         </main>
-=======
 import "./clientes.css"
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -505,7 +503,6 @@ export default function Clientes() {
             ))}
           </tbody>
         </table>
->>>>>>> 56e04d10b89bbe1160046689791e2cc85e249409
       </div>
     </div>
   )

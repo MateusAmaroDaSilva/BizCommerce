@@ -1,8 +1,6 @@
-<<<<<<< HEAD
 "use client"
 
 import { useState } from "react"
-=======
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect, use } from "react"
 import { listCustomers } from "./services/custumerAPI";
@@ -11,17 +9,13 @@ import { listProduct } from "./services/productAPI";
 import { initialCustomers } from "./services/custumerInitial";
 import { initialProducts } from "./services/productsInitial";
 import { initialSales } from "./services/salesInitial";
->>>>>>> 56e04d10b89bbe1160046689791e2cc85e249409
 import "./relatorios.css"
 
 const Relatorios = () => {
   const [selectedPeriod, setSelectedPeriod] = useState("Abril, 2025")
-<<<<<<< HEAD
-=======
   const [customers, setCustumers] = useState([]);
   const [products, setProducts] = useState([]);
   const [sales, setSales] = useState([]);
->>>>>>> 56e04d10b89bbe1160046689791e2cc85e249409
 
   const salesData = [
     { product: "Tênis da Nike", value: "R$ 75.000,00", percentage: 100 },
@@ -29,7 +23,6 @@ const Relatorios = () => {
     { product: "Tênis da Adidas", value: "R$ 30.000,00", percentage: 40 },
   ]
 
-<<<<<<< HEAD
   const clientsData = [
     {
       name: "Clebinho Sincero",
@@ -72,7 +65,6 @@ const Relatorios = () => {
       email: "salsionio.picante@hotgrill.net",
     },
   ]
-=======
   const token = localStorage.getItem("token");
 
   //Valida usuário Logado
@@ -260,12 +252,10 @@ const Relatorios = () => {
     return productNames[productId] || `Produto ${productId}`
   }
 
->>>>>>> 56e04d10b89bbe1160046689791e2cc85e249409
 
   return (
     <div className="container">
       <nav className="sidebar">
-<<<<<<< HEAD
         <div className="sidebar-content">
           <div className="logo">
             <img src="/img/logobiz.png" alt="Logo Biz ERP" />
@@ -306,7 +296,6 @@ const Relatorios = () => {
         </div>
       </nav>
 
-=======
         <div className="logo">
           <img src="../img/logobiz.png" alt="Logo" />
           <h3>biz.erp</h3>
@@ -325,22 +314,18 @@ const Relatorios = () => {
       </nav>
 
 
->>>>>>> 56e04d10b89bbe1160046689791e2cc85e249409
       <main className="content">
         <header className="header-container">
           <div className="header-left">
             <h1 className="page-title">Relatórios</h1>
-<<<<<<< HEAD
           </div>
           <div className="period-center">
             <span className="period-label">Período</span>
             <span className="period-value">{selectedPeriod}</span>
-=======
             <div className="period-selector">
               <span className="period-label">Período</span>
               <span className="period-value">{selectedPeriod}</span>
             </div>
->>>>>>> 56e04d10b89bbe1160046689791e2cc85e249409
           </div>
           <div className="user-info">
             <span>Calabreso Silva</span>
@@ -357,7 +342,6 @@ const Relatorios = () => {
           <h2 className="report-title">Relatório de vendas mensal</h2>
           <div className="report-actions">
             <button className="action-button share-button">
-<<<<<<< HEAD
               <svg
                 className="action-icon"
                 width="16"
@@ -404,13 +388,11 @@ const Relatorios = () => {
                   strokeLinejoin="round"
                 />
               </svg>
-=======
               <span>🔗</span>
               Compartilhar
             </button>
             <button className="action-button export-button">
               <span>📤</span>
->>>>>>> 56e04d10b89bbe1160046689791e2cc85e249409
               Exportar
             </button>
           </div>
@@ -419,13 +401,11 @@ const Relatorios = () => {
         <div className="dashboard-grid">
           <div className="chart-section total-sales">
             <h3 className="section-title">Total de vendas</h3>
-<<<<<<< HEAD
             <div className="total-value">R$150.000,00</div>
             <div className="horizontal-chart">
               {salesData.map((item, index) => (
                 <div key={index} className="chart-bar" style={{ width: `${item.percentage}%` }}>
                   <span className="bar-value">100</span>
-=======
             <div className="total-value">{formatCurrency(stats.totalSales)}</div>
             <div className="horizontal-chart">
               {stats.productStats.slice(0, 3).map((product, index) => (
@@ -435,7 +415,6 @@ const Relatorios = () => {
                   style={{ width: `${Math.max(10, product.percentage)}%` }}
                 >
                   <span className="bar-value">{Math.round(product.percentage)}%</span>
->>>>>>> 56e04d10b89bbe1160046689791e2cc85e249409
                 </div>
               ))}
             </div>
@@ -454,7 +433,6 @@ const Relatorios = () => {
                   <span>0</span>
                 </div>
                 <div className="bars-container">
-<<<<<<< HEAD
                   <div className="bar-group">
                     <div className="bar" style={{ height: "80%" }}></div>
                     <span className="bar-label">Tênis da Nike</span>
@@ -467,7 +445,6 @@ const Relatorios = () => {
                     <div className="bar" style={{ height: "40%" }}></div>
                     <span className="bar-label">Tênis da Adidas</span>
                   </div>
-=======
                 {stats.productStats.slice(0, 3).map((product, index) => {
                     const maxCount = Math.max(...stats.productStats.map((p) => p.count))
                     const height = (product.count / maxCount) * 100
@@ -480,35 +457,30 @@ const Relatorios = () => {
                       </div>
                     )
                   })}
->>>>>>> 56e04d10b89bbe1160046689791e2cc85e249409
                 </div>
               </div>
             </div>
           </div>
 
           <div className="chart-section revenue-product">
-<<<<<<< HEAD
             <h3 className="section-title">Receita por produto</h3>
             <div className="product-list">
               {salesData.map((item, index) => (
                 <div key={index} className="product-item">
                   <span className="product-name">{item.product}</span>
                   <span className="product-value">{item.value.replace("R$ ", "R$ ")}</span>
-=======
             <h3 className="section-title">Receita por produto (Top 5)</h3>
             <div className="product-list">
               {stats.productStats.slice(0, 5).map((product, index) => (
                 <div key={product.productId} className="product-item">
                   <span className="product-name">{getProductName(product.productId)}</span>
                   <span className="product-value">{formatCurrency(product.revenue)}</span>
->>>>>>> 56e04d10b89bbe1160046689791e2cc85e249409
                 </div>
               ))}
             </div>
           </div>
 
           <div className="chart-section revenue-period">
-<<<<<<< HEAD
             <h3 className="section-title">Receita por Período</h3>
             <div className="line-chart">
               <div className="chart-container">
@@ -528,7 +500,6 @@ const Relatorios = () => {
                       strokeWidth="2"
                     />
                   </svg>
-=======
             <h3 className="section-title">Resumo das Vendas</h3>
             <div className="period-stats">
               <div className="stats-grid">
@@ -553,7 +524,6 @@ const Relatorios = () => {
                       </div>
                     ))}
                   </div>
->>>>>>> 56e04d10b89bbe1160046689791e2cc85e249409
                 </div>
               </div>
             </div>
@@ -563,17 +533,14 @@ const Relatorios = () => {
         <div className="clients-section">
           <h3 className="section-title">
             <span className="client-icon">👤</span>
-<<<<<<< HEAD
             Clientes
           </h3>
           <div className="clients-grid">
             {clientsData.slice(0, 8).map((client, index) => (
-=======
             Clientes ({customers.length})
           </h3>
           <div className="clients-grid">
             {customers.map((client, index) => (
->>>>>>> 56e04d10b89bbe1160046689791e2cc85e249409
               <div key={index} className="client-item">
                 <div className="client-name">{client.name}</div>
                 <div className="client-phone">{client.phone}</div>

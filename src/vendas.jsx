@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { useState } from "react"
 import "./vendas.css"
 
@@ -28,7 +27,6 @@ const Vendas = () => {
   const [searchTerm, setSearchTerm] = useState("")
   const [statusFilter, setStatusFilter] = useState("Filtro")
 
-=======
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react"
 import { listSales } from "./services/saleAPI";
@@ -133,7 +131,6 @@ const Vendas = () => {
   }, [token]);
   console.log(custumers)
 
->>>>>>> 56e04d10b89bbe1160046689791e2cc85e249409
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value.toLowerCase())
   }
@@ -142,11 +139,9 @@ const Vendas = () => {
     setStatusFilter(e.target.value)
   }
 
-<<<<<<< HEAD
   const filteredProducts = products.filter((product) => {
     const clientMatches = product.client.toLowerCase().includes(searchTerm)
     const statusMatches = statusFilter === "Filtro" || product.status === statusFilter
-=======
   const paidSales = sales.filter(sale => sale.status === "pago");
 
   // Preço total (soma de preço + frete das vendas pagas)
@@ -182,14 +177,12 @@ const Vendas = () => {
   const filteredSales = sales.filter((sale) => {
     const clientMatches = sale.customer.name.toLowerCase().includes(searchTerm)
     const statusMatches = statusFilter === "Filtro" || sale.status === statusFilter
->>>>>>> 56e04d10b89bbe1160046689791e2cc85e249409
     return clientMatches && statusMatches
   })
 
   return (
     <div className="container">
       <nav className="sidebar">
-<<<<<<< HEAD
         <div className="sidebar-content">
           <div className="logo">
             <img src="/img/logobiz.png" alt="Logo Biz ERP" />
@@ -272,7 +265,6 @@ const Vendas = () => {
               />
               <div className="dropdown-arrow">▼</div>
             </div>
-=======
         <div className="logo">
           <img src="../img/logobiz.png" alt="Logo" />
           <h3>biz.erp</h3>
@@ -314,13 +306,11 @@ const Vendas = () => {
               alt="Avatar"
             />
             <div className="dropdown-arrow">▼</div>
->>>>>>> 56e04d10b89bbe1160046689791e2cc85e249409
           </div>
         </header>
 
         <div className="metrics-container">
           <div className="metric-card">
-<<<<<<< HEAD
             <div className="metric-label">Total de pedidos</div>
             <div className="metric-value">R$ 123,67</div>
             <div className="metric-percent">+43%</div>
@@ -328,7 +318,6 @@ const Vendas = () => {
           <div className="metric-card">
             <div className="metric-label">Número de vendas</div>
             <div className="metric-value">1.206</div>
-=======
             <div className="metric-label">Total Faturado</div>
             <div className="metric-value">{formatPrice(totalRevenue)}</div>
             <div className="metric-percent">+43%</div>
@@ -336,16 +325,12 @@ const Vendas = () => {
           <div className="metric-card">
             <div className="metric-label">Número de Vendas Confirmadas</div>
             <div className="metric-value">{numberOfSales}</div>
->>>>>>> 56e04d10b89bbe1160046689791e2cc85e249409
             <div className="metric-percent">+43%</div>
           </div>
           <div className="metric-card">
             <div className="metric-label">Clientes</div>
-<<<<<<< HEAD
             <div className="metric-value">12</div>
-=======
             <div className="metric-value">{numberOfCustomers}</div>
->>>>>>> 56e04d10b89bbe1160046689791e2cc85e249409
             <div className="metric-percent">+4%</div>
           </div>
         </div>
@@ -353,16 +338,13 @@ const Vendas = () => {
         <div className="table-container">
           <div className="filters-container">
             <div className="search-container">
-<<<<<<< HEAD
               <img src="/img/Search.png" alt="Search" className="search-icon" />
               <input
                 type="text"
                 placeholder="Pesquisar por vendas..."
-=======
               <input
                 type="text"
                 placeholder="Pesquisar por Cliente..."
->>>>>>> 56e04d10b89bbe1160046689791e2cc85e249409
                 value={searchTerm}
                 onChange={handleSearchChange}
                 className="search-input"
@@ -372,15 +354,12 @@ const Vendas = () => {
               <img src="/img/icone_filtro.png" alt="Filtro" className="filter-icon" />
               <select value={statusFilter} onChange={handleStatusChange} className="filter-select">
                 <option value="Filtro">Filtro</option>
-<<<<<<< HEAD
                 <option value="Pago">Pago</option>
                 <option value="Pendente">Pendente</option>
                 <option value="Cancelado">Cancelado</option>
-=======
                 <option value="pago">Pago</option>
                 <option value="pendente">Pendente</option>
                 <option value="cancelado">Cancelado</option>
->>>>>>> 56e04d10b89bbe1160046689791e2cc85e249409
               </select>
             </div>
           </div>
@@ -390,7 +369,6 @@ const Vendas = () => {
               <thead>
                 <tr>
                   <th>#</th>
-<<<<<<< HEAD
                   <th>Data</th>
                   <th>Cliente</th>
                   <th>Preço</th>
@@ -415,7 +393,6 @@ const Vendas = () => {
                       <td>
                         <div className="payment-methods">
                           <img src={getPaymentIcon(product.payment)} alt={product.payment} />
-=======
                   <th>DATA</th>
                   <th>CLIENTE</th>
                   <th>PREÇO</th>
@@ -440,7 +417,6 @@ const Vendas = () => {
                       <td>
                         <div className="payment-methods">
                           {tipoPagamento(sale.payment_method)}
->>>>>>> 56e04d10b89bbe1160046689791e2cc85e249409
                         </div>
                       </td>
                       <td>
@@ -460,11 +436,8 @@ const Vendas = () => {
                   ))
                 ) : (
                   <tr>
-<<<<<<< HEAD
                     <td colSpan="8" style={{ textAlign: "center", color: "var(--text-secondary)" }}>
-=======
                     <td colSpan="8" style={{ textAlign: "center", color: "#aaa" }}>
->>>>>>> 56e04d10b89bbe1160046689791e2cc85e249409
                       Nenhuma venda encontrada.
                     </td>
                   </tr>
@@ -472,21 +445,14 @@ const Vendas = () => {
               </tbody>
             </table>
           </div>
-<<<<<<< HEAD
           <div className="pagination-container">
              <button className="pagination-button">&lt;</button>
              <button className="pagination-button">&gt;</button>
           </div>
-=======
->>>>>>> 56e04d10b89bbe1160046689791e2cc85e249409
         </div>
       </main>
     </div>
   )
 }
 
-<<<<<<< HEAD
 export default Vendas
-=======
-export default Vendas
->>>>>>> 56e04d10b89bbe1160046689791e2cc85e249409

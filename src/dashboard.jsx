@@ -5,10 +5,7 @@ import { getDashboard } from './services/dashboardAPI';
 import { initialDashboard } from './services/dashboardInitian';
 import './dashboard.css';
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 56e04d10b89bbe1160046689791e2cc85e249409
 //Função de Logout
 const handleLogout = async (e) => {
   e.preventDefault();
@@ -23,7 +20,6 @@ const Sidebar = () => (
       <img src="../img/logobiz.png" alt="Logo" />
       <h3>biz.erp</h3>
     </div>
-<<<<<<< HEAD
     <nav className="menu">
       <a href="#" className="menu-item active">
         <img src="./img/Home.png" alt="Dashboard" />
@@ -52,7 +48,6 @@ const Sidebar = () => (
       </a>
     </div>
   </aside>
-=======
     <ul className="menu">
       <li><Link to="/dashboard"><img src="../img/Home.png" alt="" /><span>Dashboard</span></Link></li>
       <li><Link to="/produto"><img src="../img/Category.png" alt="" /><span>Produtos</span></Link></li>
@@ -65,7 +60,6 @@ const Sidebar = () => (
       <li><Link to="/"><img src="../img/logout.png" alt="" /><span>Logout</span></Link></li>
     </ul>
   </nav>
->>>>>>> 56e04d10b89bbe1160046689791e2cc85e249409
 );
 
 const TopBar = () => (
@@ -197,10 +191,7 @@ const Main = ({ dashboardData }) => {
 
   // Calculate sales percentage (using total_sales change as percentage)
   const salesPercentage = Math.min(100, Math.abs(dashboardData?.overview?.total_sales?.change / 10)) || 45
-<<<<<<< HEAD
   console.log(Math.min(100, Math.abs(dashboardData?.overview?.total_sales?.change / 10)))
-=======
->>>>>>> 56e04d10b89bbe1160046689791e2cc85e249409
 
   // Calculate deficit percentage (inverse of profit for visualization)
   const deficitPercentage = Math.min(100, 100 - profitPercentage) || 45
@@ -303,7 +294,6 @@ export default function Dashboard() {
   const [dashboardData, setDashboardData] = useState(null)
 
   //Valida usuário Logado
-<<<<<<< HEAD
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token || token == null) {
@@ -326,7 +316,6 @@ export default function Dashboard() {
 
     fetchDashboard()
   }, [token])
-=======
   // useEffect(() => {
   //   const token = localStorage.getItem("token");
   //   if (!token || token == null) {
@@ -365,7 +354,6 @@ export default function Dashboard() {
     
   
   }, [token]);
->>>>>>> 56e04d10b89bbe1160046689791e2cc85e249409
 
 
   return (

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { useState } from "react"
 import "./cadastrarvenda.css"
 
@@ -16,7 +15,6 @@ const CadastrarVenda = () => {
   const [paymentMethod, setPaymentMethod] = useState("")
   const [cardFlag, setCardFlag] = useState("")
   const [saleStatus, setSaleStatus] = useState("Pago")
-=======
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { listCustomers } from "./services/custumerAPI";
@@ -311,12 +309,10 @@ const CadastrarVenda = () => {
        alert("Produto de Cadastro Invalido")
     }
   } 
->>>>>>> 56e04d10b89bbe1160046689791e2cc85e249409
 
   return (
     <div className="container">
       <nav className="sidebar">
-<<<<<<< HEAD
         <div className="sidebar-content">
           <div className="logo">
             <img src="/img/logobiz.png" alt="Logo Biz ERP" />
@@ -357,7 +353,6 @@ const CadastrarVenda = () => {
         </div>
       </nav>
 
-=======
         <div className="logo">
           <img src="../img/logobiz.png" alt="Logo" />
           <h3>biz.erp</h3>
@@ -376,7 +371,6 @@ const CadastrarVenda = () => {
       </nav>
 
 
->>>>>>> 56e04d10b89bbe1160046689791e2cc85e249409
       <main className="content">
         <header className="header-container">
           <div className="header-left">
@@ -401,7 +395,6 @@ const CadastrarVenda = () => {
             <h2 className="section-title">Dados do Cliente</h2>
 
             <div className="form-group">
-<<<<<<< HEAD
               <label>Selecionar Cliente *</label>
               <select
                 value={selectedClient}
@@ -411,7 +404,6 @@ const CadastrarVenda = () => {
                 <option value="">Selecione um cliente</option>
                 <option value="cliente1">Cliente 1</option>
                 <option value="cliente2">Cliente 2</option>
-=======
             <label>Selecionar Cliente *</label>
               <select value={selectedClient} onChange={handleClientSelection} className="form-select">
                 <option value="">Selecione um cliente</option>
@@ -420,7 +412,6 @@ const CadastrarVenda = () => {
                     {customer.name}
                   </option>
                 ))}
->>>>>>> 56e04d10b89bbe1160046689791e2cc85e249409
               </select>
             </div>
 
@@ -436,7 +427,6 @@ const CadastrarVenda = () => {
             </div>
 
             <div className="form-group">
-<<<<<<< HEAD
               <label>Nome do cliente</label>
               <input type="text" placeholder="Nome completo" className="form-input" />
             </div>
@@ -444,7 +434,6 @@ const CadastrarVenda = () => {
             <div className="form-group">
               <label>Nome do cliente</label>
               <input type="text" placeholder="Nome completo" className="form-input" />
-=======
               <label>Email</label>
               <input type="text" value={clientEmail} onChange={(e) => setClientEmail(e.target.value)} placeholder="Email" className="form-input" />
             </div>
@@ -452,7 +441,6 @@ const CadastrarVenda = () => {
             <div className="form-group">
               <label>Telefone</label>
               <input type="text" placeholder="Número de Telefone" value={clientPhone} onChange={(e) => setClientPhone(e.target.value)} className="form-input" />
->>>>>>> 56e04d10b89bbe1160046689791e2cc85e249409
             </div>
 
             <div className="form-group">
@@ -518,26 +506,20 @@ const CadastrarVenda = () => {
             <div className="form-group">
               <label>Adicionar Produtos</label>
               <div className="product-row">
-<<<<<<< HEAD
                 <select
-=======
               <select
->>>>>>> 56e04d10b89bbe1160046689791e2cc85e249409
                   value={selectedProducts}
                   onChange={(e) => setSelectedProducts(e.target.value)}
                   className="form-select product-select"
                 >
                   <option value="">Selecione os produtos</option>
-<<<<<<< HEAD
                   <option value="produto1">Produto 1</option>
                   <option value="produto2">Produto 2</option>
-=======
                   {products.map((product) => (
                     <option key={product.id} value={product.id}>
                       {product.name}
                     </option>
                   ))}
->>>>>>> 56e04d10b89bbe1160046689791e2cc85e249409
                 </select>
                 <div className="quantity-container">
                   <label>Qtd.</label>
@@ -547,11 +529,8 @@ const CadastrarVenda = () => {
                     onChange={(e) => setQuantity(Number(e.target.value))}
                     className="quantity-input"
                   />
-<<<<<<< HEAD
                   <button className="add-button">+</button>
-=======
                   <button className="add-button" onClick={addCart}>+</button>
->>>>>>> 56e04d10b89bbe1160046689791e2cc85e249409
                 </div>
               </div>
             </div>
@@ -559,9 +538,7 @@ const CadastrarVenda = () => {
             <div className="form-group">
               <label>Produtos Selecionados</label>
               <div className="selected-products">
-<<<<<<< HEAD
                 <p>Nenhum produto adicionado</p>
-=======
               {cart.length === 0 ? (
                   <p>Nenhum produto adicionado</p>
                 ) : (
@@ -585,18 +562,14 @@ const CadastrarVenda = () => {
                     ))}
                   </div>
                 )}
->>>>>>> 56e04d10b89bbe1160046689791e2cc85e249409
               </div>
             </div>
 
             <div className="total-section">
               <div className="total-row">
                 <span className="total-label">Total:</span>
-<<<<<<< HEAD
                 <span className="total-value">R$0,00</span>
-=======
                 <span className="total-value">{formatCurrency(calculateTotal())}</span>
->>>>>>> 56e04d10b89bbe1160046689791e2cc85e249409
               </div>
             </div>
           </div>
@@ -626,13 +599,10 @@ const CadastrarVenda = () => {
                     onChange={(e) => setPaymentMethod(e.target.value)}
                     className="form-select"
                   >
-<<<<<<< HEAD
                     <option value="">Cartão de Crédito</option>
                     <option value="credito">Cartão de Crédito</option>
                     <option value="debito">Cartão de Débito</option>
-=======
                     <option value="cartao">Cartão de Crédito</option>
->>>>>>> 56e04d10b89bbe1160046689791e2cc85e249409
                     <option value="pix">PIX</option>
                     <option value="dinheiro">Dinheiro</option>
                   </select>
@@ -640,40 +610,31 @@ const CadastrarVenda = () => {
 
                 <div className="form-group">
                   <label>Bandeira *</label>
-<<<<<<< HEAD
                   <select value={cardFlag} onChange={(e) => setCardFlag(e.target.value)} className="form-select">
                     <option value="">Selecione a bandeira do cartão</option>
                     <option value="visa">Visa</option>
                     <option value="mastercard">Mastercard</option>
                     <option value="elo">Elo</option>
-=======
                   <select value={cardFlag} onChange={(e) => setCardFlag(e.target.value)} disabled={paymentMethod !== "cartao"} className="form-select">
                     {paymentMethod === "cartao" ? <option value="mastercard">Mastercard</option> : <option value="disabilitado">--------------------------------</option>}
                     <option value="visa">Visa</option> 
->>>>>>> 56e04d10b89bbe1160046689791e2cc85e249409
                   </select>
                 </div>
 
                 <div className="form-group">
                   <label>Status da Venda *</label>
                   <div className="status-container">
-<<<<<<< HEAD
                     <span className="status-badge pago">Pago</span>
-=======
                     {imgStatus(saleStatus)}
->>>>>>> 56e04d10b89bbe1160046689791e2cc85e249409
                     <select
                       value={saleStatus}
                       onChange={(e) => setSaleStatus(e.target.value)}
                       className="form-select status-select"
                     >
-<<<<<<< HEAD
                       <option value="Pago">Pagamento confirmado</option>
                       <option value="Pendente">Pagamento pendente</option>
-=======
                       <option value="Pendente">Pagamento pendente</option>
                       <option value="Pago">Pagamento confirmado</option>
->>>>>>> 56e04d10b89bbe1160046689791e2cc85e249409
                       <option value="Cancelado">Pagamento cancelado</option>
                     </select>
                   </div>
@@ -691,11 +652,8 @@ const CadastrarVenda = () => {
 
         <div className="form-actions">
           <button className="cancel-button">Cancelar</button>
-<<<<<<< HEAD
           <button className="submit-button">Finalizar Venda</button>
-=======
           <button className="submit-button" onClick={handleRegister}>Finalizar Venda</button>
->>>>>>> 56e04d10b89bbe1160046689791e2cc85e249409
         </div>
       </main>
     </div>

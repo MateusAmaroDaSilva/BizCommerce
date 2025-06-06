@@ -28,7 +28,6 @@ const CategoriaSidebar = () => {
       <img src="./img/logobiz.png" alt="Logo" className="clientes-logo-icon" />
       <span>biz.erp</span>
     </div>
-<<<<<<< HEAD
     <nav className="categoria-menu">
       <a href="/dashboard" className="categoria-menu-item active">
         <img src="./img/Home.png" alt="Dashboard" />
@@ -49,7 +48,6 @@ const CategoriaSidebar = () => {
         <img src="./img/Bag.png" alt="Vendas" />
         Vendas
       </a>
-=======
     <nav className="clientes-menu">
       <ul className="menu">
           <li>
@@ -89,7 +87,6 @@ const CategoriaSidebar = () => {
             </Link>
           </li>
         </ul>
->>>>>>> 56e04d10b89bbe1160046689791e2cc85e249409
     </nav>
     <ul className="clientes-logout">
       <li>

@@ -2,10 +2,7 @@ import "./cadastro.produto.css";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { postProduct, getProduct } from "./services/productAPI";
 import { listCategorias, postCategorias } from "./services/categoriaAPI";
-<<<<<<< HEAD
-=======
 import { initialCategorias } from "./services/categoriasInitial";
->>>>>>> 56e04d10b89bbe1160046689791e2cc85e249409
 import { useEffect, useState } from "react";
 
 const CadastroProduto = () => {
@@ -20,7 +17,6 @@ const CadastroProduto = () => {
 
   const token = localStorage.getItem("token");
 
-<<<<<<< HEAD
   //Traz a Lista de Produtos
     useEffect(() => {
       listCategorias().then((resposta) => {
@@ -31,7 +27,6 @@ const CadastroProduto = () => {
         }
       });
     }, []);
-=======
   useEffect(() => {
     const fetchCategorias = async () => {
       try {
@@ -60,7 +55,6 @@ const CadastroProduto = () => {
     //   }
     // });
   }, []);
->>>>>>> 56e04d10b89bbe1160046689791e2cc85e249409
 
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
@@ -74,14 +68,12 @@ const CadastroProduto = () => {
   };
     
   //Valida usuário Logado
-<<<<<<< HEAD
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token || token == null) {
       navigate('/');
     }
   }, []);
-=======
   // useEffect(() => {
   //   const token = localStorage.getItem("token");
   //   if (!token || token == null) {
@@ -96,7 +88,6 @@ const CadastroProduto = () => {
     navigate('/');
   };
 
->>>>>>> 56e04d10b89bbe1160046689791e2cc85e249409
 
   useEffect(() => {
     if (!id) return;
@@ -111,7 +102,6 @@ const CadastroProduto = () => {
   }, [id, token]);
 
   const categoriaSelecionada = categorias.find(cat => cat.id === product.category_id);
-<<<<<<< HEAD
 
   const handleLogout = async (e) => {
     e.preventDefault();
@@ -119,10 +109,8 @@ const CadastroProduto = () => {
     localStorage.removeItem('token');
     navigate('/');
   };
-=======
   console.log(product.category_id)
 
->>>>>>> 56e04d10b89bbe1160046689791e2cc85e249409
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -145,8 +133,6 @@ const CadastroProduto = () => {
     if(categoriaExistente){
       categoria_id = categoriaExistente.id
       console.log(categoria_id)
-<<<<<<< HEAD
-=======
 
       const requestBody = {
         ean,
@@ -167,7 +153,6 @@ const CadastroProduto = () => {
          alert("Produto de Cadastro Invalido")
       }
 
->>>>>>> 56e04d10b89bbe1160046689791e2cc85e249409
     } else {
       const requestBody = {
         category_name,
@@ -181,7 +166,6 @@ const CadastroProduto = () => {
       }
     }
     
-<<<<<<< HEAD
     const requestBody = {
       ean,
       description,
@@ -199,8 +183,6 @@ const CadastroProduto = () => {
     else {
        alert("Produto de Cadastro Invalido")
     }
-=======
->>>>>>> 56e04d10b89bbe1160046689791e2cc85e249409
   
   };
 
@@ -214,16 +196,13 @@ const CadastroProduto = () => {
         <ul className="menu">
           <li><Link to="/dashboard"><img src="../img/Home.png" alt="" /><span>Dashboard</span></Link></li>
           <li><Link to="/produto"><img src="../img/Category.png" alt="" /><span>Produtos</span></Link></li>
-<<<<<<< HEAD
           <Link to="#" className="menu-item active"><img src="../img/etiqueta.png" alt="Categotia" />Categorias</Link>
           <li><a href="#"><img src="../img/Document.png" alt="" /><span>Relatórios</span></a></li>
           <li><a href="#"><img src="../img/Bag.png" alt="" /><span>Vendas</span></a></li>
-=======
           <li><Link to="/categorias"><img src="../img/etiqueta.png" alt="Categotia" /><span>Categorias</span></Link></li>
           <li><Link to="/relatorios"><img src="../img/Document.png" alt="" /><span>Relatórios</span></Link></li>
           <li><Link to="/vendas"><img src="../img/Bag.png" alt="" /><span>Vendas</span></Link></li>
           <li><Link to="/clientes"><img src="./img/clientes.png" alt="clientes" />Clientes</Link></li>
->>>>>>> 56e04d10b89bbe1160046689791e2cc85e249409
         </ul>
         <ul className="logout">
           <li onClick={handleLogout}><Link to="/"><img src="../img/logout.png" alt="" /><span>Logout</span></Link></li>
