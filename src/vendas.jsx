@@ -110,10 +110,12 @@ const Vendas = () => {
                 <img src="/img/icone_exportar.png" alt="Exportar" />
                 Exportar
               </button>
-              <button className="primary-button">
-                <img src="/img/icone_adicionar.png" alt="Adicionar" />
-                Adicionar
-              </button>
+              <a href="./cadastrarvenda">
+                <button className="primary-button">
+                  <img src="/img/icone_adicionar.png" alt="Adicionar" />
+                  Adicionar
+                </button>
+              </a>
             </div>
             <div className="user-info">
               <span>Calabreso Silva</span>

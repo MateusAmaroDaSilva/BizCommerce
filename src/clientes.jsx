@@ -1,249 +1,323 @@
+"use client"
+
 import { useState } from "react"
 import "./clientes.css"
 
-// Componentes de ícones
-const HomeIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+// SVG Icon Components
+const Home = ({ className }) => (
+  <svg
+    className={className}
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+  >
+    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+    <polyline points="9,22 9,12 15,12 15,22" />
   </svg>
 )
 
-const ProductsIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M21 7 9 19l-6-6 2-2 4 4 10-10z"></path>
+const Package = ({ className }) => (
+  <svg
+    className={className}
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+  >
+    <path d="m7.5 4.27 9 5.15" />
+    <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z" />
+    <path d="m3.3 7 8.7 5 8.7-5" />
+    <path d="M12 22V12" />
   </svg>
 )
 
-const CategoriesIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"></path>
+const Tag = ({ className }) => (
+  <svg
+    className={className}
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+  >
+    <path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z" />
+    <path d="M7 7h.01" />
   </svg>
 )
 
-const ReportsIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-    <path d="M14 2v6h6"></path>
-    <path d="M16 13H8"></path>
-    <path d="M16 17H8"></path>
-    <path d="M10 9H8"></path>
+const FileText = ({ className }) => (
+  <svg
+    className={className}
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+  >
+    <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
+    <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+    <path d="M10 9H8" />
+    <path d="M16 13H8" />
+    <path d="M16 17H8" />
   </svg>
 )
 
-const SalesIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-    <line x1="3" y1="6" x2="21" y2="6"></line>
-    <path d="M16 10a4 4 0 0 1-8 0"></path>
+const ShoppingBag = ({ className }) => (
+  <svg
+    className={className}
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+  >
+    <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" />
+    <path d="M3 6h18" />
+    <path d="M16 10a4 4 0 0 1-8 0" />
   </svg>
 )
 
-const ClientsIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
-    <circle cx="9" cy="7" r="4"></circle>
-    <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
-    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+const Users = ({ className }) => (
+  <svg
+    className={className}
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+  >
+    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+    <circle cx="9" cy="7" r="4" />
+    <path d="m22 21-3-3m0 0a4 4 0 1 0-8 0 4 4 0 0 0 8 0Z" />
   </svg>
 )
 
-const LogoutIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
-    <polyline points="16 17 21 12 16 7"></polyline>
-    <line x1="21" y1="12" x2="9" y2="12"></line>
+const LogOut = ({ className }) => (
+  <svg
+    className={className}
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+  >
+    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+    <polyline points="16,17 21,12 16,7" />
+    <line x1="21" x2="9" y1="12" y2="12" />
   </svg>
 )
 
-const SearchIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="11" cy="11" r="8"></circle>
-    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+const Search = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <circle cx="11" cy="11" r="8" />
+    <path d="m21 21-4.35-4.35" />
   </svg>
 )
 
-const PlusIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <line x1="12" y1="5" x2="12" y2="19"></line>
-    <line x1="5" y1="12" x2="19" y2="12"></line>
+const Eye = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+    <circle cx="12" cy="12" r="3" />
   </svg>
 )
 
-const ViewIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
-    <circle cx="12" cy="12" r="3"></circle>
+const Edit = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
   </svg>
 )
 
-const EditIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M12 20h9"></path>
-    <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"></path>
+const Trash = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <polyline points="3,6 5,6 21,6" />
+    <path d="m19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
   </svg>
 )
 
-const DeleteIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M3 6h18"></path>
-    <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
-    <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+const ChevronDown = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <polyline points="6,9 12,15 18,9" />
   </svg>
 )
 
-const ChevronDownIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="m6 9 6 6 6-6"/>
+const Plus = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <line x1="12" x2="12" y1="5" y2="19" />
+    <line x1="5" x2="19" y1="12" y2="12" />
   </svg>
 )
 
-// Componente principal
-const Clientes = () => {
+export default function Clientes() {
   const [searchTerm, setSearchTerm] = useState("")
-  
-  // Dados de exemplo para a tabela
+
   const clientes = [
-    { id: 1, nome: "Thiago", email: "example@gmail.com", telefone: "14997200010" },
-    { id: 17, nome: "Vinicius", email: "example@gmail.com", telefone: "73434343143" },
-    { id: 39, nome: "Calabreso Silva", email: "example@gmail.com", telefone: "13023232323" },
+    {
+      id: 1,
+      nome: "Thiago",
+      email: "example@gmail.com",
+      telefone: "14997200010",
+    },
+    {
+      id: 17,
+      nome: "Vinícius",
+      email: "example@gmail.com",
+      telefone: "73443434143",
+    },
+    {
+      id: 39,
+      nome: "Calabreso Silva",
+      email: "example@gmail.com",
+      telefone: "13023232323",
+    },
   ]
 
+  const handleNavigateToCadastrarCliente = () => {
+    window.location.href = "/cadastrar-cliente"
+  }
+
   return (
-    <div className="container">
+    <div className="dashboard-container">
       {/* Sidebar */}
-      <nav className="sidebar">
+      <div className="sidebar">
         <div className="sidebar-content">
-          <div className="logo">
-            <div className="logo-icon"></div>
-            <h3>biz.erp</h3>
+          {/* Logo */}
+          <div className="logo-container">
+            <div className="logo-icon">
+              <div className="logo-inner"></div>
+            </div>
+            <span className="logo-text">biz.erp</span>
           </div>
-          <ul className="menu">
-            <li>
-              <a href="#">
-                <HomeIcon />
-                <span>Dashboard</span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <ProductsIcon />
-                <span>Produtos</span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <CategoriesIcon />
-                <span>Categorias</span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <ReportsIcon />
-                <span>Relatórios</span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <SalesIcon />
-                <span>Vendas</span>
-              </a>
-            </li>
-            <li className="active">
-              <a href="#">
-                <ClientsIcon />
-                <span>Clientes</span>
-              </a>
-            </li>
-          </ul>
+
+          {/* Navigation */}
+          <nav className="sidebar-nav">
+            <div className="nav-item">
+              <Home className="nav-icon" />
+              <span>Dashboard</span>
+            </div>
+            <div className="nav-item">
+              <Package className="nav-icon" />
+              <span>Produtos</span>
+            </div>
+            <div className="nav-item">
+              <Tag className="nav-icon" />
+              <span>Categorias</span>
+            </div>
+            <div className="nav-item">
+              <FileText className="nav-icon" />
+              <span>Relatórios</span>
+            </div>
+            <div className="nav-item">
+              <ShoppingBag className="nav-icon" />
+              <span>Vendas</span>
+            </div>
+            <div className="nav-item active">
+              <Users className="nav-icon" />
+              <span>Clientes</span>
+            </div>
+          </nav>
         </div>
-        <div className="logout">
-          <a href="#">
-            <LogoutIcon />
+
+        {/* Logout */}
+        <div className="logout-container">
+          <div className="nav-item">
+            <LogOut className="nav-icon" />
             <span>Logout</span>
-          </a>
-        </div>
-      </nav>
-
-      {/* Conteúdo principal */}
-      <main className="content">
-        {/* Cabeçalho do usuário */}
-        <div className="user-header">
-          <span>Calabreso Silva</span>
-          <div className="avatar-container">
-            <img
-              className="avatar"
-              src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=60&h=60&fit=crop"
-              alt="Avatar do usuário"
-            />
-            <ChevronDownIcon />
           </div>
         </div>
+      </div>
 
-        {/* Título da página */}
-        <h1 className="page-title">Clientes</h1>
+      {/* Main Content */}
+      <div className="main-content">
+        {/* Header */}
+        <header className="header">
+          <div className="header-left">
+            <h1 className="page-title">Clientes</h1>
+          </div>
 
-        {/* Barra de pesquisa e botão de adicionar */}
-        <div className="actions-bar">
-          <div className="search-container">
-            <input
-              type="text"
-              placeholder="Pesquisar por nome do cliente"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="search-input"
-            />
-            <button className="search-button">
-              <SearchIcon />
-              <span>Buscar</span>
+          <div className="header-right">
+            <div className="user-profile">
+              <span className="user-name">Calabreso Silva</span>
+              <div className="user-avatar">
+                <img
+                  src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=100&h=100&fit=crop"
+                  alt="Calabreso Silva"
+                />
+              </div>
+              <ChevronDown />
+            </div>
+          </div>
+        </header>
+
+        {/* Content */}
+        <main className="content">
+          {/* Search and Actions */}
+          <div className="content-header">
+            <div className="search-container">
+              <Search />
+              <input
+                type="text"
+                placeholder="Pesquisar por nome do cliente"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="search-input"
+              />
+            </div>
+            <button className="create-button" onClick={handleNavigateToCadastrarCliente}>
+              <Plus />
+              Criar Cliente
             </button>
           </div>
-          <button className="add-button">
-            <PlusIcon />
-            <span>Criar Cliente</span>
-          </button>
-        </div>
 
-        {/* Tabela de clientes */}
-        <div className="table-container">
-          <table className="clients-table">
-            <thead>
-              <tr>
-                <th className="id-column">#</th>
-                <th>Nome</th>
-                <th>E-mail</th>
-                <th>Telefone</th>
-                <th className="actions-column">Ações</th>
-              </tr>
-            </thead>
-            <tbody>
-              {clientes.map((cliente) => (
-                <tr key={cliente.id}>
-                  <td className="id-column">{cliente.id}</td>
-                  <td>{cliente.nome}</td>
-                  <td>{cliente.email}</td>
-                  <td>{cliente.telefone}</td>
-                  <td className="actions-column">
-                    <div className="action-buttons">
-                      <button className="action-button view">
-                        <ViewIcon />
-                      </button>
-                      <button className="action-button edit">
-                        <EditIcon />
-                      </button>
-                      <button className="action-button delete">
-                        <DeleteIcon />
-                      </button>
-                    </div>
-                  </td>
+          {/* Table */}
+          <div className="table-container">
+            <table className="clients-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Nome</th>
+                  <th>E-mail</th>
+                  <th>Telefone</th>
+                  <th>Ações</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </main>
+              </thead>
+              <tbody>
+                {clientes.map((cliente) => (
+                  <tr key={cliente.id}>
+                    <td>{cliente.id}</td>
+                    <td>{cliente.nome}</td>
+                    <td>{cliente.email}</td>
+                    <td>{cliente.telefone}</td>
+                    <td>
+                      <div className="action-buttons">
+                        <button className="action-button view-button" title="Visualizar">
+                          <Eye />
+                        </button>
+                        <button className="action-button edit-button" title="Editar">
+                          <Edit />
+                        </button>
+                        <button className="action-button delete-button" title="Excluir">
+                          <Trash />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </main>
+      </div>
     </div>
   )
 }
-
-export default Clientes;

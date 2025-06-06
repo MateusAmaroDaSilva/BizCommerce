@@ -6,18 +6,13 @@ import Relatorios from "./relatorios"
 import Vendas from "./vendas";
 import CadastrarVenda from './cadastrarvenda'
 import CadastroProduto from "./cadastro.produto";
-<<<<<<< HEAD
+
 import Categoria from "./categoria";
-=======
-import Categoria from "./categoria"
-<<<<<<< HEAD
+
+
+
 import Clientes from "./clientes"
 import CadastrarCliente from "./cadastrarcliente";
-
-=======
->>>>>>> 9fdaed5996d74e44710c621eb6057e219d83f43a
->>>>>>> 6903b01e679cba18ed6d41287f88351d4ebdaf72
->>>>>>> 7ab3002ec2d1dc86776aeb28315aaac75d37f37a
 
 function App() {
   return (
@@ -31,8 +26,8 @@ function App() {
         <Route path="/cadastrarvenda" element={<CadastrarVenda />} />
         <Route path="/cadastrarcliente" element={<CadastrarCliente />} />
         <Route path="/relatorios" element={<Relatorios />} />
-        <Route path="/cadastro-produto" element={<CadastroProduto />} />
-        <Route path="/cadastro-produto/:id" element={<CadastroProduto />} />
+        <Route path="/cadastro.produto" element={<CadastroProduto />} />
+        <Route path="/cadastro.produto/:id" element={<CadastroProduto />} />
         <Route path="/categoria" element={<Categoria />} />
       </Routes>
     </Router>

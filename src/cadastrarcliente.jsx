@@ -1,10 +1,9 @@
 "use client"
 
 import { useState } from "react"
-// Import the FINAL CSS file
 import "./cadastrarcliente.css"
 
-// --- SVG Icon Components (Keep as they are, adjusted back button size) --- 
+// SVG Icon Components
 const ArrowLeft = () => (
   <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
     <path d="m15 18-6-6 6-6" />
@@ -115,7 +114,6 @@ const SaveIcon = () => (
     <polyline points="7,3 7,8 15,8" />
   </svg>
 )
-// --- End SVG Icon Components --- 
 
 export default function CadastrarCliente() {
   const [formData, setFormData] = useState({
@@ -141,7 +139,7 @@ export default function CadastrarCliente() {
     <div className="dashboard-container">
       {/* Sidebar */}
       <div className="sidebar">
-        <div className="sidebar-content"> {/* Wrapper for top content */} 
+        <div className="sidebar-content">
           {/* Logo */}
           <div className="logo-container">
             <div className="logo-icon">
@@ -164,14 +162,14 @@ export default function CadastrarCliente() {
               <FileText className="nav-icon" />
               <span>Relatórios</span>
             </div>
-            <div className="nav-item active"> {/* Active class applied */} 
+            <div className="nav-item active">
               <ShoppingBag className="nav-icon" />
               <span>Vendas</span>
             </div>
           </nav>
         </div>
 
-        {/* Logout */} 
+        {/* Logout */}
         <div className="logout-container">
           <div className="nav-item">
             <LogOut className="nav-icon" />
@@ -191,24 +189,20 @@ export default function CadastrarCliente() {
             <h1 className="page-title">Cadastrar Cliente</h1>
           </div>
 
-          {/* Right side of Header */} 
           <div className="header-right">
-             <div className="action-buttons">
+            <div className="action-buttons">
               <button className="btn btn-cancel">Cancelar</button>
               <button className="btn btn-save">
                 <SaveIcon />
                 Salvar Cliente
               </button>
             </div>
-            {/* User Profile Section */}
             <div className="user-profile">
-                <span className="user-name">Calabreso Silva</span>
-                <div className="user-avatar" title="Calabreso Silva">
-                  {/* Placeholder for actual image - replace span with img if available */}
-                  {/* <img src="/path/to/avatar.jpg" alt="Avatar do usuário" /> */} 
-                  <span>CS</span> {/* Fallback initials */} 
-                </div>
-                <div className="chevron-down"></div>
+              <span className="user-name">Calabreso Silva</span>
+              <div className="user-avatar" title="Calabreso Silva">
+                <span>CS</span>
+              </div>
+              <div className="chevron-down"></div>
             </div>
           </div>
         </header>
@@ -223,7 +217,6 @@ export default function CadastrarCliente() {
                 <h2 className="section-title">Informações Pessoais</h2>
               </div>
 
-              {/* Using the standard form-grid */} 
               <div className="form-grid">
                 {/* Nome Completo */}
                 <div className="form-group nomeCompleto">
@@ -289,20 +282,18 @@ export default function CadastrarCliente() {
                   </div>
                 </div>
 
-                {/* CPF/CNPJ - Spanning 2 columns */} 
+                {/* CPF/CNPJ */}
                 <div className="form-group cpf">
                   <label htmlFor="cpf" className="form-label">
-                    {/* Label changes based on selection */} 
                     {formData.tipoDocumento} <span className="required">*</span>
                   </label>
                   <input
                     id="cpf"
                     type="text"
                     className="form-input"
-                    placeholder={formData.tipoDocumento === 'CPF' ? "000.000.000-00" : "00.000.000/0000-00"}
+                    placeholder={formData.tipoDocumento === "CPF" ? "000.000.000-00" : "00.000.000/0000-00"}
                     value={formData.cpf}
                     onChange={(e) => handleInputChange("cpf", e.target.value)}
-                    /* Add mask/validation if needed */
                   />
                 </div>
               </div>
@@ -311,13 +302,12 @@ export default function CadastrarCliente() {
             {/* Address Section */}
             <div className="form-section">
               <div className="section-header">
-                <User className="section-icon" /> {/* Reusing User icon */} 
+                <User className="section-icon" />
                 <h2 className="section-title">Endereço</h2>
               </div>
 
-              {/* Using the specific address grid layout */} 
               <div className="form-grid-address">
-                {/* CEP */} 
+                {/* CEP */}
                 <div className="form-group cep">
                   <label htmlFor="cep" className="form-label">
                     CEP
@@ -329,11 +319,10 @@ export default function CadastrarCliente() {
                     placeholder="00000-000"
                     value={formData.cep}
                     onChange={(e) => handleInputChange("cep", e.target.value)}
-                     /* Add mask/validation if needed */
                   />
                 </div>
 
-                {/* Logradouro */} 
+                {/* Logradouro */}
                 <div className="form-group logradouro">
                   <label htmlFor="logradouro" className="form-label">
                     Logradouro
@@ -348,7 +337,7 @@ export default function CadastrarCliente() {
                   />
                 </div>
 
-                {/* Número */} 
+                {/* Número */}
                 <div className="form-group numero">
                   <label htmlFor="numero" className="form-label">
                     Número
@@ -363,7 +352,7 @@ export default function CadastrarCliente() {
                   />
                 </div>
 
-                {/* Complemento */} 
+                {/* Complemento */}
                 <div className="form-group complemento">
                   <label htmlFor="complemento" className="form-label">
                     Complemento
@@ -378,7 +367,7 @@ export default function CadastrarCliente() {
                   />
                 </div>
 
-                {/* Bairro */} 
+                {/* Bairro */}
                 <div className="form-group bairro">
                   <label htmlFor="bairro" className="form-label">
                     Bairro
@@ -393,7 +382,7 @@ export default function CadastrarCliente() {
                   />
                 </div>
 
-                {/* Cidade */} 
+                {/* Cidade */}
                 <div className="form-group cidade">
                   <label htmlFor="cidade" className="form-label">
                     Cidade
@@ -408,7 +397,7 @@ export default function CadastrarCliente() {
                   />
                 </div>
 
-                {/* Estado */} 
+                {/* Estado */}
                 <div className="form-group estado">
                   <label htmlFor="estado" className="form-label">
                     Estado
@@ -420,7 +409,7 @@ export default function CadastrarCliente() {
                     placeholder="UF"
                     value={formData.estado}
                     onChange={(e) => handleInputChange("estado", e.target.value)}
-                    maxLength={2} /* Common for UF */
+                    maxLength={2}
                   />
                 </div>
               </div>
@@ -431,4 +420,3 @@ export default function CadastrarCliente() {
     </div>
   )
 }
-
